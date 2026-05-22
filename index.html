@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV DIVING S.A.C</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow:#F5D700; --navy:#103752; --navy2:#0D2C42; --black:#090709;
+  --gray:#353533; --gray2:#4A4A48; --white:#FFFFFF; --border:#1E4A68;
+  --muted:#8AAABF; --green:#2ECC71; --red:#E74C3C; --orange:#F39C12;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);min-height:100vh;max-width:480px;margin:0 auto;overflow-x:hidden;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.anim{animation:fadeUp .3s ease both;}
+
+/* ── LOGIN ── */
+#s-login{min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(160deg,#0D2C42 0%,#090709 60%);padding:0 0 40px;position:relative;overflow:hidden;}
+#s-login::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(245,215,0,.08) 0%,transparent 70%);pointer-events:none;}
+.login-top{padding:70px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.login-sub{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:1px;}
+.login-card{background:rgba(16,55,82,.5);border:1px solid var(--border);border-radius:20px;margin:0 20px;padding:24px;backdrop-filter:blur(10px);animation:fadeUp .4s ease;}
+.login-card h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;color:var(--yellow);margin-bottom:18px;text-transform:uppercase;}
+.inp-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;margin-bottom:6px;display:block;}
+.inp{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid var(--border);background:rgba(9,7,9,.4);color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;outline:none;margin-bottom:14px;transition:.2s;}
+.inp:focus{border-color:var(--yellow);background:rgba(9,7,9,.7);}
+.inp-row{display:flex;gap:10px;}
+.inp-row>div{flex:1;}
+.btn-prim{width:100%;padding:16px;border-radius:14px;border:none;background:var(--yellow);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;cursor:pointer;transition:.15s;margin-top:4px;}
+.btn-prim:active{transform:scale(.98);}
+.btn-prim:disabled{opacity:.6;cursor:not-allowed;}
+.btn-sec{width:100%;padding:14px;border-radius:14px;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;cursor:pointer;margin-top:8px;transition:.2s;}
+.btn-sec:hover{border-color:var(--yellow);color:var(--yellow);}
+.login-msg{font-size:12px;text-align:center;margin-top:12px;padding:10px;border-radius:8px;display:none;}
+.login-msg.err{display:block;color:var(--orange);background:rgba(243,156,18,.1);border:1px solid rgba(243,156,18,.3);}
+.login-msg.ok{display:block;color:var(--green);background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);}
+
+/* ── MAIN APP ── */
+#app{display:none;flex-direction:column;min-height:100vh;}
+#app.active{display:flex;}
+
+/* ── TOPBAR — CORREGIDO ── */
+.topbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:56px;background:rgba(9,7,9,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;z-index:200;backdrop-filter:blur(10px);gap:10px;}
+.topbar-logo{flex:0 0 auto;display:flex;align-items:center;}
+.topbar-logo img{height:26px;width:auto;object-fit:contain;display:block;}
+.topbar-spacer{flex:1;}
+.topbar-right{flex:0 0 auto;display:flex;align-items:center;gap:8px;}
+.role-chip{padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;white-space:nowrap;flex-shrink:0;}
+.role-admin{background:rgba(245,215,0,.15);color:var(--yellow);border:1px solid rgba(245,215,0,.3);}
+.role-supervisor{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);}
+.role-buzo{background:rgba(52,152,219,.15);color:#3498DB;border:1px solid rgba(52,152,219,.3);}
+.role-cliente{background:rgba(138,170,191,.15);color:var(--muted);border:1px solid rgba(138,170,191,.3);}
+.avatar-btn{width:34px;height:34px;border-radius:50%;background:var(--navy);border:1.5px solid var(--yellow);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:18px;}
+.avatar-btn img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* ── CONTENT ── */
+.content{flex:1;overflow-y:auto;padding:56px 0 62px;}
+.tab-pane{display:none;animation:fadeUp .25s ease;}
+.tab-pane.active{display:block;}
+
+/* ── NAVBAR — BOT EN CENTRO ── */
+.navbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(9,7,9,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;height:62px;z-index:200;backdrop-filter:blur(10px);}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;background:none;border:none;color:var(--gray2);transition:.2s;min-width:0;}
+.nav-item svg{width:22px;height:22px;flex-shrink:0;}
+.nav-item span{font-size:10px;font-weight:600;white-space:nowrap;}
+.nav-item.on{color:var(--yellow);}
+.nav-item.on svg{filter:drop-shadow(0 0 6px rgba(245,215,0,.4));}
+/* Botón central del bot */
+.nav-bot{background:var(--yellow)!important;border-radius:50%!important;width:48px!important;height:48px!important;padding:0!important;color:var(--black)!important;box-shadow:0 4px 16px rgba(245,215,0,.35);margin-top:-10px;flex-shrink:0;}
+.nav-bot svg{width:24px;height:24px;stroke:var(--black);}
+.nav-bot span{display:none;}
+
+/* ── OVERLAYS ── */
+.overlay{position:fixed;inset:0;z-index:300;background:rgba(9,7,9,.98);overflow-y:auto;max-width:480px;left:50%;transform:translateX(-50%);width:100%;display:none;}
+.overlay.active{display:block;animation:slideIn .28s ease;}
+.overlay-header{position:sticky;top:0;background:rgba(9,7,9,.97);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);z-index:10;}
+.back-btn{width:36px;height:36px;border-radius:50%;background:rgba(16,55,82,.5);border:1px solid var(--border);color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.overlay-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--white);}
+.overlay-body{padding:20px 18px 40px;}
+
+/* ── UI COMPONENTS ── */
+.fgroup{background:rgba(16,55,82,.2);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:14px;}
+.fgroup h4{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--yellow);text-transform:uppercase;margin-bottom:14px;}
+.finp{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:rgba(9,7,9,.4);color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;margin-bottom:10px;outline:none;transition:.2s;}
+.finp:focus{border-color:var(--yellow);}
+select.finp{appearance:none;cursor:pointer;}
+textarea.finp{resize:none;}
+.finp-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;margin-bottom:5px;display:block;}
+.finp-row{display:flex;gap:10px;}
+.finp-row>div{flex:1;}
+.btn-full{width:100%;padding:15px;border-radius:12px;border:none;background:var(--yellow);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:.15s;}
+.btn-full:active{opacity:.9;}
+.btn-full:disabled{opacity:.5;cursor:not-allowed;}
+.btn-danger{background:rgba(231,76,60,.15)!important;color:var(--red)!important;border:1.5px solid rgba(231,76,60,.3)!important;}
+.btn-navy{background:rgba(16,55,82,.5)!important;color:var(--white)!important;border:1.5px solid var(--border)!important;}
+
+.list-item{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid rgba(30,74,104,.3);cursor:pointer;transition:.15s;}
+.list-item:hover{background:rgba(16,55,82,.2);}
+.list-icon{width:42px;height:42px;border-radius:12px;background:rgba(16,55,82,.5);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;overflow:hidden;}
+.list-icon img{width:100%;height:100%;object-fit:cover;}
+.list-info{flex:1;min-width:0;}
+.list-info h4{font-size:14px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.list-info p{font-size:12px;color:var(--muted);margin-top:2px;}
+
+.badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;flex-shrink:0;}
+.b-pending{background:rgba(243,156,18,.15);color:var(--orange);border:1px solid rgba(243,156,18,.3);}
+.b-active{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);}
+.b-done{background:rgba(52,152,219,.15);color:#3498DB;border:1px solid rgba(52,152,219,.3);}
+.b-rejected{background:rgba(231,76,60,.15);color:var(--red);border:1px solid rgba(231,76,60,.3);}
+.b-yellow{background:rgba(245,215,0,.15);color:var(--yellow);border:1px solid rgba(245,215,0,.3);}
+
+.progress-bar{width:100%;height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin-top:8px;}
+.progress-fill{height:100%;background:var(--yellow);border-radius:3px;transition:width .5s ease;}
+.card{background:rgba(16,55,82,.25);border:1px solid var(--border);border-radius:16px;padding:16px;margin:0 18px 12px;}
+.card-accent{border-left:3px solid var(--yellow);}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px;margin-bottom:14px;}
+.stat-box{background:rgba(16,55,82,.3);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;}
+.stat-box .num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:var(--yellow);line-height:1;}
+.stat-box .lbl{font-size:11px;color:var(--muted);font-weight:500;margin-top:4px;}
+
+/* ── CHAT ── */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 56px - 62px);}
+.chat-history{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:15px;}
+.msg{max-width:85%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5;}
+.msg.bot{background:rgba(16,55,82,.6);border:1px solid var(--border);border-bottom-left-radius:4px;align-self:flex-start;}
+.msg.user{background:var(--yellow);color:var(--black);font-weight:500;border-bottom-right-radius:4px;align-self:flex-end;}
+.chat-inp-area{padding:12px 16px;background:rgba(9,7,9,.97);border-top:1px solid var(--border);display:flex;gap:10px;align-items:center;}
+.chat-inp-area input{flex:1;border-radius:20px;padding:12px 16px;margin:0;}
+.chat-send{width:44px;height:44px;border-radius:50%;background:var(--yellow);border:none;color:var(--black);font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+
+/* ── HERO & SECCIÓN ── */
+.hero{background:linear-gradient(135deg,var(--navy2) 0%,rgba(9,7,9,.8) 100%);padding:24px 18px 20px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero::after{content:'»';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-size:90px;font-weight:800;color:rgba(245,215,0,.04);line-height:1;pointer-events:none;}
+.hero-greet{font-size:13px;color:var(--muted);margin-bottom:4px;}
+.hero-name{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--white);line-height:1.1;text-transform:capitalize;}
+.hero-name span{color:var(--yellow);}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:0 18px;margin-top:22px;margin-bottom:10px;}
+.empty{text-align:center;color:var(--muted);font-size:14px;padding:40px 20px;line-height:1.6;}
+.empty-icon{font-size:40px;margin-bottom:10px;display:block;}
+
+/* ── PERFIL ── */
+.prof-header{display:flex;flex-direction:column;align-items:center;padding:30px 18px 20px;gap:10px;}
+.prof-av-wrap{position:relative;width:90px;height:90px;}
+.prof-avatar{width:90px;height:90px;border-radius:50%;background:var(--navy);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;}
+.prof-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.edit-foto-btn{font-size:11px;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);cursor:pointer;color:white;transition:.2s;}
+.edit-foto-btn:hover{background:rgba(245,215,0,.1);border-color:var(--yellow);color:var(--yellow);}
+.prof-name-txt{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--white);}
+
+/* ── SERVICIOS ── */
+.serv-card{background:rgba(16,55,82,.25);border:1px solid var(--border);border-radius:16px;padding:16px;margin:0 18px 12px;cursor:pointer;transition:.2s;display:flex;gap:14px;align-items:flex-start;}
+.serv-card:hover{border-color:var(--yellow);background:rgba(245,215,0,.05);}
+.serv-icon{width:46px;height:46px;border-radius:12px;background:rgba(245,215,0,.1);border:1px solid rgba(245,215,0,.2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.serv-info h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.serv-info p{font-size:12px;color:var(--muted);line-height:1.5;}
+.serv-sector{font-size:10px;font-weight:700;color:var(--yellow);text-transform:uppercase;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- ══ LOGIN ══ -->
+<div id="s-login">
+  <div class="login-top anim">
+    <img src="nuevo_logo-removebg.png" alt="CV Diving" style="width:200px;max-width:75%;filter:drop-shadow(0 0 20px rgba(245,215,0,.2));">
+    <div class="login-sub">BUCEO COMERCIAL</div>
+  </div>
+
+  <!-- FORM LOGIN -->
+  <div class="login-card" id="form-login">
+    <h3>Iniciar Sesión</h3>
+    <label class="inp-label">Usuario</label>
+    <input class="inp" id="log-user" type="text" placeholder="Tu nombre de usuario" autocomplete="username">
+    <label class="inp-label">Contraseña</label>
+    <input class="inp" id="log-pass" type="password" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+    <button class="btn-prim" id="btn-login" onclick="doLogin()">Ingresar</button>
+    <div class="login-msg" id="login-msg"></div>
+    <button class="btn-sec" onclick="showForm('register')">No tengo cuenta — Registrarme</button>
+  </div>
+
+  <!-- FORM REGISTRO -->
+  <div class="login-card" id="form-register" style="display:none;margin-top:12px;">
+    <h3>Nueva Cuenta</h3>
+    <div class="inp-row">
+      <div><label class="inp-label">Nombre</label><input class="inp" id="reg-nombre" type="text" placeholder="Alejandro"></div>
+      <div><label class="inp-label">Apellido</label><input class="inp" id="reg-apellido" type="text" placeholder="Castillo"></div>
+    </div>
+    <label class="inp-label">Usuario</label>
+    <input class="inp" id="reg-user" type="text" placeholder="Ej: acastillo" autocomplete="username">
+    <label class="inp-label">Correo Electrónico</label>
+    <input class="inp" id="reg-email" type="email" placeholder="correo@empresa.com">
+    <label class="inp-label">Contraseña</label>
+    <input class="inp" id="reg-pass" type="password" placeholder="Crea una contraseña" autocomplete="new-password" onkeypress="if(event.key==='Enter')doRegister()">
+    <button class="btn-prim" id="btn-register" onclick="doRegister()">Crear Cuenta</button>
+    <div class="login-msg" id="reg-msg"></div>
+    <button class="btn-sec" onclick="showForm('login')">Ya tengo cuenta — Ingresar</button>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<div id="app">
+  <!-- TOPBAR CORREGIDO -->
+  <div class="topbar">
+    <div class="topbar-logo">
+      <img src="Logo2.png" alt="CV Diving" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--yellow);">CV DIVING</span>
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-right">
+      <span id="role-chip" class="role-chip role-cliente">Cliente</span>
+      <div class="avatar-btn" id="top-avatar" onclick="openOverlay('o-profile')">👤</div>
+    </div>
+  </div>
+
+  <div class="content" id="main-content"></div>
+
+  <nav class="navbar" id="main-nav"></nav>
+</div>
+
+<!-- ══ OVERLAY: BOT ══ -->
+<div id="o-bot" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-bot')">←</button>
+    <div style="width:32px;height:32px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🤖</div>
+    <div class="overlay-title">Max — Asistente CV Diving</div>
+  </div>
+  <div class="chat-wrap">
+    <div class="chat-history" id="chat-history">
+      <div class="msg bot">👋 ¡Hola! Soy <strong>Max</strong>, el asistente virtual de CV Diving. Puedo ayudarte a navegar la app, entender los roles o resolver dudas sobre proyectos y reportes. ¿En qué te ayudo?</div>
+    </div>
+    <div class="chat-inp-area">
+      <input type="text" id="chat-input" class="finp" style="margin:0;" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendBot()">
+      <button class="chat-send" onclick="sendBot()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OVERLAY: PERFIL ══ -->
+<div id="o-profile" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-profile')">←</button>
+    <div class="overlay-title">Mi Perfil</div>
+  </div>
+  <div class="prof-header">
+    <div class="prof-av-wrap">
+      <div class="prof-avatar" id="prof-av">👤</div>
+    </div>
+    <input type="file" id="inp-foto" accept="image/*" style="display:none;" onchange="subirFoto(this)">
+    <button class="edit-foto-btn" onclick="document.getElementById('inp-foto').click()">✏️ Cambiar foto</button>
+    <div class="prof-name-txt" id="prof-name-txt">—</div>
+    <div style="font-size:13px;color:var(--muted);" id="prof-alias-txt">@—</div>
+    <span id="prof-chip" class="role-chip role-cliente" style="margin-top:2px;"></span>
+  </div>
+  <div style="padding:0 18px 40px;">
+    <div class="fgroup">
+      <h4>Información</h4>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.3);">
+        <span style="color:var(--muted);font-size:13px;">Correo</span>
+        <span id="prof-email-txt" style="font-size:13px;">—</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;">
+        <span style="color:var(--muted);font-size:13px;">Rol</span>
+        <span id="prof-rol-txt" style="font-size:13px;color:var(--yellow);">—</span>
+      </div>
+    </div>
+    <div id="foto-status" style="font-size:12px;text-align:center;color:var(--green);margin-bottom:10px;display:none;"></div>
+    <button class="btn-full btn-danger" onclick="doLogout()" style="margin-top:8px;">🚪 Cerrar Sesión</button>
+  </div>
+</div>
+
+<!-- ══ OVERLAY: CREAR PROYECTO ══ -->
+<div id="o-crear-proyecto" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-crear-proyecto')">←</button>
+    <div class="overlay-title">Nuevo Proyecto</div>
+  </div>
+  <div class="overlay-body">
+    <div class="fgroup">
+      <h4>Datos del Proyecto</h4>
+      <label class="finp-label">Nombre del Proyecto *</label>
+      <input class="finp" id="cp-nombre" placeholder="Ej: Inspección Muelle Norte">
+      <label class="finp-label">Descripción</label>
+      <textarea class="finp" id="cp-desc" rows="3" placeholder="Detalle del proyecto..."></textarea>
+      <div class="finp-row">
+        <div>
+          <label class="finp-label">Sector *</label>
+          <select class="finp" id="cp-sector">
+            <option value="">— Sector —</option>
+            <option value="pesquero">Pesquero</option>
+            <option value="industrial">Industrial</option>
+            <option value="petrolero">Petrolero</option>
+            <option value="minero">Minero</option>
+            <option value="fluvial">Fluvial</option>
+          </select>
+        </div>
+        <div>
+          <label class="finp-label">Estado</label>
+          <select class="finp" id="cp-estado">
+            <option value="activo">Activo</option>
+            <option value="pausado">Pausado</option>
+          </select>
+        </div>
+      </div>
+      <label class="finp-label">Ubicación / Puerto</label>
+      <input class="finp" id="cp-ubicacion" placeholder="Ej: Callao, Lima">
+      <label class="finp-label">Username del Cliente (opcional)</label>
+      <input class="finp" id="cp-cliente" placeholder="username del cliente">
+      <label class="finp-label">Username del Supervisor</label>
+      <input class="finp" id="cp-supervisor" placeholder="username del supervisor">
+      <div class="finp-row">
+        <div><label class="finp-label">Fecha Inicio</label><input class="finp" id="cp-finicio" type="date"></div>
+        <div><label class="finp-label">Fecha Fin Est.</label><input class="finp" id="cp-ffin" type="date"></div>
+      </div>
+    </div>
+    <button class="btn-full" id="btn-crear-proy" onclick="crearProyecto()">Crear Proyecto</button>
+  </div>
+</div>
+
+<!-- ══ OVERLAY: CREAR USUARIO ══ -->
+<div id="o-crear-user" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-crear-user')">←</button>
+    <div class="overlay-title">Añadir al Equipo</div>
+  </div>
+  <div class="overlay-body">
+    <div class="fgroup">
+      <h4>Datos del Miembro</h4>
+      <div class="finp-row">
+        <div><label class="finp-label">Nombre *</label><input class="finp" id="cu-nombre" placeholder="Nombre"></div>
+        <div><label class="finp-label">Apellido *</label><input class="finp" id="cu-apellido" placeholder="Apellido"></div>
+      </div>
+      <label class="finp-label">Usuario (alias) *</label>
+      <input class="finp" id="cu-user" placeholder="Ej: jperez_buzo">
+      <label class="finp-label">Correo *</label>
+      <input class="finp" id="cu-email" type="email" placeholder="correo@cvdiving.com">
+      <label class="finp-label">Contraseña *</label>
+      <input class="finp" id="cu-pass" type="password" placeholder="Contraseña segura">
+      <div class="finp-row">
+        <div>
+          <label class="finp-label">Rol *</label>
+          <select class="finp" id="cu-rol">
+            <option value="buzo">Buzo</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="cliente">Cliente</option>
+          </select>
+        </div>
+        <div><label class="finp-label">Teléfono</label><input class="finp" id="cu-tel" type="tel" placeholder="+51 9..."></div>
+      </div>
+    </div>
+    <button class="btn-full" id="btn-crear-user" onclick="crearUsuario()">Registrar Miembro</button>
+  </div>
+</div>
+
+<!-- ══ OVERLAY: PROYECTO ADMIN ══ -->
+<div id="o-proyecto-admin" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-proyecto-admin')">←</button>
+    <div class="overlay-title" id="opa-title">Proyecto</div>
+  </div>
+  <div class="overlay-body" id="opa-body"></div>
+</div>
+
+<!-- ══ OVERLAY: PROYECTO CLIENTE ══ -->
+<div id="o-proyecto-cliente" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-proyecto-cliente')">←</button>
+    <div class="overlay-title" id="op-title">Proyecto</div>
+  </div>
+  <div class="overlay-body" id="op-body"></div>
+</div>
+
+<!-- ══ OVERLAY: COTIZAR ══ -->
+<div id="o-cotizar" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-cotizar')">←</button>
+    <div class="overlay-title">Solicitar Servicio</div>
+  </div>
+  <div class="overlay-body" id="cot-body"></div>
+</div>
+
+<!-- ══ OVERLAY: RESPONDER COTIZACIÓN ══ -->
+<div id="o-resp-cot" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-resp-cot')">←</button>
+    <div class="overlay-title">Responder Solicitud</div>
+  </div>
+  <div class="overlay-body" id="rc-body"></div>
+</div>
+
+<!-- ══ OVERLAY: ASIGNAR ══ -->
+<div id="o-asignar" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-asignar')">←</button>
+    <div class="overlay-title">Nueva Asignación</div>
+  </div>
+  <div class="overlay-body">
+    <div class="fgroup">
+      <h4>Asignación de Tarea</h4>
+      <label class="finp-label">Proyecto</label>
+      <select class="finp" id="asi-proyecto"></select>
+      <label class="finp-label">Buzo Asignado</label>
+      <select class="finp" id="asi-buzo"></select>
+      <label class="finp-label">Descripción de la tarea *</label>
+      <textarea class="finp" id="asi-desc" rows="3" placeholder="Detalla la tarea a realizar..."></textarea>
+      <div class="finp-row">
+        <div><label class="finp-label">Fecha</label><input class="finp" id="asi-fecha" type="date"></div>
+        <div>
+          <label class="finp-label">Prioridad</label>
+          <select class="finp" id="asi-prioridad">
+            <option value="normal">Normal</option>
+            <option value="alta">Alta</option>
+            <option value="baja">Baja</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="btn-full" id="btn-asignar" onclick="crearAsignacion()">Asignar Tarea</button>
+  </div>
+</div>
+
+<!-- ══ OVERLAY: REPORTE ══ -->
+<div id="o-reporte" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-reporte')">←</button>
+    <div class="overlay-title">Enviar Reporte</div>
+  </div>
+  <div class="overlay-body">
+    <div class="fgroup">
+      <h4>Datos del Reporte</h4>
+      <label class="finp-label">Proyecto</label>
+      <select class="finp" id="rep-proyecto"></select>
+      <label class="finp-label">Trabajo realizado *</label>
+      <textarea class="finp" id="rep-desc" rows="4" placeholder="Describe el trabajo realizado..."></textarea>
+      <div class="finp-row">
+        <div><label class="finp-label">Horas trabajadas *</label><input class="finp" id="rep-horas" type="number" min="0.5" step="0.5" placeholder="Ej: 4.5"></div>
+        <div>
+          <label class="finp-label">Condiciones del mar</label>
+          <select class="finp" id="rep-cond">
+            <option value="">— Selecciona —</option>
+            <option>Calmo</option>
+            <option>Moderado</option>
+            <option>Difícil</option>
+          </select>
+        </div>
+      </div>
+      <label class="finp-label">Incidentes (opcional)</label>
+      <textarea class="finp" id="rep-incidentes" rows="2" placeholder="Ninguno si todo salió bien..."></textarea>
+    </div>
+    <button class="btn-full" id="btn-rep" onclick="enviarReporte()">Enviar Reporte</button>
+  </div>
+</div>
+
+<!-- ══ OVERLAY: REVISAR REPORTE ══ -->
+<div id="o-revisar-rep" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-revisar-rep')">←</button>
+    <div class="overlay-title">Revisar Reporte</div>
+  </div>
+  <div class="overlay-body" id="rr-body"></div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════
+const API = 'https://backend-cv-aq0s.onrender.com';
+
+let user = null;
+let servicios = [], cotizaciones = [], proyectos = [], asignaciones = [], reportes = [], usuarios = [], stats = {};
+let currentCotServicio = null, currentCotIdx = null, currentRepIdx = null;
+
+function $(id) { return document.getElementById(id); }
+function openOverlay(id) { $(id).classList.add('active'); }
+function closeOverlay(id) { $(id).classList.remove('active'); }
+
+function showForm(mode) {
+  $('form-login').style.display    = mode === 'login'    ? 'block' : 'none';
+  $('form-register').style.display = mode === 'register' ? 'flex'  : 'none';
+  $('login-msg').className = 'login-msg';
+  $('reg-msg').className   = 'login-msg';
+}
+
+function fmt(iso) {
+  if (!iso) return '—';
+  try { return new Date(iso).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' }); }
+  catch { return iso; }
+}
+
+function stateMap(e) {
+  const m = { pendiente:'b-pending', activo:'b-active', aprobada:'b-active', completado:'b-done',
+              completada:'b-done', rechazada:'b-rejected', cancelado:'b-rejected',
+              en_revision:'b-yellow', en_progreso:'b-yellow', pausado:'b-yellow' };
+  return m[e] || 'b-pending';
+}
+function stateLabel(e) {
+  const m = { pendiente:'Pendiente', activo:'Activo', aprobada:'Aprobada', completado:'Completado',
+              completada:'Completada', rechazada:'Rechazada', cancelado:'Cancelado',
+              en_revision:'En revisión', en_progreso:'En progreso', pausado:'Pausado' };
+  return m[e] || e;
+}
+
+// ══════════════════════════════════════════
+// API WRAPPER
+// ══════════════════════════════════════════
+async function api(path, method = 'GET', body = null) {
+  const opts = {
+    method,
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }
+  };
+  if (body) opts.body = JSON.stringify(body);
+  try {
+    const r = await fetch(API + path, opts);
+    const data = await r.json();
+    if (!r.ok) {
+      console.error('API error:', r.status, data);
+      return null;
+    }
+    return data;
+  } catch (e) {
+    console.error('Fetch error:', e);
+    return null;
+  }
+}
+
+// ══════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════
+window.onload = () => {
+  const saved = localStorage.getItem('cvdiving_user');
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (parsed && parsed.username && parsed.username !== 'undefined') {
+        initApp(parsed);
+        return;
+      }
+    } catch {}
+  }
+  $('s-login').style.display = 'flex';
+};
+
+function showMsg(elId, txt, type) {
+  const el = $(elId);
+  el.innerText = txt;
+  el.className = `login-msg ${type}`;
+}
+
+async function doLogin() {
+  const u = $('log-user').value.trim();
+  const p = $('log-pass').value;
+  if (!u || !p) { showMsg('login-msg', '⚠️ Ingresa usuario y contraseña.', 'err'); return; }
+
+  const btn = $('btn-login');
+  btn.disabled = true; btn.innerText = 'Conectando...';
+  $('login-msg').className = 'login-msg';
+
+  const res = await api('/api/login', 'POST', { username: u, password: p });
+
+  btn.disabled = false; btn.innerText = 'Ingresar';
+
+  if (!res) {
+    showMsg('login-msg', '⚠️ Sin conexión al servidor. Intenta nuevamente.', 'err');
+    return;
+  }
+  if (!res.success) {
+    showMsg('login-msg', '❌ ' + (res.msg || 'Usuario o contraseña incorrectos.'), 'err');
+    return;
+  }
+
+  // ← ÉXITO: res.data tiene los datos correctos
+  localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
+  initApp(res.data);
+}
+
+async function doRegister() {
+  const nombre   = $('reg-nombre').value.trim();
+  const apellido = $('reg-apellido').value.trim();
+  const username = $('reg-user').value.trim();
+  const email    = $('reg-email').value.trim();
+  const password = $('reg-pass').value;
+
+  if (!nombre || !apellido || !username || !email || !password) {
+    showMsg('reg-msg', '⚠️ Completa todos los campos.', 'err'); return;
+  }
+
+  const btn = $('btn-register');
+  btn.disabled = true; btn.innerText = 'Creando cuenta...';
+
+  const res = await api('/api/register', 'POST', { username, password, email, nombre, apellido });
+
+  btn.disabled = false; btn.innerText = 'Crear Cuenta';
+
+  if (!res) { showMsg('reg-msg', '⚠️ Sin conexión al servidor.', 'err'); return; }
+  if (!res.success) { showMsg('reg-msg', '❌ ' + (res.msg || 'Error al registrar.'), 'err'); return; }
+
+  localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
+  initApp(res.data);
+}
+
+function doLogout() {
+  localStorage.removeItem('cvdiving_user');
+  location.reload();
+}
+
+// ══════════════════════════════════════════
+// AVATAR — CORREGIDO
+// ══════════════════════════════════════════
+function renderAvatar(u) {
+  const isImg = u.foto && typeof u.foto === 'string' && u.foto.startsWith('data:image');
+  const topEl  = $('top-avatar');
+  const profEl = $('prof-av');
+
+  if (isImg) {
+    topEl.innerHTML  = `<img src="${u.foto}" alt="avatar">`;
+    profEl.innerHTML = `<img src="${u.foto}" alt="avatar">`;
+  } else {
+    const initials = ((u.nombre || '')[0] || '') + ((u.apellido || '')[0] || '');
+    topEl.innerHTML  = initials.toUpperCase() || '👤';
+    profEl.innerHTML = initials.toUpperCase() || '👤';
+  }
+}
+
+// SUBIR FOTO — CORREGIDO (guarda correctamente)
+async function subirFoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onload = async function() {
+      // Comprimir
+      const canvas = document.createElement('canvas');
+      const MAX = 400;
+      let w = img.width, h = img.height;
+      if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+      else        { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const b64 = canvas.toDataURL('image/jpeg', 0.75);
+
+      // Mostrar preview inmediato
+      $('top-avatar').innerHTML = `<img src="${b64}" alt="avatar">`;
+      $('prof-av').innerHTML    = `<img src="${b64}" alt="avatar">`;
+
+      // Guardar en servidor
+      const res = await api(`/api/usuarios/${user.username}`, 'PUT', {
+        admin_username: user.username,
+        username:       user.username,
+        foto:           b64
+      });
+
+      if (res && res.success) {
+        user.foto = b64;
+        localStorage.setItem('cvdiving_user', JSON.stringify(user));
+        const st = $('foto-status');
+        st.style.display = 'block';
+        st.innerText = '✅ Foto actualizada correctamente.';
+        setTimeout(() => { st.style.display = 'none'; }, 3000);
+      } else {
+        // Aun así guarda local para no perder la foto
+        user.foto = b64;
+        localStorage.setItem('cvdiving_user', JSON.stringify(user));
+        const st = $('foto-status');
+        st.style.display = 'block';
+        st.innerText = '⚠️ Guardada localmente. Reconecta para sincronizar.';
+        st.style.color = 'var(--orange)';
+        setTimeout(() => { st.style.display = 'none'; }, 4000);
+      }
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+// ══════════════════════════════════════════
+// INIT APP
+// ══════════════════════════════════════════
+function initApp(userData) {
+  user = userData;
+  if (!user || !user.username) { doLogout(); return; }
+
+  $('s-login').style.display = 'none';
+  $('app').classList.add('active');
+
+  const nom = user.nombre  || 'Usuario';
+  const ape = user.apellido || '';
+  const rol = user.rol     || 'cliente';
+
+  // Perfil
+  $('prof-name-txt').innerText  = `${nom} ${ape}`.trim();
+  $('prof-alias-txt').innerText = `@${user.username}`;
+  $('prof-email-txt').innerText = user.email || '—';
+  $('prof-rol-txt').innerText   = { admin:'Administrador', supervisor:'Supervisor', buzo:'Buzo', cliente:'Cliente' }[rol] || rol;
+
+  // Role chip
+  const chipClass = { admin:'role-admin', supervisor:'role-supervisor', buzo:'role-buzo', cliente:'role-cliente' };
+  const chipLabel = { admin:'Admin', supervisor:'Supervisor', buzo:'Buzo', cliente:'Cliente' };
+  $('role-chip').className = `role-chip ${chipClass[rol] || 'role-cliente'}`;
+  $('role-chip').innerText = chipLabel[rol] || 'Cliente';
+  $('prof-chip').className = `role-chip ${chipClass[rol] || 'role-cliente'}`;
+  $('prof-chip').innerText = chipLabel[rol] || 'Cliente';
+
+  renderAvatar(user);
+  buildInterface();
+  loadAllData();
+}
+
+// ══════════════════════════════════════════
+// BUILD INTERFACE
+// ══════════════════════════════════════════
+function setTab(id) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item:not(.nav-bot)').forEach(n => n.classList.remove('on'));
+  const el = $(id);
+  if (el) el.classList.add('active');
+  const btn = document.querySelector(`[data-tab="${id}"]`);
+  if (btn) btn.classList.add('on');
+}
+
+function buildInterface() {
+  const rol = user.rol || 'cliente';
+  const nom = user.nombre   || 'Usuario';
+  const ape = user.apellido || '';
+
+  let tabs = [];
+
+  if (rol === 'cliente') {
+    tabs = [
+      { id:'tab-servicios',   label:'Servicios',  icon:'<path d="M4 6h16M4 12h16M4 18h7"/>' },
+      { id:'tab-cotizaciones',label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+      { id:'tab-proyectos',   label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+    ];
+    $('main-content').innerHTML = `
+      <div id="tab-servicios" class="tab-pane">
+        <div class="hero"><div class="hero-greet">Bienvenido,</div><div class="hero-name">${nom} <span>${ape}</span></div></div>
+        <p class="section-title">Nuestros Servicios</p>
+        <div id="lista-servicios"></div>
+      </div>
+      <div id="tab-cotizaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Mis <span>Solicitudes</span></div></div>
+        <div id="lista-cotizaciones" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Mis <span>Proyectos</span></div></div>
+        <div id="lista-proyectos" style="margin-top:12px;"></div>
+      </div>`;
+  }
+  else if (rol === 'buzo') {
+    tabs = [
+      { id:'tab-asignaciones',label:'Tareas',   icon:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>' },
+      { id:'tab-reportes',   label:'Reportes',  icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
+    ];
+    $('main-content').innerHTML = `
+      <div id="tab-asignaciones" class="tab-pane">
+        <div class="hero"><div class="hero-greet">Panel Buzo</div><div class="hero-name">${nom} <span>${ape}</span></div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openReporteForm()">+ Enviar Reporte</button></div>
+        <p class="section-title">Mis Asignaciones</p>
+        <div id="lista-asignaciones"></div>
+      </div>
+      <div id="tab-reportes" class="tab-pane">
+        <div class="hero"><div class="hero-name">Mis <span>Reportes</span></div></div>
+        <div id="lista-reportes-buzo" style="margin-top:12px;"></div>
+      </div>`;
+  }
+  else if (rol === 'supervisor') {
+    tabs = [
+      { id:'tab-proyectos',    label:'Proyectos', icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-asignaciones', label:'Asignar',   icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+      { id:'tab-reportes',     label:'Reportes',  icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
+      { id:'tab-cotizaciones', label:'Solicitudes',icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+    ];
+    $('main-content').innerHTML = `
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Proyectos</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openOverlay('o-crear-proyecto')">+ Nuevo Proyecto</button></div>
+        <div id="lista-proyectos-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-asignaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Asignaciones</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openAsignarForm()">+ Nueva Asignación</button></div>
+        <p class="section-title">Recientes</p>
+        <div id="lista-asig-adm"></div>
+      </div>
+      <div id="tab-reportes" class="tab-pane">
+        <div class="hero"><div class="hero-name">Revisar <span>Reportes</span></div></div>
+        <div id="lista-reportes-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-cotizaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Solicitudes</div></div>
+        <div id="lista-cot-adm" style="margin-top:12px;"></div>
+      </div>`;
+  }
+  else { // admin
+    tabs = [
+      { id:'tab-dashboard',    label:'Inicio',    icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
+      { id:'tab-cotizaciones', label:'Solicitudes',icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+      { id:'tab-proyectos',    label:'Proyectos', icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-usuarios',     label:'Equipo',    icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+    ];
+    $('main-content').innerHTML = `
+      <div id="tab-dashboard" class="tab-pane">
+        <div class="hero"><div class="hero-greet">Panel de Control</div><div class="hero-name">CV <span>DIVING</span></div></div>
+        <p class="section-title">Resumen General</p>
+        <div class="stat-row">
+          <div class="stat-box"><div class="num" id="s-proyectos">—</div><div class="lbl">Proyectos Activos</div></div>
+          <div class="stat-box"><div class="num" id="s-cotizaciones">—</div><div class="lbl">Solicitudes Pendientes</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="num" id="s-buzos">—</div><div class="lbl">Buzos</div></div>
+          <div class="stat-box"><div class="num" id="s-clientes">—</div><div class="lbl">Clientes</div></div>
+        </div>
+        <p class="section-title">Acciones Rápidas</p>
+        <div style="padding:0 18px 20px;display:flex;flex-direction:column;gap:10px;">
+          <button class="btn-full" onclick="setTab('tab-cotizaciones')">📋 Ver Solicitudes Pendientes</button>
+          <button class="btn-full btn-navy" onclick="openOverlay('o-crear-proyecto')">⚙️ Crear Nuevo Proyecto</button>
+          <button class="btn-full btn-navy" onclick="openOverlay('o-crear-user')">👤 Añadir Miembro al Equipo</button>
+        </div>
+      </div>
+      <div id="tab-cotizaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Solicitudes</div></div>
+        <div id="lista-cot-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Proyectos</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openOverlay('o-crear-proyecto')">+ Nuevo Proyecto</button></div>
+        <div id="lista-proyectos-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-usuarios" class="tab-pane">
+        <div class="hero"><div class="hero-name">Equipo</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openOverlay('o-crear-user')">+ Añadir Miembro</button></div>
+        <div id="lista-usuarios" style="margin-top:12px;"></div>
+      </div>`;
+  }
+
+  // ── NAVBAR CON BOT EN EL CENTRO ──
+  const mid  = Math.ceil(tabs.length / 2);
+  const left = tabs.slice(0, mid);
+  const right= tabs.slice(mid);
+
+  const mkBtn = (t, first) => `
+    <button class="nav-item${first?' on':''}" data-tab="${t.id}" onclick="setTab('${t.id}')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${t.icon}</svg>
+      <span>${t.label}</span>
+    </button>`;
+
+  $('main-nav').innerHTML =
+    left.map((t, i) => mkBtn(t, i === 0 && true)).join('') +
+    `<button class="nav-item nav-bot" onclick="openOverlay('o-bot')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      </svg>
+      <span>Max</span>
+    </button>` +
+    right.map(t => mkBtn(t, false)).join('');
+
+  setTab(tabs[0].id);
+}
+
+// ══════════════════════════════════════════
+// CARGAR DATOS
+// ══════════════════════════════════════════
+async function loadAllData() {
+  const rol = user.rol || 'cliente';
+  const u   = user.username;
+
+  servicios    = await api('/api/servicios') || [];
+  cotizaciones = await api(`/api/cotizaciones?username=${u}`) || [];
+  proyectos    = await api(`/api/proyectos?username=${u}`) || [];
+  asignaciones = await api(`/api/asignaciones?username=${u}`) || [];
+  reportes     = await api(`/api/reportes?username=${u}`) || [];
+
+  if (rol === 'admin' || rol === 'supervisor') {
+    stats    = await api(`/api/stats?username=${u}`) || {};
+    usuarios = await api(`/api/usuarios?admin_username=${u}`) || [];
+  }
+
+  renderAll();
+}
+
+function renderAll() {
+  const rol = user.rol || 'cliente';
+  if (rol === 'cliente')                { renderCliente(); }
+  if (rol === 'buzo')                   { renderBuzo(); }
+  if (rol === 'supervisor')             { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderCotAdm(); }
+  if (rol === 'admin') {
+    if (stats) {
+      if ($('s-proyectos'))   $('s-proyectos').innerText   = stats.proyectos_activos       ?? '—';
+      if ($('s-cotizaciones')) $('s-cotizaciones').innerText = stats.cotizaciones_pendientes ?? '—';
+      if ($('s-buzos'))       $('s-buzos').innerText       = stats.total_buzos             ?? '—';
+      if ($('s-clientes'))    $('s-clientes').innerText    = stats.total_clientes          ?? '—';
+    }
+    renderProyectosAdm(); renderCotAdm(); renderUsuarios();
+  }
+}
+
+// ══════════════════════════════════════════
+// RENDERS
+// ══════════════════════════════════════════
+function renderCliente() {
+  const ls = $('lista-servicios');
+  if (ls) ls.innerHTML = servicios.length
+    ? servicios.map(s => `
+        <div class="serv-card" onclick="abrirCotizar(${s.id})">
+          <div class="serv-icon">${s.icono}</div>
+          <div class="serv-info">
+            <h4>${s.nombre}</h4>
+            <p>${s.descripcion}</p>
+            <div class="serv-sector">Sector ${s.sector}</div>
+          </div>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">🔍</span>No hay servicios disponibles.</div>';
+
+  const lc = $('lista-cotizaciones');
+  if (lc) lc.innerHTML = cotizaciones.length
+    ? cotizaciones.map(c => `
+        <div class="list-item">
+          <div class="list-icon">📝</div>
+          <div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion || '—'}</p></div>
+          <span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📋</span>Sin solicitudes aún.</div>';
+
+  const lp = $('lista-proyectos');
+  if (lp) lp.innerHTML = proyectos.length
+    ? proyectos.map(p => `
+        <div class="card card-accent" onclick="abrirProyectoCliente(${p.id})">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <h4 style="font-family:'Barlow Condensed',sans-serif;font-size:16px;">${p.nombre}</h4>
+            <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">${p.descripcion || '—'}</p>
+          <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;text-align:right;">${p.progreso||0}% completado</div>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">⚙️</span>No tienes proyectos asignados.</div>';
+}
+
+function renderBuzo() {
+  const la = $('lista-asignaciones');
+  if (la) la.innerHTML = asignaciones.length
+    ? asignaciones.map(a => `
+        <div class="list-item">
+          <div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div>
+          <div class="list-info"><h4>${a.descripcion}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div>
+          <span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">✅</span>Sin asignaciones activas.</div>';
+
+  const lr = $('lista-reportes-buzo');
+  if (lr) lr.innerHTML = reportes.length
+    ? reportes.map(r => `
+        <div class="list-item">
+          <div class="list-icon">📋</div>
+          <div class="list-info"><h4>${r.proyecto_nombre||'—'}</h4><p>${r.horas_trabajadas}h · ${fmt(r.fecha)}</p></div>
+          <span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📄</span>Aún no has enviado reportes.</div>';
+}
+
+function renderProyectosAdm() {
+  const g = $('lista-proyectos-adm');
+  if (!g) return;
+  g.innerHTML = proyectos.length
+    ? proyectos.map(p => `
+        <div class="list-item" onclick="abrirProyectoAdmin(${p.id})">
+          <div class="list-icon">⚙️</div>
+          <div class="list-info"><h4>${p.nombre}</h4><p>${p.sector} · ${p.ubicacion||'—'}</p></div>
+          <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">⚙️</span>No hay proyectos aún.</div>';
+}
+
+function renderAsigAdm() {
+  const g = $('lista-asig-adm');
+  if (!g) return;
+  g.innerHTML = asignaciones.length
+    ? asignaciones.map(a => `
+        <div class="list-item">
+          <div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div>
+          <div class="list-info"><h4>${a.buzo_nombre||'—'}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div>
+          <span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">👥</span>Sin asignaciones.</div>';
+}
+
+function renderReportesAdm() {
+  const g = $('lista-reportes-adm');
+  if (!g) return;
+  g.innerHTML = reportes.length
+    ? reportes.map((r, i) => `
+        <div class="list-item" onclick="abrirRevisarReporte(${i})">
+          <div class="list-icon">📋</div>
+          <div class="list-info"><h4>${r.buzo_nombre||'—'}</h4><p>${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h</p></div>
+          <span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📄</span>No hay reportes.</div>';
+}
+
+function renderCotAdm() {
+  const g = $('lista-cot-adm');
+  if (!g) return;
+  g.innerHTML = cotizaciones.length
+    ? cotizaciones.map((c, i) => `
+        <div class="list-item" onclick="abrirResponderCot(${i})">
+          <div class="list-icon">📝</div>
+          <div class="list-info"><h4>${c.cliente_nombre||c.cliente_username||'—'}</h4><p>${c.servicio_nombre}</p></div>
+          <span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📋</span>No hay solicitudes.</div>';
+}
+
+function renderUsuarios() {
+  const g = $('lista-usuarios');
+  if (!g) return;
+  const equipo = usuarios.filter(u => u.rol !== 'cliente');
+  if (!equipo.length) { g.innerHTML = '<div class="empty"><span class="empty-icon">👤</span>No hay miembros del equipo.</div>'; return; }
+  const icons   = { admin:'⭐', supervisor:'🎯', buzo:'🤿' };
+  const classes = { admin:'role-admin', supervisor:'role-supervisor', buzo:'role-buzo' };
+  g.innerHTML = equipo.map(u => {
+    const hasImg = u.foto && u.foto.startsWith('data:image');
+    return `
+      <div class="list-item">
+        <div class="list-icon">${hasImg ? `<img src="${u.foto}">` : (icons[u.rol]||'👤')}</div>
+        <div class="list-info"><h4>${u.nombre||'—'} ${u.apellido||''}</h4><p>@${u.username} · ${u.email||'—'}</p></div>
+        <span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol}</span>
+      </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+// ACCIONES — CREAR PROYECTO (CORREGIDO)
+// ══════════════════════════════════════════
+async function crearProyecto() {
+  const nombre = $('cp-nombre').value.trim();
+  const sector = $('cp-sector').value;
+
+  if (!nombre) { alert('⚠️ El nombre del proyecto es obligatorio.'); return; }
+  if (!sector) { alert('⚠️ Selecciona un sector.'); return; }
+
+  const btn = $('btn-crear-proy');
+  btn.disabled = true; btn.innerText = 'Creando...';
+
+  const body = {
+    solicitante_username: user.username,
+    nombre,
+    descripcion: $('cp-desc').value.trim(),
+    sector,
+    ubicacion:   $('cp-ubicacion').value.trim(),
+    cliente_username:  $('cp-cliente').value.trim(),
+    supervisor:  $('cp-supervisor').value.trim(),
+    fecha_inicio: $('cp-finicio').value,
+    fecha_fin:   $('cp-ffin').value,
+  };
+
+  const res = await api('/api/proyectos', 'POST', body);
+
+  btn.disabled = false; btn.innerText = 'Crear Proyecto';
+
+  if (res && res.success) {
+    alert('✅ Proyecto creado correctamente.');
+    closeOverlay('o-crear-proyecto');
+    ['cp-nombre','cp-desc','cp-ubicacion','cp-cliente','cp-supervisor','cp-finicio','cp-ffin'].forEach(id => $(id).value = '');
+    $('cp-sector').value = '';
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al crear el proyecto. Verifica que tengas permisos de admin o supervisor.'));
+  }
+}
+
+// ══════════════════════════════════════════
+// CREAR USUARIO (CORREGIDO)
+// ══════════════════════════════════════════
+async function crearUsuario() {
+  const nombre   = $('cu-nombre').value.trim();
+  const apellido = $('cu-apellido').value.trim();
+  const username = $('cu-user').value.trim();
+  const email    = $('cu-email').value.trim();
+  const password = $('cu-pass').value;
+  const rol      = $('cu-rol').value;
+
+  if (!nombre || !apellido || !username || !email || !password) {
+    alert('⚠️ Todos los campos marcados con * son obligatorios.'); return;
+  }
+
+  const btn = $('btn-crear-user');
+  btn.disabled = true; btn.innerText = 'Registrando...';
+
+  const res = await api('/api/crear-usuario', 'POST', {
+    admin_username: user.username,
+    nombre, apellido, username, email, password, rol,
+    telefono: $('cu-tel').value.trim()
+  });
+
+  btn.disabled = false; btn.innerText = 'Registrar Miembro';
+
+  if (res && res.success) {
+    alert('✅ Miembro registrado correctamente.');
+    closeOverlay('o-crear-user');
+    ['cu-nombre','cu-apellido','cu-user','cu-email','cu-pass','cu-tel'].forEach(id => $(id).value = '');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al registrar el miembro.'));
+  }
+}
+
+// ══════════════════════════════════════════
+// PROYECTO DETAIL
+// ══════════════════════════════════════════
+function abrirProyectoCliente(id) {
+  const p = proyectos.find(x => x.id === id);
+  if (!p) return;
+  $('op-title').innerText = p.nombre;
+  $('op-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Detalles del Proyecto</h4>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'—'}</p>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.3);">
+        <span style="color:var(--muted);font-size:13px;">Sector</span><span style="font-size:13px;text-transform:capitalize;">${p.sector}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.3);">
+        <span style="color:var(--muted);font-size:13px;">Ubicación</span><span style="font-size:13px;">${p.ubicacion||'—'}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;">
+        <span style="color:var(--muted);font-size:13px;">Estado</span>
+        <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
+      </div>
+    </div>
+    <div class="fgroup">
+      <h4>Progreso</h4>
+      <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+      <div style="font-size:13px;color:var(--yellow);text-align:center;margin-top:8px;font-weight:700;">${p.progreso||0}% completado</div>
+    </div>`;
+  openOverlay('o-proyecto-cliente');
+}
+
+function abrirProyectoAdmin(id) {
+  const p = proyectos.find(x => x.id === id);
+  if (!p) return;
+  $('opa-title').innerText = p.nombre;
+  $('opa-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Info del Proyecto</h4>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">${p.descripcion||'Sin descripción'}</div>
+      <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(30,74,104,.3);">
+        <span style="color:var(--muted);font-size:12px;">Sector</span><span style="font-size:12px;text-transform:capitalize;">${p.sector}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:5px 0;">
+        <span style="color:var(--muted);font-size:12px;">Ubicación</span><span style="font-size:12px;">${p.ubicacion||'—'}</span>
+      </div>
+    </div>
+    <div class="fgroup">
+      <h4>Actualizar</h4>
+      <label class="finp-label">Estado</label>
+      <select class="finp" id="upd-estado">
+        <option value="activo" ${p.estado==='activo'?'selected':''}>Activo</option>
+        <option value="pausado" ${p.estado==='pausado'?'selected':''}>Pausado</option>
+        <option value="completado" ${p.estado==='completado'?'selected':''}>Completado</option>
+      </select>
+      <label class="finp-label">Progreso (%)</label>
+      <input class="finp" id="upd-prog" type="number" min="0" max="100" value="${p.progreso||0}">
+      <button class="btn-full" onclick="actualizarProyecto(${p.id})">Guardar Cambios</button>
+    </div>`;
+  openOverlay('o-proyecto-admin');
+}
+
+async function actualizarProyecto(id) {
+  const estado   = $('upd-estado').value;
+  const progreso = parseInt($('upd-prog').value) || 0;
+  const res = await api(`/api/proyectos/${id}`, 'PUT', {
+    solicitante_username: user.username, proyecto_id: id, estado, progreso
+  });
+  if (res && res.success) { alert('✅ Proyecto actualizado.'); closeOverlay('o-proyecto-admin'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al actualizar.'));
+}
+
+// ══════════════════════════════════════════
+// COTIZACIONES
+// ══════════════════════════════════════════
+function abrirCotizar(servicioId) {
+  currentCotServicio = servicios.find(s => s.id === servicioId);
+  if (!currentCotServicio) return;
+  $('cot-body').innerHTML = `
+    <div class="fgroup">
+      <h4>${currentCotServicio.icono} ${currentCotServicio.nombre}</h4>
+      <p style="font-size:13px;color:var(--muted);">${currentCotServicio.descripcion}</p>
+    </div>
+    <div class="fgroup">
+      <h4>Detalles de la Solicitud</h4>
+      <label class="finp-label">Descripción del trabajo requerido *</label>
+      <textarea class="finp" id="cot-desc" rows="4" placeholder="Describe el trabajo que necesitas..."></textarea>
+      <label class="finp-label">Ubicación / Puerto *</label>
+      <input class="finp" id="cot-ubicacion" placeholder="Ej: Muelle Pesquero Callao">
+      <button class="btn-full" onclick="enviarCotizacion()">Enviar Solicitud</button>
+    </div>`;
+  openOverlay('o-cotizar');
+}
+
+async function enviarCotizacion() {
+  const desc      = $('cot-desc').value.trim();
+  const ubicacion = $('cot-ubicacion').value.trim();
+  if (!desc || !ubicacion) { alert('⚠️ Completa la descripción y ubicación.'); return; }
+
+  const res = await api('/api/cotizaciones', 'POST', {
+    cliente_username: user.username,
+    servicio_id:      currentCotServicio.id,
+    descripcion:      desc,
+    sector:           currentCotServicio.sector,
+    ubicacion
+  });
+  if (res && res.success) { alert('✅ Solicitud enviada correctamente.'); closeOverlay('o-cotizar'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al enviar la solicitud.'));
+}
+
+function abrirResponderCot(idx) {
+  currentCotIdx = idx;
+  const c = cotizaciones[idx];
+  $('rc-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Solicitud de ${c.cliente_nombre||c.cliente_username||'—'}</h4>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">${c.descripcion}</p>
+      <div style="font-size:12px;color:var(--muted);">Servicio: ${c.servicio_nombre} · ${c.ubicacion||'—'}</div>
+    </div>
+    <div class="fgroup">
+      <label class="finp-label">Decisión</label>
+      <select class="finp" id="rc-estado">
+        <option value="aprobada">✅ Aprobar</option>
+        <option value="rechazada">❌ Rechazar</option>
+      </select>
+      <button class="btn-full" onclick="responderCotizacion()">Enviar Respuesta</button>
+    </div>`;
+  openOverlay('o-resp-cot');
+}
+
+async function responderCotizacion() {
+  const c = cotizaciones[currentCotIdx];
+  const res = await api(`/api/cotizaciones/${c.id}`, 'PUT', {
+    admin_username: user.username, cotizacion_id: c.id, estado: $('rc-estado').value
+  });
+  if (res && res.success) { alert('✅ Respuesta enviada.'); closeOverlay('o-resp-cot'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error.'));
+}
+
+// ══════════════════════════════════════════
+// ASIGNACIONES
+// ══════════════════════════════════════════
+async function openAsignarForm() {
+  const activos = proyectos.filter(p => p.estado === 'activo');
+  const buzos   = usuarios.filter(u => u.rol === 'buzo');
+  $('asi-proyecto').innerHTML = activos.length
+    ? activos.map(p => `<option value="${p.id}">${p.nombre}</option>`).join('')
+    : '<option value="">— Sin proyectos activos —</option>';
+  $('asi-buzo').innerHTML = buzos.length
+    ? buzos.map(b => `<option value="${b.username}">${b.nombre||''} ${b.apellido||''} (@${b.username})</option>`).join('')
+    : '<option value="">— Sin buzos registrados —</option>';
+  $('asi-fecha').value = new Date().toISOString().split('T')[0];
+  openOverlay('o-asignar');
+}
+
+async function crearAsignacion() {
+  const buzo_username = $('asi-buzo').value;
+  const desc          = $('asi-desc').value.trim();
+  const proyecto_id   = parseInt($('asi-proyecto').value);
+
+  if (!buzo_username || !desc || isNaN(proyecto_id)) {
+    alert('⚠️ Completa todos los campos.'); return;
+  }
+
+  const btn = $('btn-asignar');
+  btn.disabled = true; btn.innerText = 'Asignando...';
+
+  const res = await api('/api/asignaciones', 'POST', {
+    supervisor_username: user.username,
+    buzo_username, proyecto_id, descripcion: desc,
+    fecha:     $('asi-fecha').value,
+    prioridad: $('asi-prioridad').value
+  });
+
+  btn.disabled = false; btn.innerText = 'Asignar Tarea';
+
+  if (res && res.success) { alert('✅ Asignación creada.'); closeOverlay('o-asignar'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al asignar. Verifica que el buzo exista.'));
+}
+
+// ══════════════════════════════════════════
+// REPORTES
+// ══════════════════════════════════════════
+async function openReporteForm() {
+  $('rep-proyecto').innerHTML = proyectos.length
+    ? proyectos.map(p => `<option value="${p.id}">${p.nombre}</option>`).join('')
+    : '<option value="">— Sin proyectos —</option>';
+  openOverlay('o-reporte');
+}
+
+async function enviarReporte() {
+  const desc  = $('rep-desc').value.trim();
+  const horas = parseFloat($('rep-horas').value);
+  const pid   = parseInt($('rep-proyecto').value);
+
+  if (!desc || isNaN(horas) || isNaN(pid)) {
+    alert('⚠️ Descripción y horas son obligatorios.'); return;
+  }
+
+  const btn = $('btn-rep');
+  btn.disabled = true; btn.innerText = 'Enviando...';
+
+  const res = await api('/api/reportes', 'POST', {
+    buzo_username:   user.username,
+    proyecto_id:     pid,
+    descripcion:     desc,
+    horas_trabajadas: horas,
+    condiciones:     $('rep-cond').value,
+    incidentes:      $('rep-incidentes').value.trim()
+  });
+
+  btn.disabled = false; btn.innerText = 'Enviar Reporte';
+
+  if (res && res.success) { alert('✅ Reporte enviado.'); closeOverlay('o-reporte'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al enviar el reporte.'));
+}
+
+function abrirRevisarReporte(idx) {
+  currentRepIdx = idx;
+  const r = reportes[idx];
+  $('rr-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Reporte de ${r.buzo_nombre||'—'}</h4>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">${r.descripcion}</p>
+      <div style="font-size:12px;color:var(--muted);">Proyecto: ${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h trabajadas</div>
+      ${r.condiciones ? `<div style="font-size:12px;color:var(--muted);margin-top:4px;">Condiciones: ${r.condiciones}</div>` : ''}
+      ${r.incidentes  ? `<div style="font-size:12px;color:var(--orange);margin-top:4px;">⚠️ Incidentes: ${r.incidentes}</div>` : ''}
+    </div>
+    <div class="fgroup">
+      <div style="display:flex;gap:10px;">
+        <button class="btn-full" style="background:var(--green);color:var(--black);" onclick="revisarReporte('aprobada')">✅ Aprobar</button>
+        <button class="btn-full btn-danger" onclick="revisarReporte('rechazada')">❌ Rechazar</button>
+      </div>
+    </div>`;
+  openOverlay('o-revisar-rep');
+}
+
+async function revisarReporte(estado) {
+  const r = reportes[currentRepIdx];
+  const res = await api(`/api/reportes/${r.id}`, 'PUT', {
+    supervisor_username: user.username, reporte_id: r.id, estado
+  });
+  if (res && res.success) { alert(`✅ Reporte ${estado}.`); closeOverlay('o-revisar-rep'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error.'));
+}
+
+// ══════════════════════════════════════════
+// BOT ASISTENTE
+// ══════════════════════════════════════════
+function sendBot() {
+  const input = $('chat-input');
+  const msg   = input.value.trim();
+  if (!msg) return;
+
+  const history = $('chat-history');
+  history.innerHTML += `<div class="msg user">${msg}</div>`;
+  input.value = '';
+  history.scrollTop = history.scrollHeight;
+
+  setTimeout(() => {
+    const m = msg.toLowerCase();
+    let reply = 'No estoy seguro de entenderte. Puedo ayudarte con proyectos, reportes, solicitudes o el uso de la app.';
+
+    if (m.includes('hola') || m.includes('buenas') || m.includes('hey'))
+      reply = `¡Hola! Soy Max 🤖, el asistente de CV Diving. ¿En qué te puedo ayudar?`;
+    else if (m.includes('crear') && m.includes('proyecto'))
+      reply = 'Para crear un proyecto, ve a la pestaña <strong>Proyectos</strong> y pulsa <strong>"+ Nuevo Proyecto"</strong>. Necesitas ser admin o supervisor.';
+    else if (m.includes('reporte'))
+      reply = 'Los buzos envían reportes desde su panel pulsando <strong>"+ Enviar Reporte"</strong>. Los supervisores los revisan en la pestaña <strong>Reportes</strong>.';
+    else if (m.includes('solicitud') || m.includes('cotiz'))
+      reply = 'Como cliente puedes ir a <strong>Servicios</strong>, elegir uno y enviar tu solicitud. El equipo de CV Diving te responderá pronto.';
+    else if (m.includes('buzo') || m.includes('asign'))
+      reply = 'Para asignar a un buzo, ve a <strong>Asignar</strong> y crea una nueva asignación con el proyecto y buzo correspondiente.';
+    else if (m.includes('foto') || m.includes('perfil'))
+      reply = 'Pulsa tu avatar en la esquina superior derecha para abrir tu perfil y cambiar tu foto.';
+    else if (m.includes('admin') || m.includes('contraseña'))
+      reply = 'El administrador por defecto es <strong>admin</strong> con contraseña <strong>cvdiving2024</strong>. Cámbiala pronto desde tu perfil.';
+    else if (m.includes('gracias'))
+      reply = '¡De nada! Si necesitas algo más, aquí estaré. 🤿';
+
+    history.innerHTML += `<div class="msg bot">${reply}</div>`;
+    history.scrollTop = history.scrollHeight;
+  }, 600);
+}
+</script>
+</body>
+</html>
