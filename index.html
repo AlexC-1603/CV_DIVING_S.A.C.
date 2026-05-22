@@ -23,13 +23,15 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 #s-login::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(245,215,0,.08) 0%,transparent 70%);pointer-events:none;}
 .login-top{padding:70px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:12px;}
 .login-sub{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:1px;}
-.login-card{background:rgba(16,55,82,.5);border:1px solid var(--border);border-radius:20px;margin:0 20px;padding:24px;backdrop-filter:blur(10px);animation:fadeUp .4s ease;}
+
+/* FIX: login-card siempre en bloque para evitar flex-row en register */
+.login-card{background:rgba(16,55,82,.5);border:1px solid var(--border);border-radius:20px;margin:0 20px;padding:24px;backdrop-filter:blur(10px);animation:fadeUp .4s ease;display:block;}
 .login-card h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;color:var(--yellow);margin-bottom:18px;text-transform:uppercase;}
 .inp-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;margin-bottom:6px;display:block;}
 .inp{width:100%;padding:13px 16px;border-radius:12px;border:1.5px solid var(--border);background:rgba(9,7,9,.4);color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;outline:none;margin-bottom:14px;transition:.2s;}
 .inp:focus{border-color:var(--yellow);background:rgba(9,7,9,.7);}
 .inp-row{display:flex;gap:10px;}
-.inp-row>div{flex:1;}
+.inp-row>div{flex:1;display:flex;flex-direction:column;}
 .btn-prim{width:100%;padding:16px;border-radius:14px;border:none;background:var(--yellow);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;cursor:pointer;transition:.15s;margin-top:4px;}
 .btn-prim:active{transform:scale(.98);}
 .btn-prim:disabled{opacity:.6;cursor:not-allowed;}
@@ -43,7 +45,7 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 #app{display:none;flex-direction:column;min-height:100vh;}
 #app.active{display:flex;}
 
-/* ── TOPBAR — CORREGIDO ── */
+/* ── TOPBAR ── */
 .topbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:56px;background:rgba(9,7,9,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;z-index:200;backdrop-filter:blur(10px);gap:10px;}
 .topbar-logo{flex:0 0 auto;display:flex;align-items:center;}
 .topbar-logo img{height:26px;width:auto;object-fit:contain;display:block;}
@@ -62,17 +64,13 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .tab-pane{display:none;animation:fadeUp .25s ease;}
 .tab-pane.active{display:block;}
 
-/* ── NAVBAR — BOT EN CENTRO ── */
+/* ── NAVBAR — botón central igual que los demás ── */
 .navbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(9,7,9,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;height:62px;z-index:200;backdrop-filter:blur(10px);}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;background:none;border:none;color:var(--gray2);transition:.2s;min-width:0;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;background:none;border:none;color:var(--gray2);transition:.2s;min-width:0;flex:1;}
 .nav-item svg{width:22px;height:22px;flex-shrink:0;}
 .nav-item span{font-size:10px;font-weight:600;white-space:nowrap;}
 .nav-item.on{color:var(--yellow);}
 .nav-item.on svg{filter:drop-shadow(0 0 6px rgba(245,215,0,.4));}
-/* Botón central del bot */
-.nav-bot{background:var(--yellow)!important;border-radius:50%!important;width:48px!important;height:48px!important;padding:0!important;color:var(--black)!important;box-shadow:0 4px 16px rgba(245,215,0,.35);margin-top:-10px;flex-shrink:0;}
-.nav-bot svg{width:24px;height:24px;stroke:var(--black);}
-.nav-bot span{display:none;}
 
 /* ── OVERLAYS ── */
 .overlay{position:fixed;inset:0;z-index:300;background:rgba(9,7,9,.98);overflow-y:auto;max-width:480px;left:50%;transform:translateX(-50%);width:100%;display:none;}
@@ -97,6 +95,7 @@ textarea.finp{resize:none;}
 .btn-full:disabled{opacity:.5;cursor:not-allowed;}
 .btn-danger{background:rgba(231,76,60,.15)!important;color:var(--red)!important;border:1.5px solid rgba(231,76,60,.3)!important;}
 .btn-navy{background:rgba(16,55,82,.5)!important;color:var(--white)!important;border:1.5px solid var(--border)!important;}
+.btn-green{background:rgba(46,204,113,.15)!important;color:var(--green)!important;border:1.5px solid rgba(46,204,113,.3)!important;}
 
 .list-item{display:flex;align-items:center;gap:12px;padding:13px 18px;border-bottom:1px solid rgba(30,74,104,.3);cursor:pointer;transition:.15s;}
 .list-item:hover{background:rgba(16,55,82,.2);}
@@ -158,6 +157,12 @@ textarea.finp{resize:none;}
 .serv-info h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;}
 .serv-info p{font-size:12px;color:var(--muted);line-height:1.5;}
 .serv-sector{font-size:10px;font-weight:700;color:var(--yellow);text-transform:uppercase;margin-top:6px;}
+
+/* ── SEPARADOR INFO ── */
+.info-row-sep{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(30,74,104,.3);}
+.info-row-sep:last-child{border-bottom:none;}
+.info-row-sep .lbl{color:var(--muted);font-size:13px;}
+.info-row-sep .val{font-size:13px;color:var(--white);}
 </style>
 </head>
 <body>
@@ -165,7 +170,12 @@ textarea.finp{resize:none;}
 <!-- ══ LOGIN ══ -->
 <div id="s-login">
   <div class="login-top anim">
-    <img src="nuevo_logo-removebg.png" alt="CV Diving" style="width:200px;max-width:75%;filter:drop-shadow(0 0 20px rgba(245,215,0,.2));">
+    <!-- FIX: URLs completas al backend para que carguen los logos -->
+    <img id="login-logo" src="https://backend-cv-aq0s.onrender.com/nuevo_logo-removebg.png"
+         alt="CV Diving"
+         style="width:200px;max-width:75%;filter:drop-shadow(0 0 20px rgba(245,215,0,.2));"
+         onerror="this.style.display='none';document.getElementById('login-logo-txt').style.display='block';">
+    <div id="login-logo-txt" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:var(--yellow);letter-spacing:2px;">CV DIVING</div>
     <div class="login-sub">BUCEO COMERCIAL</div>
   </div>
 
@@ -181,14 +191,22 @@ textarea.finp{resize:none;}
     <button class="btn-sec" onclick="showForm('register')">No tengo cuenta — Registrarme</button>
   </div>
 
-  <!-- FORM REGISTRO -->
+  <!-- FORM REGISTRO — FIX: layout columna, campos uno por uno -->
   <div class="login-card" id="form-register" style="display:none;margin-top:12px;">
     <h3>Nueva Cuenta</h3>
-    <div class="inp-row">
-      <div><label class="inp-label">Nombre</label><input class="inp" id="reg-nombre" type="text" placeholder="Alejandro"></div>
-      <div><label class="inp-label">Apellido</label><input class="inp" id="reg-apellido" type="text" placeholder="Castillo"></div>
+    <!-- Nombre y Apellido en fila -->
+    <div class="inp-row" style="margin-bottom:0;">
+      <div>
+        <label class="inp-label">Nombre</label>
+        <input class="inp" id="reg-nombre" type="text" placeholder="Alejandro">
+      </div>
+      <div>
+        <label class="inp-label">Apellido</label>
+        <input class="inp" id="reg-apellido" type="text" placeholder="Castillo">
+      </div>
     </div>
-    <label class="inp-label">Usuario</label>
+    <!-- Resto de campos, uno por línea -->
+    <label class="inp-label">Usuario (alias)</label>
     <input class="inp" id="reg-user" type="text" placeholder="Ej: acastillo" autocomplete="username">
     <label class="inp-label">Correo Electrónico</label>
     <input class="inp" id="reg-email" type="email" placeholder="correo@empresa.com">
@@ -202,11 +220,14 @@ textarea.finp{resize:none;}
 
 <!-- ══ APP ══ -->
 <div id="app">
-  <!-- TOPBAR CORREGIDO -->
+  <!-- TOPBAR — Logo2 con fallback de texto -->
   <div class="topbar">
     <div class="topbar-logo">
-      <img src="Logo2.png" alt="CV Diving" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--yellow);">CV DIVING</span>
+      <img id="topbar-logo-img"
+           src="https://backend-cv-aq0s.onrender.com/Logo2.png"
+           alt="CV Diving"
+           onerror="this.style.display='none';document.getElementById('topbar-logo-txt').style.display='block';">
+      <span id="topbar-logo-txt" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--yellow);">CV DIVING</span>
     </div>
     <div class="topbar-spacer"></div>
     <div class="topbar-right">
@@ -216,7 +237,6 @@ textarea.finp{resize:none;}
   </div>
 
   <div class="content" id="main-content"></div>
-
   <nav class="navbar" id="main-nav"></nav>
 </div>
 
@@ -257,14 +277,8 @@ textarea.finp{resize:none;}
   <div style="padding:0 18px 40px;">
     <div class="fgroup">
       <h4>Información</h4>
-      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.3);">
-        <span style="color:var(--muted);font-size:13px;">Correo</span>
-        <span id="prof-email-txt" style="font-size:13px;">—</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:6px 0;">
-        <span style="color:var(--muted);font-size:13px;">Rol</span>
-        <span id="prof-rol-txt" style="font-size:13px;color:var(--yellow);">—</span>
-      </div>
+      <div class="info-row-sep"><span class="lbl">Correo</span><span id="prof-email-txt" class="val">—</span></div>
+      <div class="info-row-sep"><span class="lbl">Rol</span><span id="prof-rol-txt" style="font-size:13px;color:var(--yellow);">—</span></div>
     </div>
     <div id="foto-status" style="font-size:12px;text-align:center;color:var(--green);margin-bottom:10px;display:none;"></div>
     <button class="btn-full btn-danger" onclick="doLogout()" style="margin-top:8px;">🚪 Cerrar Sesión</button>
@@ -354,6 +368,31 @@ textarea.finp{resize:none;}
   </div>
 </div>
 
+<!-- ══ OVERLAY: DETALLE USUARIO (ADMIN) ══ -->
+<div id="o-user-detail" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-user-detail')">←</button>
+    <div class="overlay-title">Perfil del Miembro</div>
+  </div>
+  <div class="overlay-body">
+    <!-- Avatar y nombre -->
+    <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:20px;">
+      <div id="ud-avatar" style="width:70px;height:70px;border-radius:50%;background:var(--navy);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;margin-bottom:10px;"></div>
+      <div id="ud-nombre" style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--white);"></div>
+      <div id="ud-alias" style="font-size:13px;color:var(--muted);margin-top:2px;"></div>
+      <span id="ud-chip" class="role-chip role-cliente" style="margin-top:6px;"></span>
+    </div>
+    <div class="fgroup">
+      <h4>Información Personal</h4>
+      <div class="info-row-sep"><span class="lbl">Correo</span><span id="ud-email" class="val">—</span></div>
+      <div class="info-row-sep"><span class="lbl">Teléfono</span><span id="ud-tel" class="val">—</span></div>
+      <div class="info-row-sep"><span class="lbl">Rol</span><span id="ud-rol" class="val" style="color:var(--yellow);">—</span></div>
+    </div>
+    <!-- Acciones: solo admin puede eliminar -->
+    <div id="ud-acciones" style="display:flex;flex-direction:column;gap:10px;margin-top:6px;"></div>
+  </div>
+</div>
+
 <!-- ══ OVERLAY: PROYECTO ADMIN ══ -->
 <div id="o-proyecto-admin" class="overlay">
   <div class="overlay-header">
@@ -361,6 +400,47 @@ textarea.finp{resize:none;}
     <div class="overlay-title" id="opa-title">Proyecto</div>
   </div>
   <div class="overlay-body" id="opa-body"></div>
+</div>
+
+<!-- ══ OVERLAY: FINALIZAR PROYECTO ══ -->
+<div id="o-finalizar-proy" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-finalizar-proy')">←</button>
+    <div class="overlay-title">Finalizar Proyecto</div>
+  </div>
+  <div class="overlay-body">
+    <div style="background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.25);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--green);">
+      ✅ Estás a punto de marcar el proyecto <strong id="fp-nombre-lbl" style="color:var(--white);"></strong> como completado. Por favor rellena el informe de cierre.
+    </div>
+    <div class="fgroup">
+      <h4>Informe de Cierre</h4>
+      <label class="finp-label">Fecha real de finalización *</label>
+      <input class="finp" id="fp-fecha" type="date">
+      <label class="finp-label">Resumen del trabajo realizado *</label>
+      <textarea class="finp" id="fp-resumen" rows="4" placeholder="Describe brevemente los trabajos ejecutados..."></textarea>
+      <label class="finp-label">Resultado obtenido *</label>
+      <select class="finp" id="fp-resultado">
+        <option value="">— Seleccionar —</option>
+        <option value="exitoso">✅ Exitoso — Conforme al alcance</option>
+        <option value="parcial">⚠️ Parcial — Con observaciones</option>
+        <option value="critico">🔴 Crítico — Requiere seguimiento</option>
+      </select>
+      <label class="finp-label">Observaciones finales</label>
+      <textarea class="finp" id="fp-obs" rows="3" placeholder="Incidentes, notas adicionales, recomendaciones..."></textarea>
+      <div class="finp-row">
+        <div>
+          <label class="finp-label">Horas totales</label>
+          <input class="finp" id="fp-horas" type="number" min="0" step="0.5" placeholder="Ej: 48">
+        </div>
+        <div>
+          <label class="finp-label">Buzos participantes</label>
+          <input class="finp" id="fp-buzos" type="number" min="1" placeholder="Ej: 3">
+        </div>
+      </div>
+    </div>
+    <button class="btn-full" style="background:var(--green);color:var(--black);" id="btn-finalizar" onclick="finalizarProyecto()">✅ Confirmar Finalización</button>
+    <button class="btn-full btn-navy" style="margin-top:10px;" onclick="closeOverlay('o-finalizar-proy')">Cancelar</button>
+  </div>
 </div>
 
 <!-- ══ OVERLAY: PROYECTO CLIENTE ══ -->
@@ -470,15 +550,16 @@ const API = 'https://backend-cv-aq0s.onrender.com';
 
 let user = null;
 let servicios = [], cotizaciones = [], proyectos = [], asignaciones = [], reportes = [], usuarios = [], stats = {};
-let currentCotServicio = null, currentCotIdx = null, currentRepIdx = null;
+let currentCotServicio = null, currentCotIdx = null, currentRepIdx = null, currentProjId = null, currentUserDetail = null;
 
 function $(id) { return document.getElementById(id); }
 function openOverlay(id) { $(id).classList.add('active'); }
 function closeOverlay(id) { $(id).classList.remove('active'); }
 
+// FIX: usar 'block' para evitar que flex-direction:row rompa el formulario
 function showForm(mode) {
   $('form-login').style.display    = mode === 'login'    ? 'block' : 'none';
-  $('form-register').style.display = mode === 'register' ? 'flex'  : 'none';
+  $('form-register').style.display = mode === 'register' ? 'block' : 'none';
   $('login-msg').className = 'login-msg';
   $('reg-msg').className   = 'login-msg';
 }
@@ -514,15 +595,9 @@ async function api(path, method = 'GET', body = null) {
   try {
     const r = await fetch(API + path, opts);
     const data = await r.json();
-    if (!r.ok) {
-      console.error('API error:', r.status, data);
-      return null;
-    }
+    if (!r.ok) { console.error('API error:', r.status, data); return null; }
     return data;
-  } catch (e) {
-    console.error('Fetch error:', e);
-    return null;
-  }
+  } catch (e) { console.error('Fetch error:', e); return null; }
 }
 
 // ══════════════════════════════════════════
@@ -534,8 +609,7 @@ window.onload = () => {
     try {
       const parsed = JSON.parse(saved);
       if (parsed && parsed.username && parsed.username !== 'undefined') {
-        initApp(parsed);
-        return;
+        initApp(parsed); return;
       }
     } catch {}
   }
@@ -552,25 +626,13 @@ async function doLogin() {
   const u = $('log-user').value.trim();
   const p = $('log-pass').value;
   if (!u || !p) { showMsg('login-msg', '⚠️ Ingresa usuario y contraseña.', 'err'); return; }
-
   const btn = $('btn-login');
   btn.disabled = true; btn.innerText = 'Conectando...';
   $('login-msg').className = 'login-msg';
-
   const res = await api('/api/login', 'POST', { username: u, password: p });
-
   btn.disabled = false; btn.innerText = 'Ingresar';
-
-  if (!res) {
-    showMsg('login-msg', '⚠️ Sin conexión al servidor. Intenta nuevamente.', 'err');
-    return;
-  }
-  if (!res.success) {
-    showMsg('login-msg', '❌ ' + (res.msg || 'Usuario o contraseña incorrectos.'), 'err');
-    return;
-  }
-
-  // ← ÉXITO: res.data tiene los datos correctos
+  if (!res) { showMsg('login-msg', '⚠️ Sin conexión al servidor.', 'err'); return; }
+  if (!res.success) { showMsg('login-msg', '❌ ' + (res.msg || 'Usuario o contraseña incorrectos.'), 'err'); return; }
   localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
   initApp(res.data);
 }
@@ -581,21 +643,15 @@ async function doRegister() {
   const username = $('reg-user').value.trim();
   const email    = $('reg-email').value.trim();
   const password = $('reg-pass').value;
-
   if (!nombre || !apellido || !username || !email || !password) {
     showMsg('reg-msg', '⚠️ Completa todos los campos.', 'err'); return;
   }
-
   const btn = $('btn-register');
   btn.disabled = true; btn.innerText = 'Creando cuenta...';
-
   const res = await api('/api/register', 'POST', { username, password, email, nombre, apellido });
-
   btn.disabled = false; btn.innerText = 'Crear Cuenta';
-
   if (!res) { showMsg('reg-msg', '⚠️ Sin conexión al servidor.', 'err'); return; }
   if (!res.success) { showMsg('reg-msg', '❌ ' + (res.msg || 'Error al registrar.'), 'err'); return; }
-
   localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
   initApp(res.data);
 }
@@ -606,33 +662,29 @@ function doLogout() {
 }
 
 // ══════════════════════════════════════════
-// AVATAR — CORREGIDO
+// AVATAR
 // ══════════════════════════════════════════
 function renderAvatar(u) {
   const isImg = u.foto && typeof u.foto === 'string' && u.foto.startsWith('data:image');
   const topEl  = $('top-avatar');
   const profEl = $('prof-av');
-
   if (isImg) {
     topEl.innerHTML  = `<img src="${u.foto}" alt="avatar">`;
     profEl.innerHTML = `<img src="${u.foto}" alt="avatar">`;
   } else {
-    const initials = ((u.nombre || '')[0] || '') + ((u.apellido || '')[0] || '');
+    const initials = ((u.nombre||'')[0]||'') + ((u.apellido||'')[0]||'');
     topEl.innerHTML  = initials.toUpperCase() || '👤';
     profEl.innerHTML = initials.toUpperCase() || '👤';
   }
 }
 
-// SUBIR FOTO — CORREGIDO (guarda correctamente)
 async function subirFoto(input) {
   const file = input.files[0];
   if (!file) return;
-
   const reader = new FileReader();
   reader.onload = function(e) {
     const img = new Image();
     img.onload = async function() {
-      // Comprimir
       const canvas = document.createElement('canvas');
       const MAX = 400;
       let w = img.width, h = img.height;
@@ -641,35 +693,24 @@ async function subirFoto(input) {
       canvas.width = w; canvas.height = h;
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
       const b64 = canvas.toDataURL('image/jpeg', 0.75);
-
-      // Mostrar preview inmediato
       $('top-avatar').innerHTML = `<img src="${b64}" alt="avatar">`;
       $('prof-av').innerHTML    = `<img src="${b64}" alt="avatar">`;
-
-      // Guardar en servidor
       const res = await api(`/api/usuarios/${user.username}`, 'PUT', {
-        admin_username: user.username,
-        username:       user.username,
-        foto:           b64
+        admin_username: user.username, username: user.username, foto: b64
       });
-
+      const st = $('foto-status');
       if (res && res.success) {
         user.foto = b64;
         localStorage.setItem('cvdiving_user', JSON.stringify(user));
-        const st = $('foto-status');
-        st.style.display = 'block';
+        st.style.display = 'block'; st.style.color = 'var(--green)';
         st.innerText = '✅ Foto actualizada correctamente.';
-        setTimeout(() => { st.style.display = 'none'; }, 3000);
       } else {
-        // Aun así guarda local para no perder la foto
         user.foto = b64;
         localStorage.setItem('cvdiving_user', JSON.stringify(user));
-        const st = $('foto-status');
-        st.style.display = 'block';
+        st.style.display = 'block'; st.style.color = 'var(--orange)';
         st.innerText = '⚠️ Guardada localmente. Reconecta para sincronizar.';
-        st.style.color = 'var(--orange)';
-        setTimeout(() => { st.style.display = 'none'; }, 4000);
       }
+      setTimeout(() => { st.style.display = 'none'; }, 3000);
     };
     img.src = e.target.result;
   };
@@ -682,7 +723,6 @@ async function subirFoto(input) {
 function initApp(userData) {
   user = userData;
   if (!user || !user.username) { doLogout(); return; }
-
   $('s-login').style.display = 'none';
   $('app').classList.add('active');
 
@@ -690,18 +730,16 @@ function initApp(userData) {
   const ape = user.apellido || '';
   const rol = user.rol     || 'cliente';
 
-  // Perfil
   $('prof-name-txt').innerText  = `${nom} ${ape}`.trim();
   $('prof-alias-txt').innerText = `@${user.username}`;
   $('prof-email-txt').innerText = user.email || '—';
   $('prof-rol-txt').innerText   = { admin:'Administrador', supervisor:'Supervisor', buzo:'Buzo', cliente:'Cliente' }[rol] || rol;
 
-  // Role chip
   const chipClass = { admin:'role-admin', supervisor:'role-supervisor', buzo:'role-buzo', cliente:'role-cliente' };
   const chipLabel = { admin:'Admin', supervisor:'Supervisor', buzo:'Buzo', cliente:'Cliente' };
-  $('role-chip').className = `role-chip ${chipClass[rol] || 'role-cliente'}`;
+  $('role-chip').className = `role-chip ${chipClass[rol]||'role-cliente'}`;
   $('role-chip').innerText = chipLabel[rol] || 'Cliente';
-  $('prof-chip').className = `role-chip ${chipClass[rol] || 'role-cliente'}`;
+  $('prof-chip').className = `role-chip ${chipClass[rol]||'role-cliente'}`;
   $('prof-chip').innerText = chipLabel[rol] || 'Cliente';
 
   renderAvatar(user);
@@ -714,7 +752,7 @@ function initApp(userData) {
 // ══════════════════════════════════════════
 function setTab(id) {
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item:not(.nav-bot)').forEach(n => n.classList.remove('on'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('on'));
   const el = $(id);
   if (el) el.classList.add('active');
   const btn = document.querySelector(`[data-tab="${id}"]`);
@@ -730,9 +768,9 @@ function buildInterface() {
 
   if (rol === 'cliente') {
     tabs = [
-      { id:'tab-servicios',   label:'Servicios',  icon:'<path d="M4 6h16M4 12h16M4 18h7"/>' },
-      { id:'tab-cotizaciones',label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
-      { id:'tab-proyectos',   label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-servicios',    label:'Servicios',  icon:'<path d="M4 6h16M4 12h16M4 18h7"/>' },
+      { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-servicios" class="tab-pane">
@@ -751,8 +789,8 @@ function buildInterface() {
   }
   else if (rol === 'buzo') {
     tabs = [
-      { id:'tab-asignaciones',label:'Tareas',   icon:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>' },
-      { id:'tab-reportes',   label:'Reportes',  icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
+      { id:'tab-asignaciones', label:'Tareas',   icon:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>' },
+      { id:'tab-reportes',     label:'Reportes', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-asignaciones" class="tab-pane">
@@ -768,10 +806,10 @@ function buildInterface() {
   }
   else if (rol === 'supervisor') {
     tabs = [
-      { id:'tab-proyectos',    label:'Proyectos', icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
-      { id:'tab-asignaciones', label:'Asignar',   icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
-      { id:'tab-reportes',     label:'Reportes',  icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
-      { id:'tab-cotizaciones', label:'Solicitudes',icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-asignaciones', label:'Asignar',    icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+      { id:'tab-reportes',     label:'Reportes',   icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
+      { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-proyectos" class="tab-pane">
@@ -796,10 +834,10 @@ function buildInterface() {
   }
   else { // admin
     tabs = [
-      { id:'tab-dashboard',    label:'Inicio',    icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
-      { id:'tab-cotizaciones', label:'Solicitudes',icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
-      { id:'tab-proyectos',    label:'Proyectos', icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
-      { id:'tab-usuarios',     label:'Equipo',    icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+      { id:'tab-dashboard',    label:'Inicio',     icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
+      { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-usuarios',     label:'Equipo',     icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-dashboard" class="tab-pane">
@@ -836,10 +874,10 @@ function buildInterface() {
       </div>`;
   }
 
-  // ── NAVBAR CON BOT EN EL CENTRO ──
-  const mid  = Math.ceil(tabs.length / 2);
-  const left = tabs.slice(0, mid);
-  const right= tabs.slice(mid);
+  // ── NAVBAR: botón bot en el centro, mismo color que los demás ──
+  const mid   = Math.ceil(tabs.length / 2);
+  const left  = tabs.slice(0, mid);
+  const right = tabs.slice(mid);
 
   const mkBtn = (t, first) => `
     <button class="nav-item${first?' on':''}" data-tab="${t.id}" onclick="setTab('${t.id}')">
@@ -847,9 +885,10 @@ function buildInterface() {
       <span>${t.label}</span>
     </button>`;
 
+  // FIX: nav-bot sin color amarillo especial, igual que los demás
   $('main-nav').innerHTML =
-    left.map((t, i) => mkBtn(t, i === 0 && true)).join('') +
-    `<button class="nav-item nav-bot" onclick="openOverlay('o-bot')">
+    left.map((t, i) => mkBtn(t, i === 0)).join('') +
+    `<button class="nav-item" onclick="openOverlay('o-bot')" style="flex:1;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
       </svg>
@@ -866,32 +905,29 @@ function buildInterface() {
 async function loadAllData() {
   const rol = user.rol || 'cliente';
   const u   = user.username;
-
   servicios    = await api('/api/servicios') || [];
   cotizaciones = await api(`/api/cotizaciones?username=${u}`) || [];
   proyectos    = await api(`/api/proyectos?username=${u}`) || [];
   asignaciones = await api(`/api/asignaciones?username=${u}`) || [];
   reportes     = await api(`/api/reportes?username=${u}`) || [];
-
   if (rol === 'admin' || rol === 'supervisor') {
     stats    = await api(`/api/stats?username=${u}`) || {};
     usuarios = await api(`/api/usuarios?admin_username=${u}`) || [];
   }
-
   renderAll();
 }
 
 function renderAll() {
   const rol = user.rol || 'cliente';
-  if (rol === 'cliente')                { renderCliente(); }
-  if (rol === 'buzo')                   { renderBuzo(); }
-  if (rol === 'supervisor')             { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderCotAdm(); }
+  if (rol === 'cliente')    { renderCliente(); }
+  if (rol === 'buzo')       { renderBuzo(); }
+  if (rol === 'supervisor') { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderCotAdm(); }
   if (rol === 'admin') {
     if (stats) {
-      if ($('s-proyectos'))   $('s-proyectos').innerText   = stats.proyectos_activos       ?? '—';
+      if ($('s-proyectos'))    $('s-proyectos').innerText    = stats.proyectos_activos       ?? '—';
       if ($('s-cotizaciones')) $('s-cotizaciones').innerText = stats.cotizaciones_pendientes ?? '—';
-      if ($('s-buzos'))       $('s-buzos').innerText       = stats.total_buzos             ?? '—';
-      if ($('s-clientes'))    $('s-clientes').innerText    = stats.total_clientes          ?? '—';
+      if ($('s-buzos'))        $('s-buzos').innerText        = stats.total_buzos             ?? '—';
+      if ($('s-clientes'))     $('s-clientes').innerText     = stats.total_clientes          ?? '—';
     }
     renderProyectosAdm(); renderCotAdm(); renderUsuarios();
   }
@@ -919,7 +955,7 @@ function renderCliente() {
     ? cotizaciones.map(c => `
         <div class="list-item">
           <div class="list-icon">📝</div>
-          <div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion || '—'}</p></div>
+          <div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion||'—'}</p></div>
           <span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span>
         </div>`).join('')
     : '<div class="empty"><span class="empty-icon">📋</span>Sin solicitudes aún.</div>';
@@ -932,7 +968,7 @@ function renderCliente() {
             <h4 style="font-family:'Barlow Condensed',sans-serif;font-size:16px;">${p.nombre}</h4>
             <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
           </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">${p.descripcion || '—'}</p>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">${p.descripcion||'—'}</p>
           <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
           <div style="font-size:11px;color:var(--muted);margin-top:4px;text-align:right;">${p.progreso||0}% completado</div>
         </div>`).join('')
@@ -968,7 +1004,7 @@ function renderProyectosAdm() {
     ? proyectos.map(p => `
         <div class="list-item" onclick="abrirProyectoAdmin(${p.id})">
           <div class="list-icon">⚙️</div>
-          <div class="list-info"><h4>${p.nombre}</h4><p>${p.sector} · ${p.ubicacion||'—'}</p></div>
+          <div class="list-info"><h4>${p.nombre}</h4><p>${p.sector||'—'} · ${p.ubicacion||'—'}</p></div>
           <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
         </div>`).join('')
     : '<div class="empty"><span class="empty-icon">⚙️</span>No hay proyectos aún.</div>';
@@ -1013,157 +1049,125 @@ function renderCotAdm() {
     : '<div class="empty"><span class="empty-icon">📋</span>No hay solicitudes.</div>';
 }
 
+// FIX: renderUsuarios — muestra TODOS los usuarios con botón Ver y opción de eliminar
 function renderUsuarios() {
   const g = $('lista-usuarios');
   if (!g) return;
-  const equipo = usuarios.filter(u => u.rol !== 'cliente');
-  if (!equipo.length) { g.innerHTML = '<div class="empty"><span class="empty-icon">👤</span>No hay miembros del equipo.</div>'; return; }
-  const icons   = { admin:'⭐', supervisor:'🎯', buzo:'🤿' };
-  const classes = { admin:'role-admin', supervisor:'role-supervisor', buzo:'role-buzo' };
-  g.innerHTML = equipo.map(u => {
+  if (!usuarios.length) {
+    g.innerHTML = '<div class="empty"><span class="empty-icon">👤</span>No hay miembros registrados.</div>'; return;
+  }
+  const icons   = { admin:'⭐', supervisor:'🎯', buzo:'🤿', cliente:'👤' };
+  const classes = { admin:'role-admin', supervisor:'role-supervisor', buzo:'role-buzo', cliente:'role-cliente' };
+
+  g.innerHTML = usuarios.map(u => {
     const hasImg = u.foto && u.foto.startsWith('data:image');
     return `
-      <div class="list-item">
+      <div class="list-item" onclick="abrirDetalleUsuario('${u.username}')">
         <div class="list-icon">${hasImg ? `<img src="${u.foto}">` : (icons[u.rol]||'👤')}</div>
-        <div class="list-info"><h4>${u.nombre||'—'} ${u.apellido||''}</h4><p>@${u.username} · ${u.email||'—'}</p></div>
-        <span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol}</span>
+        <div class="list-info">
+          <h4>${u.nombre||'—'} ${u.apellido||''}</h4>
+          <p>@${u.username} · ${u.email||'—'}</p>
+        </div>
+        <span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol||'—'}</span>
       </div>`;
   }).join('');
 }
 
 // ══════════════════════════════════════════
-// ACCIONES — CREAR PROYECTO (CORREGIDO)
+// DETALLE Y ELIMINAR USUARIO (NUEVO)
 // ══════════════════════════════════════════
-async function crearProyecto() {
-  const nombre = $('cp-nombre').value.trim();
-  const sector = $('cp-sector').value;
+function abrirDetalleUsuario(username) {
+  const u = usuarios.find(x => x.username === username);
+  if (!u) return;
+  currentUserDetail = u;
 
-  if (!nombre) { alert('⚠️ El nombre del proyecto es obligatorio.'); return; }
-  if (!sector) { alert('⚠️ Selecciona un sector.'); return; }
+  const classes = { admin:'role-admin', supervisor:'role-supervisor', buzo:'role-buzo', cliente:'role-cliente' };
+  const labels  = { admin:'Administrador', supervisor:'Supervisor', buzo:'Buzo', cliente:'Cliente' };
+  const hasImg  = u.foto && u.foto.startsWith('data:image');
 
-  const btn = $('btn-crear-proy');
-  btn.disabled = true; btn.innerText = 'Creando...';
+  $('ud-avatar').innerHTML = hasImg
+    ? `<img src="${u.foto}" style="width:100%;height:100%;object-fit:cover;">`
+    : ((u.nombre||'')[0]||'👤') + ((u.apellido||'')[0]||'');
+  $('ud-nombre').innerText  = `${u.nombre||'—'} ${u.apellido||''}`.trim();
+  $('ud-alias').innerText   = `@${u.username}`;
+  $('ud-email').innerText   = u.email || '—';
+  $('ud-tel').innerText     = u.telefono || u.tel || '—';
+  $('ud-rol').innerText     = labels[u.rol] || u.rol || '—';
+  $('ud-chip').className    = `role-chip ${classes[u.rol]||'role-cliente'}`;
+  $('ud-chip').innerText    = labels[u.rol] || u.rol || '—';
 
-  const body = {
-    solicitante_username: user.username,
-    nombre,
-    descripcion: $('cp-desc').value.trim(),
-    sector,
-    ubicacion:   $('cp-ubicacion').value.trim(),
-    cliente_username:  $('cp-cliente').value.trim(),
-    supervisor:  $('cp-supervisor').value.trim(),
-    fecha_inicio: $('cp-finicio').value,
-    fecha_fin:   $('cp-ffin').value,
-  };
+  // Botón eliminar (no puede eliminar al propio admin logueado)
+  const canDelete = u.username !== user.username;
+  $('ud-acciones').innerHTML = canDelete
+    ? `<button class="btn-full btn-danger" onclick="eliminarUsuario('${u.username}')">🗑️ Eliminar Usuario</button>`
+    : `<div style="font-size:12px;color:var(--muted);text-align:center;padding:8px;">No puedes eliminar tu propio usuario.</div>`;
 
-  const res = await api('/api/proyectos', 'POST', body);
-
-  btn.disabled = false; btn.innerText = 'Crear Proyecto';
-
-  if (res && res.success) {
-    alert('✅ Proyecto creado correctamente.');
-    closeOverlay('o-crear-proyecto');
-    ['cp-nombre','cp-desc','cp-ubicacion','cp-cliente','cp-supervisor','cp-finicio','cp-ffin'].forEach(id => $(id).value = '');
-    $('cp-sector').value = '';
-    loadAllData();
-  } else {
-    alert('❌ ' + (res?.msg || 'Error al crear el proyecto. Verifica que tengas permisos de admin o supervisor.'));
-  }
+  openOverlay('o-user-detail');
 }
 
-// ══════════════════════════════════════════
-// CREAR USUARIO (CORREGIDO)
-// ══════════════════════════════════════════
-async function crearUsuario() {
-  const nombre   = $('cu-nombre').value.trim();
-  const apellido = $('cu-apellido').value.trim();
-  const username = $('cu-user').value.trim();
-  const email    = $('cu-email').value.trim();
-  const password = $('cu-pass').value;
-  const rol      = $('cu-rol').value;
+async function eliminarUsuario(username) {
+  const u = usuarios.find(x => x.username === username);
+  const nombre = u ? `${u.nombre||''} ${u.apellido||''}`.trim() : username;
 
-  if (!nombre || !apellido || !username || !email || !password) {
-    alert('⚠️ Todos los campos marcados con * son obligatorios.'); return;
-  }
+  if (!confirm(`⚠️ ¿Eliminar definitivamente al usuario "${nombre}" (@${username})?\n\nEsta acción no se puede deshacer.`)) return;
 
-  const btn = $('btn-crear-user');
-  btn.disabled = true; btn.innerText = 'Registrando...';
-
-  const res = await api('/api/crear-usuario', 'POST', {
-    admin_username: user.username,
-    nombre, apellido, username, email, password, rol,
-    telefono: $('cu-tel').value.trim()
+  const res = await api(`/api/usuarios/${username}?admin_username=${user.username}`, 'DELETE', {
+    admin_username: user.username, username
   });
 
-  btn.disabled = false; btn.innerText = 'Registrar Miembro';
-
   if (res && res.success) {
-    alert('✅ Miembro registrado correctamente.');
-    closeOverlay('o-crear-user');
-    ['cu-nombre','cu-apellido','cu-user','cu-email','cu-pass','cu-tel'].forEach(id => $(id).value = '');
+    alert(`✅ Usuario @${username} eliminado correctamente.`);
+    closeOverlay('o-user-detail');
     loadAllData();
   } else {
-    alert('❌ ' + (res?.msg || 'Error al registrar el miembro.'));
+    alert('❌ ' + (res?.msg || 'Error al eliminar el usuario. Verifica permisos.'));
   }
 }
 
 // ══════════════════════════════════════════
-// PROYECTO DETAIL
+// PROYECTOS — ADMIN: ACTUALIZAR, ELIMINAR, FINALIZAR
 // ══════════════════════════════════════════
-function abrirProyectoCliente(id) {
-  const p = proyectos.find(x => x.id === id);
-  if (!p) return;
-  $('op-title').innerText = p.nombre;
-  $('op-body').innerHTML = `
-    <div class="fgroup">
-      <h4>Detalles del Proyecto</h4>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'—'}</p>
-      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.3);">
-        <span style="color:var(--muted);font-size:13px;">Sector</span><span style="font-size:13px;text-transform:capitalize;">${p.sector}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.3);">
-        <span style="color:var(--muted);font-size:13px;">Ubicación</span><span style="font-size:13px;">${p.ubicacion||'—'}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:6px 0;">
-        <span style="color:var(--muted);font-size:13px;">Estado</span>
-        <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
-      </div>
-    </div>
-    <div class="fgroup">
-      <h4>Progreso</h4>
-      <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
-      <div style="font-size:13px;color:var(--yellow);text-align:center;margin-top:8px;font-weight:700;">${p.progreso||0}% completado</div>
-    </div>`;
-  openOverlay('o-proyecto-cliente');
-}
-
 function abrirProyectoAdmin(id) {
   const p = proyectos.find(x => x.id === id);
   if (!p) return;
+  currentProjId = id;
   $('opa-title').innerText = p.nombre;
+
+  const esCompletado = p.estado === 'completado';
+
   $('opa-body').innerHTML = `
     <div class="fgroup">
       <h4>Info del Proyecto</h4>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:10px;">${p.descripcion||'Sin descripción'}</div>
-      <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(30,74,104,.3);">
-        <span style="color:var(--muted);font-size:12px;">Sector</span><span style="font-size:12px;text-transform:capitalize;">${p.sector}</span>
-      </div>
-      <div style="display:flex;justify-content:space-between;padding:5px 0;">
-        <span style="color:var(--muted);font-size:12px;">Ubicación</span><span style="font-size:12px;">${p.ubicacion||'—'}</span>
-      </div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'Sin descripción'}</div>
+      <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Supervisor</span><span class="val">${p.supervisor||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fin estimado</span><span class="val">${fmt(p.fecha_fin)}</span></div>
     </div>
     <div class="fgroup">
-      <h4>Actualizar</h4>
+      <h4>Actualizar Estado</h4>
       <label class="finp-label">Estado</label>
       <select class="finp" id="upd-estado">
-        <option value="activo" ${p.estado==='activo'?'selected':''}>Activo</option>
-        <option value="pausado" ${p.estado==='pausado'?'selected':''}>Pausado</option>
-        <option value="completado" ${p.estado==='completado'?'selected':''}>Completado</option>
+        <option value="activo"      ${p.estado==='activo'?'selected':''}>Activo</option>
+        <option value="pausado"     ${p.estado==='pausado'?'selected':''}>Pausado</option>
+        <option value="completado"  ${p.estado==='completado'?'selected':''}>Completado</option>
       </select>
       <label class="finp-label">Progreso (%)</label>
       <input class="finp" id="upd-prog" type="number" min="0" max="100" value="${p.progreso||0}">
       <button class="btn-full" onclick="actualizarProyecto(${p.id})">Guardar Cambios</button>
+    </div>
+    ${!esCompletado ? `
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+      <button class="btn-full btn-green" onclick="abrirFinalizarProyecto(${p.id})">🏁 Finalizar Proyecto</button>
+    </div>` : `
+    <div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--green);text-align:center;margin-top:4px;">
+      ✅ Este proyecto ha sido finalizado.
+    </div>`}
+    <div style="margin-top:12px;">
+      <button class="btn-full btn-danger" onclick="eliminarProyecto(${p.id})">🗑️ Eliminar Proyecto</button>
     </div>`;
+
   openOverlay('o-proyecto-admin');
 }
 
@@ -1175,6 +1179,168 @@ async function actualizarProyecto(id) {
   });
   if (res && res.success) { alert('✅ Proyecto actualizado.'); closeOverlay('o-proyecto-admin'); loadAllData(); }
   else alert('❌ ' + (res?.msg || 'Error al actualizar.'));
+}
+
+// FIX NUEVO: eliminar proyecto con aviso de seguridad
+async function eliminarProyecto(id) {
+  const p = proyectos.find(x => x.id === id);
+  const nombre = p ? p.nombre : 'este proyecto';
+
+  if (!confirm(`⚠️ ¿Eliminar el proyecto "${nombre}"?\n\nSe eliminarán también las asignaciones y reportes asociados.\n\nEsta acción es IRREVERSIBLE.`)) return;
+
+  // Segunda confirmación de seguridad
+  if (!confirm(`Confirma una vez más: ¿eliminar permanentemente "${nombre}"?`)) return;
+
+  const res = await api(`/api/proyectos/${id}?solicitante_username=${user.username}`, 'DELETE', {
+    solicitante_username: user.username, proyecto_id: id
+  });
+
+  if (res && res.success) {
+    alert(`✅ Proyecto "${nombre}" eliminado correctamente.`);
+    closeOverlay('o-proyecto-admin');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al eliminar el proyecto. Verifica que tienes permisos de admin.'));
+  }
+}
+
+// FIX NUEVO: abrir formulario de finalización
+function abrirFinalizarProyecto(id) {
+  const p = proyectos.find(x => x.id === id);
+  if (!p) return;
+  currentProjId = id;
+  $('fp-nombre-lbl').innerText = p.nombre;
+  $('fp-fecha').value = new Date().toISOString().split('T')[0];
+  $('fp-resumen').value = '';
+  $('fp-resultado').value = '';
+  $('fp-obs').value = '';
+  $('fp-horas').value = '';
+  $('fp-buzos').value = '';
+  openOverlay('o-finalizar-proy');
+}
+
+// FIX NUEVO: ejecutar finalización
+async function finalizarProyecto() {
+  const fecha     = $('fp-fecha').value;
+  const resumen   = $('fp-resumen').value.trim();
+  const resultado = $('fp-resultado').value;
+
+  if (!fecha || !resumen || !resultado) {
+    alert('⚠️ Completa los campos obligatorios: fecha, resumen y resultado.'); return;
+  }
+
+  const btn = $('btn-finalizar');
+  btn.disabled = true; btn.innerText = 'Finalizando...';
+
+  const res = await api(`/api/proyectos/${currentProjId}`, 'PUT', {
+    solicitante_username: user.username,
+    proyecto_id:    currentProjId,
+    estado:         'completado',
+    progreso:       100,
+    fecha_fin_real: fecha,
+    resumen_final:  resumen,
+    resultado_final:resultado,
+    observaciones:  $('fp-obs').value.trim(),
+    horas_totales:  parseFloat($('fp-horas').value) || null,
+    buzos_count:    parseInt($('fp-buzos').value)   || null
+  });
+
+  btn.disabled = false; btn.innerText = '✅ Confirmar Finalización';
+
+  if (res && res.success) {
+    alert('✅ Proyecto finalizado correctamente.\nEl informe de cierre ha sido guardado.');
+    closeOverlay('o-finalizar-proy');
+    closeOverlay('o-proyecto-admin');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al finalizar el proyecto.'));
+  }
+}
+
+// ══════════════════════════════════════════
+// PROYECTO CLIENTE
+// ══════════════════════════════════════════
+function abrirProyectoCliente(id) {
+  const p = proyectos.find(x => x.id === id);
+  if (!p) return;
+  $('op-title').innerText = p.nombre;
+  $('op-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Detalles del Proyecto</h4>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'—'}</p>
+      <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></span></div>
+      <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+    </div>
+    <div class="fgroup">
+      <h4>Progreso</h4>
+      <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+      <div style="font-size:13px;color:var(--yellow);text-align:center;margin-top:8px;font-weight:700;">${p.progreso||0}% completado</div>
+    </div>`;
+  openOverlay('o-proyecto-cliente');
+}
+
+// ══════════════════════════════════════════
+// CREAR PROYECTO
+// ══════════════════════════════════════════
+async function crearProyecto() {
+  const nombre = $('cp-nombre').value.trim();
+  const sector = $('cp-sector').value;
+  if (!nombre) { alert('⚠️ El nombre del proyecto es obligatorio.'); return; }
+  if (!sector) { alert('⚠️ Selecciona un sector.'); return; }
+  const btn = $('btn-crear-proy');
+  btn.disabled = true; btn.innerText = 'Creando...';
+  const res = await api('/api/proyectos', 'POST', {
+    solicitante_username: user.username,
+    nombre, descripcion: $('cp-desc').value.trim(), sector,
+    ubicacion: $('cp-ubicacion').value.trim(),
+    cliente_username: $('cp-cliente').value.trim(),
+    supervisor: $('cp-supervisor').value.trim(),
+    fecha_inicio: $('cp-finicio').value,
+    fecha_fin: $('cp-ffin').value,
+  });
+  btn.disabled = false; btn.innerText = 'Crear Proyecto';
+  if (res && res.success) {
+    alert('✅ Proyecto creado correctamente.');
+    closeOverlay('o-crear-proyecto');
+    ['cp-nombre','cp-desc','cp-ubicacion','cp-cliente','cp-supervisor','cp-finicio','cp-ffin'].forEach(id => $(id).value = '');
+    $('cp-sector').value = '';
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al crear el proyecto.'));
+  }
+}
+
+// ══════════════════════════════════════════
+// CREAR USUARIO
+// ══════════════════════════════════════════
+async function crearUsuario() {
+  const nombre   = $('cu-nombre').value.trim();
+  const apellido = $('cu-apellido').value.trim();
+  const username = $('cu-user').value.trim();
+  const email    = $('cu-email').value.trim();
+  const password = $('cu-pass').value;
+  const rol      = $('cu-rol').value;
+  if (!nombre || !apellido || !username || !email || !password) {
+    alert('⚠️ Todos los campos marcados con * son obligatorios.'); return;
+  }
+  const btn = $('btn-crear-user');
+  btn.disabled = true; btn.innerText = 'Registrando...';
+  const res = await api('/api/crear-usuario', 'POST', {
+    admin_username: user.username,
+    nombre, apellido, username, email, password, rol,
+    telefono: $('cu-tel').value.trim()
+  });
+  btn.disabled = false; btn.innerText = 'Registrar Miembro';
+  if (res && res.success) {
+    alert('✅ Miembro registrado correctamente.');
+    closeOverlay('o-crear-user');
+    ['cu-nombre','cu-apellido','cu-user','cu-email','cu-pass','cu-tel'].forEach(id => $(id).value = '');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al registrar el miembro.'));
+  }
 }
 
 // ══════════════════════════════════════════
@@ -1203,15 +1369,11 @@ async function enviarCotizacion() {
   const desc      = $('cot-desc').value.trim();
   const ubicacion = $('cot-ubicacion').value.trim();
   if (!desc || !ubicacion) { alert('⚠️ Completa la descripción y ubicación.'); return; }
-
   const res = await api('/api/cotizaciones', 'POST', {
-    cliente_username: user.username,
-    servicio_id:      currentCotServicio.id,
-    descripcion:      desc,
-    sector:           currentCotServicio.sector,
-    ubicacion
+    cliente_username: user.username, servicio_id: currentCotServicio.id,
+    descripcion: desc, sector: currentCotServicio.sector, ubicacion
   });
-  if (res && res.success) { alert('✅ Solicitud enviada correctamente.'); closeOverlay('o-cotizar'); loadAllData(); }
+  if (res && res.success) { alert('✅ Solicitud enviada.'); closeOverlay('o-cotizar'); loadAllData(); }
   else alert('❌ ' + (res?.msg || 'Error al enviar la solicitud.'));
 }
 
@@ -1264,25 +1426,16 @@ async function crearAsignacion() {
   const buzo_username = $('asi-buzo').value;
   const desc          = $('asi-desc').value.trim();
   const proyecto_id   = parseInt($('asi-proyecto').value);
-
-  if (!buzo_username || !desc || isNaN(proyecto_id)) {
-    alert('⚠️ Completa todos los campos.'); return;
-  }
-
+  if (!buzo_username || !desc || isNaN(proyecto_id)) { alert('⚠️ Completa todos los campos.'); return; }
   const btn = $('btn-asignar');
   btn.disabled = true; btn.innerText = 'Asignando...';
-
   const res = await api('/api/asignaciones', 'POST', {
-    supervisor_username: user.username,
-    buzo_username, proyecto_id, descripcion: desc,
-    fecha:     $('asi-fecha').value,
-    prioridad: $('asi-prioridad').value
+    supervisor_username: user.username, buzo_username, proyecto_id, descripcion: desc,
+    fecha: $('asi-fecha').value, prioridad: $('asi-prioridad').value
   });
-
   btn.disabled = false; btn.innerText = 'Asignar Tarea';
-
   if (res && res.success) { alert('✅ Asignación creada.'); closeOverlay('o-asignar'); loadAllData(); }
-  else alert('❌ ' + (res?.msg || 'Error al asignar. Verifica que el buzo exista.'));
+  else alert('❌ ' + (res?.msg || 'Error al asignar.'));
 }
 
 // ══════════════════════════════════════════
@@ -1299,25 +1452,15 @@ async function enviarReporte() {
   const desc  = $('rep-desc').value.trim();
   const horas = parseFloat($('rep-horas').value);
   const pid   = parseInt($('rep-proyecto').value);
-
-  if (!desc || isNaN(horas) || isNaN(pid)) {
-    alert('⚠️ Descripción y horas son obligatorios.'); return;
-  }
-
+  if (!desc || isNaN(horas) || isNaN(pid)) { alert('⚠️ Descripción y horas son obligatorios.'); return; }
   const btn = $('btn-rep');
   btn.disabled = true; btn.innerText = 'Enviando...';
-
   const res = await api('/api/reportes', 'POST', {
-    buzo_username:   user.username,
-    proyecto_id:     pid,
-    descripcion:     desc,
-    horas_trabajadas: horas,
-    condiciones:     $('rep-cond').value,
-    incidentes:      $('rep-incidentes').value.trim()
+    buzo_username: user.username, proyecto_id: pid, descripcion: desc,
+    horas_trabajadas: horas, condiciones: $('rep-cond').value,
+    incidentes: $('rep-incidentes').value.trim()
   });
-
   btn.disabled = false; btn.innerText = 'Enviar Reporte';
-
   if (res && res.success) { alert('✅ Reporte enviado.'); closeOverlay('o-reporte'); loadAllData(); }
   else alert('❌ ' + (res?.msg || 'Error al enviar el reporte.'));
 }
@@ -1358,33 +1501,34 @@ function sendBot() {
   const input = $('chat-input');
   const msg   = input.value.trim();
   if (!msg) return;
-
   const history = $('chat-history');
   history.innerHTML += `<div class="msg user">${msg}</div>`;
-  input.value = '';
-  history.scrollTop = history.scrollHeight;
-
+  input.value = ''; history.scrollTop = history.scrollHeight;
   setTimeout(() => {
     const m = msg.toLowerCase();
     let reply = 'No estoy seguro de entenderte. Puedo ayudarte con proyectos, reportes, solicitudes o el uso de la app.';
-
     if (m.includes('hola') || m.includes('buenas') || m.includes('hey'))
       reply = `¡Hola! Soy Max 🤖, el asistente de CV Diving. ¿En qué te puedo ayudar?`;
     else if (m.includes('crear') && m.includes('proyecto'))
       reply = 'Para crear un proyecto, ve a la pestaña <strong>Proyectos</strong> y pulsa <strong>"+ Nuevo Proyecto"</strong>. Necesitas ser admin o supervisor.';
+    else if (m.includes('eliminar') && m.includes('proyecto'))
+      reply = 'Abre el proyecto desde la lista y al final encontrarás el botón <strong>"🗑️ Eliminar Proyecto"</strong>. Se pedirá doble confirmación por seguridad.';
+    else if (m.includes('finalizar') || (m.includes('terminar') && m.includes('proyecto')))
+      reply = 'Para finalizar un proyecto, ábrelo desde la lista y pulsa <strong>"🏁 Finalizar Proyecto"</strong>. Tendrás que rellenar el informe de cierre con fecha, resumen y resultado.';
+    else if (m.includes('eliminar') && m.includes('usuario'))
+      reply = 'Ve a la pestaña <strong>Equipo</strong>, toca un usuario y al final encontrarás el botón <strong>"🗑️ Eliminar Usuario"</strong>. Solo el admin puede hacerlo.';
     else if (m.includes('reporte'))
       reply = 'Los buzos envían reportes desde su panel pulsando <strong>"+ Enviar Reporte"</strong>. Los supervisores los revisan en la pestaña <strong>Reportes</strong>.';
     else if (m.includes('solicitud') || m.includes('cotiz'))
-      reply = 'Como cliente puedes ir a <strong>Servicios</strong>, elegir uno y enviar tu solicitud. El equipo de CV Diving te responderá pronto.';
+      reply = 'Como cliente puedes ir a <strong>Servicios</strong>, elegir uno y enviar tu solicitud. El equipo te responderá pronto.';
     else if (m.includes('buzo') || m.includes('asign'))
       reply = 'Para asignar a un buzo, ve a <strong>Asignar</strong> y crea una nueva asignación con el proyecto y buzo correspondiente.';
     else if (m.includes('foto') || m.includes('perfil'))
       reply = 'Pulsa tu avatar en la esquina superior derecha para abrir tu perfil y cambiar tu foto.';
     else if (m.includes('admin') || m.includes('contraseña'))
-      reply = 'El administrador por defecto es <strong>admin</strong> con contraseña <strong>cvdiving2024</strong>. Cámbiala pronto desde tu perfil.';
+      reply = 'El administrador por defecto es <strong>admin</strong> con contraseña <strong>cvdiving2024</strong>. Cámbiala desde tu perfil.';
     else if (m.includes('gracias'))
       reply = '¡De nada! Si necesitas algo más, aquí estaré. 🤿';
-
     history.innerHTML += `<div class="msg bot">${reply}</div>`;
     history.scrollTop = history.scrollHeight;
   }, 600);
