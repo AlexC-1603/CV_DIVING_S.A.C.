@@ -42,6 +42,8 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 /* ── MAIN APP ── */
 #app{display:none;flex-direction:column;min-height:100vh;}
 #app.active{display:flex;}
+
+/* ── TOPBAR ── */
 .topbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:56px;background:rgba(9,7,9,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;z-index:200;backdrop-filter:blur(10px);gap:10px;}
 .topbar-logo{flex:0 0 auto;display:flex;align-items:center;}
 .topbar-logo img{height:26px;width:auto;object-fit:contain;display:block;}
@@ -52,13 +54,16 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .role-supervisor{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);}
 .role-buzo{background:rgba(52,152,219,.15);color:#3498DB;border:1px solid rgba(52,152,219,.3);}
 .role-cliente{background:rgba(138,170,191,.15);color:var(--muted);border:1px solid rgba(138,170,191,.3);}
-.role-administrativo{background:rgba(155,89,182,.15);color:var(--purple);border:1px solid rgba(155,89,182,.3);}
+.role-personal_admin{background:rgba(155,89,182,.15);color:var(--purple);border:1px solid rgba(155,89,182,.3);}
 .avatar-btn{width:34px;height:34px;border-radius:50%;background:var(--navy);border:1.5px solid var(--yellow);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:18px;}
 .avatar-btn img{width:100%;height:100%;object-fit:cover;display:block;}
 
+/* ── CONTENT ── */
 .content{flex:1;overflow-y:auto;padding:56px 0 62px;}
 .tab-pane{display:none;animation:fadeUp .25s ease;}
 .tab-pane.active{display:block;}
+
+/* ── NAVBAR ── */
 .navbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(9,7,9,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;height:62px;z-index:200;backdrop-filter:blur(10px);}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;background:none;border:none;color:var(--gray2);transition:.2s;min-width:0;flex:1;}
 .nav-item svg{width:22px;height:22px;flex-shrink:0;}
@@ -66,13 +71,15 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .nav-item.on{color:var(--yellow);}
 .nav-item.on svg{filter:drop-shadow(0 0 6px rgba(245,215,0,.4));}
 
-/* ── OVERLAYS & UI ── */
+/* ── OVERLAYS ── */
 .overlay{position:fixed;inset:0;z-index:300;background:rgba(9,7,9,.98);overflow-y:auto;max-width:480px;left:50%;transform:translateX(-50%);width:100%;display:none;}
 .overlay.active{display:block;animation:slideIn .28s ease;}
 .overlay-header{position:sticky;top:0;background:rgba(9,7,9,.97);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);z-index:10;}
 .back-btn{width:36px;height:36px;border-radius:50%;background:rgba(16,55,82,.5);border:1px solid var(--border);color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .overlay-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;color:var(--white);}
 .overlay-body{padding:20px 18px 40px;}
+
+/* ── UI COMPONENTS ── */
 .fgroup{background:rgba(16,55,82,.2);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:14px;}
 .fgroup h4{font-family:'Barlow Condensed',sans-serif;font-size:14px;color:var(--yellow);text-transform:uppercase;margin-bottom:14px;}
 .finp{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--border);background:rgba(9,7,9,.4);color:var(--white);font-family:'Barlow',sans-serif;font-size:14px;margin-bottom:10px;outline:none;transition:.2s;}
@@ -97,12 +104,14 @@ textarea.finp{resize:none;}
 .list-info{flex:1;min-width:0;}
 .list-info h4{font-size:14px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .list-info p{font-size:12px;color:var(--muted);margin-top:2px;}
+
 .badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;flex-shrink:0;}
 .b-pending{background:rgba(243,156,18,.15);color:var(--orange);border:1px solid rgba(243,156,18,.3);}
 .b-active{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);}
 .b-done{background:rgba(52,152,219,.15);color:#3498DB;border:1px solid rgba(52,152,219,.3);}
 .b-rejected{background:rgba(231,76,60,.15);color:var(--red);border:1px solid rgba(231,76,60,.3);}
 .b-yellow{background:rgba(245,215,0,.15);color:var(--yellow);border:1px solid rgba(245,215,0,.3);}
+
 .progress-bar{width:100%;height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;margin-top:8px;}
 .progress-fill{height:100%;background:var(--yellow);border-radius:3px;transition:width .5s ease;}
 .card{background:rgba(16,55,82,.25);border:1px solid var(--border);border-radius:16px;padding:16px;margin:0 18px 12px;}
@@ -112,7 +121,19 @@ textarea.finp{resize:none;}
 .stat-box .num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:var(--yellow);line-height:1;}
 .stat-box .lbl{font-size:11px;color:var(--muted);font-weight:500;margin-top:4px;}
 
+/* ── CHAT ── */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 56px - 62px);}
+.chat-history{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:15px;}
+.msg{max-width:85%;padding:12px 16px;border-radius:16px;font-size:14px;line-height:1.5;}
+.msg.bot{background:rgba(16,55,82,.6);border:1px solid var(--border);border-bottom-left-radius:4px;align-self:flex-start;}
+.msg.user{background:var(--yellow);color:var(--black);font-weight:500;border-bottom-right-radius:4px;align-self:flex-end;}
+.chat-inp-area{padding:12px 16px;background:rgba(9,7,9,.97);border-top:1px solid var(--border);display:flex;gap:10px;align-items:center;}
+.chat-inp-area input{flex:1;border-radius:20px;padding:12px 16px;margin:0;}
+.chat-send{width:44px;height:44px;border-radius:50%;background:var(--yellow);border:none;color:var(--black);font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+
+/* ── HERO & SECCIÓN ── */
 .hero{background:linear-gradient(135deg,var(--navy2) 0%,rgba(9,7,9,.8) 100%);padding:24px 18px 20px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero::after{content:'»';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-size:90px;font-weight:800;color:rgba(245,215,0,.04);line-height:1;pointer-events:none;}
 .hero-greet{font-size:13px;color:var(--muted);margin-bottom:4px;}
 .hero-name{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;color:var(--white);line-height:1.1;text-transform:capitalize;}
 .hero-name span{color:var(--yellow);}
@@ -120,18 +141,30 @@ textarea.finp{resize:none;}
 .empty{text-align:center;color:var(--muted);font-size:14px;padding:40px 20px;line-height:1.6;}
 .empty-icon{font-size:40px;margin-bottom:10px;display:block;}
 
+/* ── PERFIL ── */
 .prof-header{display:flex;flex-direction:column;align-items:center;padding:30px 18px 20px;gap:10px;}
 .prof-av-wrap{position:relative;width:90px;height:90px;}
 .prof-avatar{width:90px;height:90px;border-radius:50%;background:var(--navy);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;}
 .prof-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .edit-foto-btn{font-size:11px;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);cursor:pointer;color:white;transition:.2s;}
+.edit-foto-btn:hover{background:rgba(245,215,0,.1);border-color:var(--yellow);color:var(--yellow);}
 .prof-name-txt{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--white);}
+
+/* ── SERVICIOS ── */
+.serv-card{background:rgba(16,55,82,.25);border:1px solid var(--border);border-radius:16px;padding:16px;margin:0 18px 12px;cursor:pointer;transition:.2s;display:flex;gap:14px;align-items:flex-start;}
+.serv-card:hover{border-color:var(--yellow);background:rgba(245,215,0,.05);}
+.serv-icon{width:46px;height:46px;border-radius:12px;background:rgba(245,215,0,.1);border:1px solid rgba(245,215,0,.2);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.serv-info h4{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.serv-info p{font-size:12px;color:var(--muted);line-height:1.5;}
+.serv-sector{font-size:10px;font-weight:700;color:var(--yellow);text-transform:uppercase;margin-top:6px;}
+
+/* ── SEPARADOR INFO ── */
 .info-row-sep{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(30,74,104,.3);}
 .info-row-sep:last-child{border-bottom:none;}
 .info-row-sep .lbl{color:var(--muted);font-size:13px;}
 .info-row-sep .val{font-size:13px;color:var(--white);}
 
-/* Doc Upload Items */
+/* Doc Upload Items (Perfil) */
 .doc-item { display:flex; justify-content:space-between; align-items:center; padding:10px; background:rgba(9,7,9,.4); border-radius:8px; border:1px solid var(--border); margin-bottom:8px;}
 .doc-item .doc-name { font-size:13px; color:var(--white); font-weight:500;}
 .doc-item .doc-status { font-size:11px; font-weight:700; text-transform:uppercase;}
@@ -144,32 +177,43 @@ textarea.finp{resize:none;}
 
 <div id="s-login">
   <div class="login-top anim">
-    <img id="login-logo" src="https://backend-cv-aq0s.onrender.com/nuevo_logo-removebg.png" alt="CV Diving" style="width:200px;max-width:75%;filter:drop-shadow(0 0 20px rgba(245,215,0,.2));" onerror="this.style.display='none';document.getElementById('login-logo-txt').style.display='block';">
+    <img id="login-logo" src="https://backend-cv-aq0s.onrender.com/nuevo_logo-removebg.png"
+         alt="CV Diving"
+         style="width:200px;max-width:75%;filter:drop-shadow(0 0 20px rgba(245,215,0,.2));"
+         onerror="this.style.display='none';document.getElementById('login-logo-txt').style.display='block';">
     <div id="login-logo-txt" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;color:var(--yellow);letter-spacing:2px;">CV DIVING</div>
     <div class="login-sub">BUCEO COMERCIAL</div>
   </div>
+
   <div class="login-card" id="form-login">
     <h3>Iniciar Sesión</h3>
     <label class="inp-label">Usuario</label>
-    <input class="inp" id="log-user" type="text" placeholder="Tu nombre de usuario">
+    <input class="inp" id="log-user" type="text" placeholder="Tu nombre de usuario" autocomplete="username">
     <label class="inp-label">Contraseña</label>
-    <input class="inp" id="log-pass" type="password" placeholder="••••••••" onkeypress="if(event.key==='Enter')doLogin()">
+    <input class="inp" id="log-pass" type="password" placeholder="••••••••" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
     <button class="btn-prim" id="btn-login" onclick="doLogin()">Ingresar</button>
     <div class="login-msg" id="login-msg"></div>
     <button class="btn-sec" onclick="showForm('register')">No tengo cuenta — Registrarme</button>
   </div>
+
   <div class="login-card" id="form-register" style="display:none;margin-top:12px;">
     <h3>Nueva Cuenta</h3>
     <div class="inp-row" style="margin-bottom:0;">
-      <div><label class="inp-label">Nombre</label><input class="inp" id="reg-nombre" type="text"></div>
-      <div><label class="inp-label">Apellido</label><input class="inp" id="reg-apellido" type="text"></div>
+      <div>
+        <label class="inp-label">Nombre</label>
+        <input class="inp" id="reg-nombre" type="text" placeholder="Alejandro">
+      </div>
+      <div>
+        <label class="inp-label">Apellido</label>
+        <input class="inp" id="reg-apellido" type="text" placeholder="Castillo">
+      </div>
     </div>
     <label class="inp-label">Usuario (alias)</label>
-    <input class="inp" id="reg-user" type="text">
+    <input class="inp" id="reg-user" type="text" placeholder="Ej: acastillo" autocomplete="username">
     <label class="inp-label">Correo Electrónico</label>
-    <input class="inp" id="reg-email" type="email">
+    <input class="inp" id="reg-email" type="email" placeholder="correo@empresa.com">
     <label class="inp-label">Contraseña</label>
-    <input class="inp" id="reg-pass" type="password" onkeypress="if(event.key==='Enter')doRegister()">
+    <input class="inp" id="reg-pass" type="password" placeholder="Crea una contraseña" autocomplete="new-password" onkeypress="if(event.key==='Enter')doRegister()">
     <button class="btn-prim" id="btn-register" onclick="doRegister()">Crear Cuenta</button>
     <div class="login-msg" id="reg-msg"></div>
     <button class="btn-sec" onclick="showForm('login')">Ya tengo cuenta — Ingresar</button>
@@ -179,7 +223,10 @@ textarea.finp{resize:none;}
 <div id="app">
   <div class="topbar">
     <div class="topbar-logo">
-      <img id="topbar-logo-img" src="https://backend-cv-aq0s.onrender.com/Logo2.png" alt="CV Diving" onerror="this.style.display='none';document.getElementById('topbar-logo-txt').style.display='block';">
+      <img id="topbar-logo-img"
+           src="https://backend-cv-aq0s.onrender.com/Logo2.png"
+           alt="CV Diving"
+           onerror="this.style.display='none';document.getElementById('topbar-logo-txt').style.display='block';">
       <span id="topbar-logo-txt" style="display:none;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:var(--yellow);">CV DIVING</span>
     </div>
     <div class="topbar-spacer"></div>
@@ -188,39 +235,9 @@ textarea.finp{resize:none;}
       <div class="avatar-btn" id="top-avatar" onclick="openOverlay('o-profile')">👤</div>
     </div>
   </div>
+
   <div class="content" id="main-content"></div>
   <nav class="navbar" id="main-nav"></nav>
-</div>
-
-<div id="o-profile" class="overlay">
-  <div class="overlay-header">
-    <button class="back-btn" onclick="closeOverlay('o-profile')">←</button>
-    <div class="overlay-title">Mi Perfil</div>
-  </div>
-  <div class="prof-header">
-    <div class="prof-av-wrap"><div class="prof-avatar" id="prof-av">👤</div></div>
-    <input type="file" id="inp-foto" accept="image/*" style="display:none;" onchange="subirFoto(this)">
-    <button class="edit-foto-btn" onclick="document.getElementById('inp-foto').click()">✏️ Cambiar foto</button>
-    <div class="prof-name-txt" id="prof-name-txt">—</div>
-    <div style="font-size:13px;color:var(--muted);" id="prof-alias-txt">@—</div>
-    <span id="prof-chip" class="role-chip role-cliente" style="margin-top:2px;"></span>
-  </div>
-  <div style="padding:0 18px 40px;">
-    <div class="fgroup">
-      <h4>Información</h4>
-      <div class="info-row-sep"><span class="lbl">Correo</span><span id="prof-email-txt" class="val">—</span></div>
-      <div class="info-row-sep"><span class="lbl">Rol</span><span id="prof-rol-txt" class="val" style="color:var(--yellow);">—</span></div>
-    </div>
-    
-    <div class="fgroup" id="sec-documentos" style="display:none;">
-      <h4>Mis Documentos</h4>
-      <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">Sube tus documentos habilitantes (.pdf o imagen). El tamaño máximo recomendado es 2MB.</p>
-      <div id="lista-docs-perfil"></div>
-    </div>
-
-    <div id="foto-status" style="font-size:12px;text-align:center;color:var(--green);margin-bottom:10px;display:none;"></div>
-    <button class="btn-full btn-danger" onclick="doLogout()" style="margin-top:8px;">🚪 Cerrar Sesión</button>
-  </div>
 </div>
 
 <div id="o-detalle-solicitud" class="overlay">
@@ -239,6 +256,56 @@ textarea.finp{resize:none;}
   <div class="overlay-body" id="da-body"></div>
 </div>
 
+<div id="o-bot" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-bot')">←</button>
+    <div style="width:32px;height:32px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🤖</div>
+    <div class="overlay-title">Max — Asistente CV Diving</div>
+  </div>
+  <div class="chat-wrap">
+    <div class="chat-history" id="chat-history">
+      <div class="msg bot">👋 ¡Hola! Soy <strong>Max</strong>, el asistente virtual de CV Diving. Puedo ayudarte a navegar la app, entender los roles o resolver dudas sobre proyectos y reportes. ¿En qué te ayudo?</div>
+    </div>
+    <div class="chat-inp-area">
+      <input type="text" id="chat-input" class="finp" style="margin:0;" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendBot()">
+      <button class="chat-send" onclick="sendBot()">➤</button>
+    </div>
+  </div>
+</div>
+
+<div id="o-profile" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-profile')">←</button>
+    <div class="overlay-title">Mi Perfil</div>
+  </div>
+  <div class="prof-header">
+    <div class="prof-av-wrap">
+      <div class="prof-avatar" id="prof-av">👤</div>
+    </div>
+    <input type="file" id="inp-foto" accept="image/*" style="display:none;" onchange="subirFoto(this)">
+    <button class="edit-foto-btn" onclick="document.getElementById('inp-foto').click()">✏️ Cambiar foto</button>
+    <div class="prof-name-txt" id="prof-name-txt">—</div>
+    <div style="font-size:13px;color:var(--muted);" id="prof-alias-txt">@—</div>
+    <span id="prof-chip" class="role-chip role-cliente" style="margin-top:2px;"></span>
+  </div>
+  <div style="padding:0 18px 40px;">
+    <div class="fgroup">
+      <h4>Información</h4>
+      <div class="info-row-sep"><span class="lbl">Correo</span><span id="prof-email-txt" class="val">—</span></div>
+      <div class="info-row-sep"><span class="lbl">Rol</span><span id="prof-rol-txt" style="font-size:13px;color:var(--yellow);">—</span></div>
+    </div>
+
+    <div class="fgroup" id="sec-documentos" style="display:none;">
+      <h4>Mis Documentos</h4>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">Sube tus documentos habilitantes (.pdf o imagen). El tamaño máximo es 3.5MB.</p>
+      <div id="lista-docs-perfil">Cargando documentos...</div>
+    </div>
+
+    <div id="foto-status" style="font-size:12px;text-align:center;color:var(--green);margin-bottom:10px;display:none;"></div>
+    <button class="btn-full btn-danger" onclick="doLogout()" style="margin-top:8px;">🚪 Cerrar Sesión</button>
+  </div>
+</div>
+
 <div id="o-crear-proyecto" class="overlay">
   <div class="overlay-header">
     <button class="back-btn" onclick="closeOverlay('o-crear-proyecto')">←</button>
@@ -248,9 +315,9 @@ textarea.finp{resize:none;}
     <div class="fgroup">
       <h4>Datos del Proyecto</h4>
       <label class="finp-label">Nombre del Proyecto *</label>
-      <input class="finp" id="cp-nombre">
+      <input class="finp" id="cp-nombre" placeholder="Ej: Inspección Muelle Norte">
       <label class="finp-label">Descripción</label>
-      <textarea class="finp" id="cp-desc" rows="3"></textarea>
+      <textarea class="finp" id="cp-desc" rows="3" placeholder="Detalle del proyecto..."></textarea>
       <div class="finp-row">
         <div>
           <label class="finp-label">Sector *</label>
@@ -272,14 +339,14 @@ textarea.finp{resize:none;}
         </div>
       </div>
       <label class="finp-label">Ubicación / Puerto</label>
-      <input class="finp" id="cp-ubicacion">
-      <label class="finp-label">Username Cliente</label>
-      <input class="finp" id="cp-cliente">
-      <label class="finp-label">Username Supervisor</label>
-      <input class="finp" id="cp-supervisor">
+      <input class="finp" id="cp-ubicacion" placeholder="Ej: Callao, Lima">
+      <label class="finp-label">Username del Cliente (opcional)</label>
+      <input class="finp" id="cp-cliente" placeholder="username del cliente">
+      <label class="finp-label">Username del Supervisor</label>
+      <input class="finp" id="cp-supervisor" placeholder="username del supervisor">
       <div class="finp-row">
-        <div><label class="finp-label">Inicio</label><input class="finp" id="cp-finicio" type="date"></div>
-        <div><label class="finp-label">Fin Est.</label><input class="finp" id="cp-ffin" type="date"></div>
+        <div><label class="finp-label">Fecha Inicio</label><input class="finp" id="cp-finicio" type="date"></div>
+        <div><label class="finp-label">Fecha Fin Est.</label><input class="finp" id="cp-ffin" type="date"></div>
       </div>
     </div>
     <button class="btn-full" id="btn-crear-proy" onclick="crearProyecto()">Crear Proyecto</button>
@@ -295,74 +362,194 @@ textarea.finp{resize:none;}
     <div class="fgroup">
       <h4>Datos del Miembro</h4>
       <div class="finp-row">
-        <div><label class="finp-label">Nombre *</label><input class="finp" id="cu-nombre"></div>
-        <div><label class="finp-label">Apellido *</label><input class="finp" id="cu-apellido"></div>
+        <div><label class="finp-label">Nombre *</label><input class="finp" id="cu-nombre" placeholder="Nombre"></div>
+        <div><label class="finp-label">Apellido *</label><input class="finp" id="cu-apellido" placeholder="Apellido"></div>
       </div>
       <label class="finp-label">Usuario (alias) *</label>
-      <input class="finp" id="cu-user">
+      <input class="finp" id="cu-user" placeholder="Ej: jperez_buzo">
       <label class="finp-label">Correo *</label>
-      <input class="finp" id="cu-email" type="email">
+      <input class="finp" id="cu-email" type="email" placeholder="correo@cvdiving.com">
       <label class="finp-label">Contraseña *</label>
-      <input class="finp" id="cu-pass" type="password">
+      <input class="finp" id="cu-pass" type="password" placeholder="Contraseña segura">
       <div class="finp-row">
         <div>
           <label class="finp-label">Rol *</label>
           <select class="finp" id="cu-rol">
             <option value="buzo">Buzo</option>
             <option value="supervisor">Supervisor</option>
-            <option value="administrativo">Administrativo (Oficina)</option>
+            <option value="personal_admin">Administrativo (Oficina)</option>
             <option value="cliente">Cliente</option>
           </select>
         </div>
-        <div><label class="finp-label">Teléfono</label><input class="finp" id="cu-tel" type="tel"></div>
+        <div><label class="finp-label">Teléfono</label><input class="finp" id="cu-tel" type="tel" placeholder="+51 9..."></div>
       </div>
     </div>
     <button class="btn-full" id="btn-crear-user" onclick="crearUsuario()">Registrar Miembro</button>
   </div>
 </div>
 
-<div id="o-user-detail" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-user-detail')">←</button><div class="overlay-title">Perfil del Miembro</div></div><div class="overlay-body"><div style="display:flex;flex-direction:column;align-items:center;margin-bottom:20px;"><div id="ud-avatar" style="width:70px;height:70px;border-radius:50%;background:var(--navy);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;margin-bottom:10px;"></div><div id="ud-nombre" style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--white);"></div><div id="ud-alias" style="font-size:13px;color:var(--muted);margin-top:2px;"></div><span id="ud-chip" class="role-chip role-cliente" style="margin-top:6px;"></span></div><div class="fgroup"><h4>Información Personal</h4><div class="info-row-sep"><span class="lbl">Correo</span><span id="ud-email" class="val">—</span></div><div class="info-row-sep"><span class="lbl">Teléfono</span><span id="ud-tel" class="val">—</span></div><div class="info-row-sep"><span class="lbl">Rol</span><span id="ud-rol" class="val" style="color:var(--yellow);">—</span></div></div><div id="ud-acciones" style="display:flex;flex-direction:column;gap:10px;margin-top:6px;"></div></div></div>
+<div id="o-user-detail" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-user-detail')">←</button>
+    <div class="overlay-title">Perfil del Miembro</div>
+  </div>
+  <div class="overlay-body">
+    <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:20px;">
+      <div id="ud-avatar" style="width:70px;height:70px;border-radius:50%;background:var(--navy);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden;margin-bottom:10px;"></div>
+      <div id="ud-nombre" style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--white);"></div>
+      <div id="ud-alias" style="font-size:13px;color:var(--muted);margin-top:2px;"></div>
+      <span id="ud-chip" class="role-chip role-cliente" style="margin-top:6px;"></span>
+    </div>
+    <div class="fgroup">
+      <h4>Información Personal</h4>
+      <div class="info-row-sep"><span class="lbl">Correo</span><span id="ud-email" class="val">—</span></div>
+      <div class="info-row-sep"><span class="lbl">Teléfono</span><span id="ud-tel" class="val">—</span></div>
+      <div class="info-row-sep"><span class="lbl">Rol</span><span id="ud-rol" class="val" style="color:var(--yellow);">—</span></div>
+    </div>
+    <div id="ud-acciones" style="display:flex;flex-direction:column;gap:10px;margin-top:6px;"></div>
+  </div>
+</div>
 
-<div id="o-proyecto-admin" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-proyecto-admin')">←</button><div class="overlay-title" id="opa-title">Proyecto</div></div><div class="overlay-body" id="opa-body"></div></div>
-<div id="o-finalizar-proy" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-finalizar-proy')">←</button><div class="overlay-title">Finalizar Proyecto</div></div><div class="overlay-body"><div style="background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.25);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--green);">✅ Estás a punto de marcar el proyecto <strong id="fp-nombre-lbl" style="color:var(--white);"></strong> como completado.</div><div class="fgroup"><h4>Informe de Cierre</h4><label class="finp-label">Fecha real de finalización *</label><input class="finp" id="fp-fecha" type="date"><label class="finp-label">Resumen del trabajo realizado *</label><textarea class="finp" id="fp-resumen" rows="4"></textarea><label class="finp-label">Resultado obtenido *</label><select class="finp" id="fp-resultado"><option value="">— Seleccionar —</option><option value="exitoso">✅ Exitoso</option><option value="parcial">⚠️ Parcial</option><option value="critico">🔴 Crítico</option></select><label class="finp-label">Observaciones</label><textarea class="finp" id="fp-obs" rows="3"></textarea></div><button class="btn-full" style="background:var(--green);color:var(--black);" id="btn-finalizar" onclick="finalizarProyecto()">✅ Confirmar Finalización</button><button class="btn-full btn-navy" style="margin-top:10px;" onclick="closeOverlay('o-finalizar-proy')">Cancelar</button></div></div>
+<div id="o-proyecto-admin" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-proyecto-admin')">←</button>
+    <div class="overlay-title" id="opa-title">Proyecto</div>
+  </div>
+  <div class="overlay-body" id="opa-body"></div>
+</div>
 
-<div id="o-proyecto-cliente" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-proyecto-cliente')">←</button><div class="overlay-title" id="op-title">Proyecto</div></div><div class="overlay-body" id="op-body"></div></div>
-<div id="o-cotizar" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-cotizar')">←</button><div class="overlay-title">Solicitar Servicio</div></div><div class="overlay-body" id="cot-body"></div></div>
-<div id="o-resp-cot" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-resp-cot')">←</button><div class="overlay-title">Revisar Solicitud</div></div><div class="overlay-body" id="rc-body"></div></div>
-<div id="o-asignar" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-asignar')">←</button><div class="overlay-title">Nueva Asignación</div></div><div class="overlay-body"><div class="fgroup"><h4>Asignación de Tarea</h4><label class="finp-label">Proyecto</label><select class="finp" id="asi-proyecto"></select><label class="finp-label">Buzo Asignado</label><select class="finp" id="asi-buzo"></select><label class="finp-label">Descripción de la tarea *</label><textarea class="finp" id="asi-desc" rows="3"></textarea><div class="finp-row"><div><label class="finp-label">Fecha</label><input class="finp" id="asi-fecha" type="date"></div><div><label class="finp-label">Prioridad</label><select class="finp" id="asi-prioridad"><option value="normal">Normal</option><option value="alta">Alta</option><option value="baja">Baja</option></select></div></div></div><button class="btn-full" id="btn-asignar" onclick="crearAsignacion()">Asignar Tarea</button></div></div>
+<div id="o-finalizar-proy" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-finalizar-proy')">←</button>
+    <div class="overlay-title">Finalizar Proyecto</div>
+  </div>
+  <div class="overlay-body">
+    <div style="background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.25);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--green);">
+      ✅ Estás a punto de marcar el proyecto <strong id="fp-nombre-lbl" style="color:var(--white);"></strong> como completado. Por favor rellena el informe de cierre.
+    </div>
+    <div class="fgroup">
+      <h4>Informe de Cierre</h4>
+      <label class="finp-label">Fecha real de finalización *</label>
+      <input class="finp" id="fp-fecha" type="date">
+      <label class="finp-label">Resumen del trabajo realizado *</label>
+      <textarea class="finp" id="fp-resumen" rows="4" placeholder="Describe brevemente los trabajos ejecutados..."></textarea>
+      <label class="finp-label">Resultado obtenido *</label>
+      <select class="finp" id="fp-resultado">
+        <option value="">— Seleccionar —</option>
+        <option value="exitoso">✅ Exitoso — Conforme al alcance</option>
+        <option value="parcial">⚠️ Parcial — Con observaciones</option>
+        <option value="critico">🔴 Crítico — Requiere seguimiento</option>
+      </select>
+      <label class="finp-label">Observaciones finales</label>
+      <textarea class="finp" id="fp-obs" rows="3" placeholder="Incidentes, notas adicionales, recomendaciones..."></textarea>
+      <div class="finp-row">
+        <div>
+          <label class="finp-label">Horas totales</label>
+          <input class="finp" id="fp-horas" type="number" min="0" step="0.5" placeholder="Ej: 48">
+        </div>
+        <div>
+          <label class="finp-label">Buzos participantes</label>
+          <input class="finp" id="fp-buzos" type="number" min="1" placeholder="Ej: 3">
+        </div>
+      </div>
+    </div>
+    <button class="btn-full" style="background:var(--green);color:var(--black);" id="btn-finalizar" onclick="finalizarProyecto()">✅ Confirmar Finalización</button>
+    <button class="btn-full btn-navy" style="margin-top:10px;" onclick="closeOverlay('o-finalizar-proy')">Cancelar</button>
+  </div>
+</div>
+
+<div id="o-proyecto-cliente" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-proyecto-cliente')">←</button>
+    <div class="overlay-title" id="op-title">Proyecto</div>
+  </div>
+  <div class="overlay-body" id="op-body"></div>
+</div>
+
+<div id="o-cotizar" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-cotizar')">←</button>
+    <div class="overlay-title">Solicitar Servicio</div>
+  </div>
+  <div class="overlay-body" id="cot-body"></div>
+</div>
+
+<div id="o-resp-cot" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-resp-cot')">←</button>
+    <div class="overlay-title">Responder Solicitud</div>
+  </div>
+  <div class="overlay-body" id="rc-body"></div>
+</div>
+
+<div id="o-asignar" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-asignar')">←</button>
+    <div class="overlay-title">Nueva Asignación</div>
+  </div>
+  <div class="overlay-body">
+    <div class="fgroup">
+      <h4>Asignación de Tarea</h4>
+      <label class="finp-label">Proyecto</label>
+      <select class="finp" id="asi-proyecto"></select>
+      <label class="finp-label">Buzo Asignado</label>
+      <select class="finp" id="asi-buzo"></select>
+      <label class="finp-label">Descripción de la tarea *</label>
+      <textarea class="finp" id="asi-desc" rows="3" placeholder="Detalla la tarea a realizar..."></textarea>
+      <div class="finp-row">
+        <div><label class="finp-label">Fecha</label><input class="finp" id="asi-fecha" type="date"></div>
+        <div>
+          <label class="finp-label">Prioridad</label>
+          <select class="finp" id="asi-prioridad">
+            <option value="normal">Normal</option>
+            <option value="alta">Alta</option>
+            <option value="baja">Baja</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <button class="btn-full" id="btn-asignar" onclick="crearAsignacion()">Asignar Tarea</button>
+  </div>
+</div>
 
 <div id="o-reporte" class="overlay">
   <div class="overlay-header">
     <button class="back-btn" onclick="closeOverlay('o-reporte')">←</button>
-    <div class="overlay-title" id="rep-title">Enviar Reporte</div>
+    <div class="overlay-title">Enviar Reporte</div>
   </div>
   <div class="overlay-body">
     <div class="fgroup">
       <h4>Datos del Reporte</h4>
-      <input type="hidden" id="rep-id-edit"> <label class="finp-label">Proyecto</label>
+      <label class="finp-label">Proyecto</label>
       <select class="finp" id="rep-proyecto"></select>
       <label class="finp-label">Trabajo realizado *</label>
-      <textarea class="finp" id="rep-desc" rows="4"></textarea>
+      <textarea class="finp" id="rep-desc" rows="4" placeholder="Describe el trabajo realizado..."></textarea>
       <div class="finp-row">
-        <div><label class="finp-label">Horas *</label><input class="finp" id="rep-horas" type="number" min="0.5" step="0.5"></div>
+        <div><label class="finp-label">Horas trabajadas *</label><input class="finp" id="rep-horas" type="number" min="0.5" step="0.5" placeholder="Ej: 4.5"></div>
         <div>
-          <label class="finp-label">Condiciones</label>
+          <label class="finp-label">Condiciones del mar</label>
           <select class="finp" id="rep-cond">
             <option value="">— Selecciona —</option>
-            <option value="Calmo">Calmo</option>
-            <option value="Moderado">Moderado</option>
-            <option value="Difícil">Difícil</option>
+            <option>Calmo</option>
+            <option>Moderado</option>
+            <option>Difícil</option>
           </select>
         </div>
       </div>
       <label class="finp-label">Incidentes (opcional)</label>
-      <textarea class="finp" id="rep-incidentes" rows="2"></textarea>
+      <textarea class="finp" id="rep-incidentes" rows="2" placeholder="Ninguno si todo salió bien..."></textarea>
     </div>
-    <button class="btn-full" id="btn-rep" onclick="enviarReporte()">Guardar Reporte</button>
+    <button class="btn-full" id="btn-rep" onclick="enviarReporte()">Enviar Reporte</button>
   </div>
 </div>
 
-<div id="o-detalle-rep-buzo" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-detalle-rep-buzo')">←</button><div class="overlay-title">Mi Reporte</div></div><div class="overlay-body" id="drb-body"></div></div>
+<div id="o-detalle-rep-buzo" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-detalle-rep-buzo')">←</button>
+    <div class="overlay-title">Mi Reporte</div>
+  </div>
+  <div class="overlay-body" id="drb-body"></div>
+</div>
 
 <div id="o-revisar-rep" class="overlay">
   <div class="overlay-header">
@@ -372,18 +559,15 @@ textarea.finp{resize:none;}
   <div class="overlay-body" id="rr-body"></div>
 </div>
 
-<div id="o-bot" class="overlay"><div class="overlay-header"><button class="back-btn" onclick="closeOverlay('o-bot')">←</button><div style="width:32px;height:32px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🤖</div><div class="overlay-title">Max — Asistente CV Diving</div></div><div class="chat-wrap"><div class="chat-history" id="chat-history"><div class="msg bot">👋 ¡Hola! Soy Max, tu asistente virtual.</div></div><div class="chat-inp-area"><input type="text" id="chat-input" class="finp" style="margin:0;" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendBot()"><button class="chat-send" onclick="sendBot()">➤</button></div></div></div>
-
 <script>
 // ══════════════════════════════════════════
-// CONFIG & DATA
+// CONFIG Y ESTADO
 // ══════════════════════════════════════════
-const API = 'https://backend-cv-aq0s.onrender.com';
+const API = 'http://localhost:8000'; // Ajusta esto si tu backend FastAPI v2 está alojado en otro lado.
 
 let user = null;
-let servicios = [], cotizaciones = [], proyectos = [], asignaciones = [], reportes = [], usuarios = [], stats = {};
-let currentCotServicio = null, currentCotIdx = null, currentRepIdx = null, currentProjId = null, currentUserDetail = null;
-let currentRepBuzoIdx = null; // Para editar reportes del buzo
+let servicios = [], cotizaciones = [], proyectos = [], asignaciones = [], reportes = [], usuarios = [], completados = [], stats = {};
+let currentCotServicio = null, currentCotIdx = null, currentRepIdx = null, currentProjId = null, currentUserDetail = null, currentRepBuzoIdx = null;
 
 function $(id) { return document.getElementById(id); }
 function openOverlay(id) { $(id).classList.add('active'); }
@@ -397,13 +581,6 @@ function showForm(mode) {
 }
 
 function fmt(iso) {
-  if (!iso) return '—';
-  try { 
-    const d = new Date(iso); 
-    return d.toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' }) + ' ' + d.toLocaleTimeString('es-PE', {hour: '2-digit', minute:'2-digit'}); 
-  } catch { return iso; }
-}
-function fmtDateOnly(iso) {
   if (!iso) return '—';
   try { return new Date(iso).toLocaleDateString('es-PE', { day:'2-digit', month:'short', year:'numeric' }); }
   catch { return iso; }
@@ -426,7 +603,10 @@ function stateLabel(e) {
 // API WRAPPER
 // ══════════════════════════════════════════
 async function api(path, method = 'GET', body = null) {
-  const opts = { method, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' } };
+  const opts = {
+    method,
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' }
+  };
   if (body) opts.body = JSON.stringify(body);
   try {
     const r = await fetch(API + path, opts);
@@ -442,143 +622,251 @@ async function api(path, method = 'GET', body = null) {
 window.onload = () => {
   const saved = localStorage.getItem('cvdiving_user');
   if (saved) {
-    try { const parsed = JSON.parse(saved); if (parsed && parsed.username && parsed.username !== 'undefined') { initApp(parsed); return; } } catch {}
+    try {
+      const parsed = JSON.parse(saved);
+      if (parsed && parsed.username && parsed.username !== 'undefined') {
+        initApp(parsed); return;
+      }
+    } catch {}
   }
   $('s-login').style.display = 'flex';
 };
 
-function showMsg(elId, txt, type) { const el = $(elId); el.innerText = txt; el.className = `login-msg ${type}`; }
+function showMsg(elId, txt, type) {
+  const el = $(elId);
+  el.innerText = txt;
+  el.className = `login-msg ${type}`;
+}
 
 async function doLogin() {
-  const u = $('log-user').value.trim(); const p = $('log-pass').value;
+  const u = $('log-user').value.trim();
+  const p = $('log-pass').value;
   if (!u || !p) { showMsg('login-msg', '⚠️ Ingresa usuario y contraseña.', 'err'); return; }
-  $('btn-login').disabled = true; $('btn-login').innerText = 'Conectando...';
+  const btn = $('btn-login');
+  btn.disabled = true; btn.innerText = 'Conectando...';
   $('login-msg').className = 'login-msg';
   const res = await api('/api/login', 'POST', { username: u, password: p });
-  $('btn-login').disabled = false; $('btn-login').innerText = 'Ingresar';
+  btn.disabled = false; btn.innerText = 'Ingresar';
   if (!res) { showMsg('login-msg', '⚠️ Sin conexión al servidor.', 'err'); return; }
-  if (!res.success) { showMsg('login-msg', '❌ ' + (res.msg || 'Credenciales incorrectas.'), 'err'); return; }
-  localStorage.setItem('cvdiving_user', JSON.stringify(res.data)); initApp(res.data);
+  if (!res.success) { showMsg('login-msg', '❌ ' + (res.msg || 'Usuario o contraseña incorrectos.'), 'err'); return; }
+  localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
+  initApp(res.data);
 }
 
 async function doRegister() {
-  const nombre = $('reg-nombre').value.trim(), apellido = $('reg-apellido').value.trim(), username = $('reg-user').value.trim(), email = $('reg-email').value.trim(), password = $('reg-pass').value;
-  if (!nombre || !apellido || !username || !email || !password) { showMsg('reg-msg', '⚠️ Completa todos los campos.', 'err'); return; }
-  $('btn-register').disabled = true; $('btn-register').innerText = 'Creando...';
-  const res = await api('/api/register', 'POST', { username, password, email, nombre, apellido, rol: 'cliente' });
-  $('btn-register').disabled = false; $('btn-register').innerText = 'Crear Cuenta';
-  if (!res) { showMsg('reg-msg', '⚠️ Sin conexión.', 'err'); return; }
+  const nombre   = $('reg-nombre').value.trim();
+  const apellido = $('reg-apellido').value.trim();
+  const username = $('reg-user').value.trim();
+  const email    = $('reg-email').value.trim();
+  const password = $('reg-pass').value;
+  if (!nombre || !apellido || !username || !email || !password) {
+    showMsg('reg-msg', '⚠️ Completa todos los campos.', 'err'); return;
+  }
+  const btn = $('btn-register');
+  btn.disabled = true; btn.innerText = 'Creando cuenta...';
+  const res = await api('/api/register', 'POST', { username, password, email, nombre, apellido });
+  btn.disabled = false; btn.innerText = 'Crear Cuenta';
+  if (!res) { showMsg('reg-msg', '⚠️ Sin conexión al servidor.', 'err'); return; }
   if (!res.success) { showMsg('reg-msg', '❌ ' + (res.msg || 'Error al registrar.'), 'err'); return; }
-  localStorage.setItem('cvdiving_user', JSON.stringify(res.data)); initApp(res.data);
+  localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
+  initApp(res.data);
 }
-function doLogout() { localStorage.removeItem('cvdiving_user'); location.reload(); }
+
+function doLogout() {
+  localStorage.removeItem('cvdiving_user');
+  location.reload();
+}
 
 // ══════════════════════════════════════════
-// INIT & BUILD UI
+// AVATAR Y DOCUMENTOS PERFIL
 // ══════════════════════════════════════════
-function initApp(userData) {
-  user = userData;
-  if (!user || !user.username) { doLogout(); return; }
-  $('s-login').style.display = 'none'; $('app').classList.add('active');
-
-  const nom = user.nombre || 'Usuario'; const ape = user.apellido || ''; const rol = user.rol || 'cliente';
-  $('prof-name-txt').innerText  = `${nom} ${ape}`.trim();
-  $('prof-alias-txt').innerText = `@${user.username}`;
-  $('prof-email-txt').innerText = user.email || '—';
-
-  const chipClass = { admin:'role-admin', supervisor:'role-supervisor', administrativo:'role-administrativo', buzo:'role-buzo', cliente:'role-cliente' };
-  const chipLabel = { admin:'Admin', supervisor:'Supervisor', administrativo:'Administrativo', buzo:'Buzo', cliente:'Cliente' };
-  $('prof-rol-txt').innerText   = chipLabel[rol] || rol;
-  $('role-chip').className = `role-chip ${chipClass[rol]||'role-cliente'}`; $('role-chip').innerText = chipLabel[rol] || 'Cliente';
-  $('prof-chip').className = `role-chip ${chipClass[rol]||'role-cliente'}`; $('prof-chip').innerText = chipLabel[rol] || 'Cliente';
-
-  renderAvatar(user);
-  renderDocumentosConfig(rol); // Preparar subida de documentos
-  buildInterface();
-  loadAllData();
-}
-
-// Control de Documentos en Perfil
-function renderDocumentosConfig(rol) {
-  const docsSec = $('sec-documentos');
-  const lista = $('lista-docs-perfil');
-  if(rol === 'cliente') { docsSec.style.display = 'none'; return; }
-  
-  docsSec.style.display = 'block';
-  let docsRequeridos = [];
-  if (rol === 'buzo') { docsRequeridos = ['CV', 'Licencia de Buceo', 'Patente/Certificado Médico']; }
-  else if (rol === 'supervisor') { docsRequeridos = ['CV', 'Certificación Supervisor', 'DNI/Pasaporte']; }
-  else if (rol === 'administrativo' || rol === 'admin') { docsRequeridos = ['CV', 'DNI/Pasaporte']; }
-
-  // Simulamos que el usuario tiene o no el documento en BD (acá usarías user.docs si backend te lo envía)
-  lista.innerHTML = docsRequeridos.map(doc => `
-    <div class="doc-item">
-      <div>
-        <div class="doc-name">${doc}</div>
-        <div class="doc-status no" id="sts-${doc.replace(/\s|\//g,'-')}">Faltante</div>
-      </div>
-      <div>
-        <input type="file" id="inp-${doc.replace(/\s|\//g,'-')}" style="display:none;" onchange="subirDocumento(this, '${doc}')">
-        <button class="btn-sm" onclick="document.getElementById('inp-${doc.replace(/\s|\//g,'-')}').click()">Subir</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Simulador de subida de documento a BD
-function subirDocumento(input, docName) {
-  const file = input.files[0]; if(!file) return;
-  const idSts = `sts-${docName.replace(/\s|\//g,'-')}`;
-  $(idSts).innerText = "Subiendo..."; $(idSts).className = "doc-status";
-  // Convertir a base64 (Idealmente esto va al backend y se guarda URL)
-  const reader = new FileReader();
-  reader.onload = async function(e) {
-    const base64 = e.target.result;
-    // Aquí harías: api(`/api/usuarios/${user.username}/documentos`, 'PUT', { doc_tipo: docName, archivo: base64 })
-    setTimeout(() => { 
-        $(idSts).innerText = "✓ Subido"; 
-        $(idSts).className = "doc-status ok";
-        alert(`✅ ${docName} guardado en el sistema.`);
-    }, 800);
-  };
-  reader.readAsDataURL(file);
-}
-
 function renderAvatar(u) {
   const isImg = u.foto && typeof u.foto === 'string' && u.foto.startsWith('data:image');
-  if (isImg) { $('top-avatar').innerHTML = `<img src="${u.foto}">`; $('prof-av').innerHTML = `<img src="${u.foto}">`; } 
-  else { const ini = ((u.nombre||'')[0]||'') + ((u.apellido||'')[0]||''); $('top-avatar').innerHTML = ini.toUpperCase() || '👤'; $('prof-av').innerHTML = ini.toUpperCase() || '👤'; }
+  const topEl  = $('top-avatar');
+  const profEl = $('prof-av');
+  if (isImg) {
+    topEl.innerHTML  = `<img src="${u.foto}" alt="avatar">`;
+    profEl.innerHTML = `<img src="${u.foto}" alt="avatar">`;
+  } else {
+    const initials = ((u.nombre||'')[0]||'') + ((u.apellido||'')[0]||'');
+    topEl.innerHTML  = initials.toUpperCase() || '👤';
+    profEl.innerHTML = initials.toUpperCase() || '👤';
+  }
 }
 
 async function subirFoto(input) {
-  const file = input.files[0]; if (!file) return;
+  const file = input.files[0];
+  if (!file) return;
   const reader = new FileReader();
   reader.onload = function(e) {
     const img = new Image();
     img.onload = async function() {
-      const canvas = document.createElement('canvas'); const MAX = 400; let w = img.width, h = img.height;
-      if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } } else { if (h > MAX) { w = w * MAX / h; h = MAX; } }
-      canvas.width = w; canvas.height = h; canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const canvas = document.createElement('canvas');
+      const MAX = 400;
+      let w = img.width, h = img.height;
+      if (w > h) { if (w > MAX) { h = h * MAX / w; w = MAX; } }
+      else        { if (h > MAX) { w = w * MAX / h; h = MAX; } }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
       const b64 = canvas.toDataURL('image/jpeg', 0.75);
-      $('top-avatar').innerHTML = `<img src="${b64}">`; $('prof-av').innerHTML = `<img src="${b64}">`;
-      const res = await api(`/api/usuarios/${user.username}`, 'PUT', { admin_username: user.username, username: user.username, foto: b64 });
-      const st = $('foto-status'); user.foto = b64; localStorage.setItem('cvdiving_user', JSON.stringify(user));
-      st.style.display = 'block'; st.style.color = (res && res.success) ? 'var(--green)' : 'var(--orange)';
-      st.innerText = (res && res.success) ? '✅ Foto actualizada.' : '⚠️ Guardada localmente.';
+      
+      const res = await api(`/api/usuarios/${user.username}`, 'PUT', {
+        admin_username: user.username, username: user.username, foto: b64
+      });
+      
+      const st = $('foto-status');
+      if (res && res.success) {
+        user.foto = b64;
+        localStorage.setItem('cvdiving_user', JSON.stringify(user));
+        renderAvatar(user);
+        st.style.display = 'block'; st.style.color = 'var(--green)';
+        st.innerText = '✅ Foto actualizada correctamente.';
+      } else {
+        st.style.display = 'block'; st.style.color = 'var(--orange)';
+        st.innerText = '⚠️ Error al subir al servidor.';
+      }
       setTimeout(() => { st.style.display = 'none'; }, 3000);
-    }; img.src = e.target.result;
-  }; reader.readAsDataURL(file);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
 }
 
+// NUEVO V2: Renderizado Dinámico de Documentos desde /api/docs-por-rol
+async function renderDocumentosConfig() {
+  const docsSec = $('sec-documentos');
+  const lista = $('lista-docs-perfil');
+  if(!user || user.rol === 'cliente') { docsSec.style.display = 'none'; return; }
+  
+  docsSec.style.display = 'block';
+  
+  // 1. Obtener la lista requerida para este rol
+  const requeridos = await api(`/api/docs-por-rol?username=${user.username}`) || [];
+  
+  // 2. Obtener los documentos que el usuario ya subió
+  const subidos = await api(`/api/documentos?username=${user.username}`) || [];
+
+  lista.innerHTML = requeridos.map(docReq => {
+    // Buscar si ya existe en los subidos
+    const docExistente = subidos.find(s => s.tipo === docReq);
+    const idSafe = docReq.replace(/\s|\//g,'-');
+    
+    if (docExistente) {
+      return `
+        <div class="doc-item">
+          <div>
+            <div class="doc-name">${docReq}</div>
+            <div class="doc-status ok">✓ ${docExistente.nombre}</div>
+          </div>
+          <div>
+            <button class="btn-sm" style="background:var(--red);color:var(--white);" onclick="eliminarDocumento(${docExistente.id}, '${docReq}')">Borrar</button>
+          </div>
+        </div>`;
+    } else {
+      return `
+        <div class="doc-item">
+          <div>
+            <div class="doc-name">${docReq}</div>
+            <div class="doc-status no" id="sts-${idSafe}">Faltante</div>
+          </div>
+          <div>
+            <input type="file" id="inp-${idSafe}" style="display:none;" onchange="subirDocumento(this, '${docReq}')">
+            <button class="btn-sm" onclick="document.getElementById('inp-${idSafe}').click()">Subir</button>
+          </div>
+        </div>`;
+    }
+  }).join('');
+}
+
+async function subirDocumento(input, docName) {
+  const file = input.files[0]; if(!file) return;
+  const idSts = `sts-${docName.replace(/\s|\//g,'-')}`;
+  $(idSts).innerText = "Subiendo..."; $(idSts).className = "doc-status";
+  
+  const reader = new FileReader();
+  reader.onload = async function(e) {
+    const base64 = e.target.result;
+    const res = await api('/api/documentos', 'POST', {
+      username: user.username,
+      tipo: docName,
+      nombre: file.name,
+      archivo: base64,
+      extension: file.name.split('.').pop(),
+      size_kb: Math.round(file.size / 1024)
+    });
+    
+    if (res && res.success) {
+      $(idSts).innerText = "✓ Subido"; 
+      $(idSts).className = "doc-status ok";
+      renderDocumentosConfig(); // Refrescar lista
+    } else {
+      $(idSts).innerText = "Faltante"; 
+      $(idSts).className = "doc-status no";
+      alert('❌ Error al subir: ' + (res?.msg || 'Archivo muy grande'));
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+async function eliminarDocumento(id, docName) {
+  if(!confirm(`¿Eliminar tu documento de ${docName}?`)) return;
+  const res = await api(`/api/documentos/${id}?username=${user.username}`, 'DELETE');
+  if(res && res.success) {
+    renderDocumentosConfig();
+  }
+}
+
+// ══════════════════════════════════════════
+// INIT APP
+// ══════════════════════════════════════════
+function initApp(userData) {
+  user = userData;
+  if (!user || !user.username) { doLogout(); return; }
+  $('s-login').style.display = 'none';
+  $('app').classList.add('active');
+
+  const nom = user.nombre  || 'Usuario';
+  const ape = user.apellido || '';
+  const rol = user.rol      || 'cliente';
+
+  $('prof-name-txt').innerText  = `${nom} ${ape}`.trim();
+  $('prof-alias-txt').innerText = `@${user.username}`;
+  $('prof-email-txt').innerText = user.email || '—';
+  
+  // Mapeos adaptados al rol 'personal_admin' de la v2
+  const labels = { admin:'Administrador', supervisor:'Supervisor', personal_admin:'Administrativo', buzo:'Buzo', cliente:'Cliente' };
+  const chipClass = { admin:'role-admin', supervisor:'role-supervisor', personal_admin:'role-personal_admin', buzo:'role-buzo', cliente:'role-cliente' };
+  const chipLabel = { admin:'Admin', supervisor:'Supervisor', personal_admin:'Administrativo', buzo:'Buzo', cliente:'Cliente' };
+
+  $('prof-rol-txt').innerText = labels[rol] || rol;
+  $('role-chip').className = `role-chip ${chipClass[rol]||'role-cliente'}`;
+  $('role-chip').innerText = chipLabel[rol] || 'Cliente';
+  $('prof-chip').className = `role-chip ${chipClass[rol]||'role-cliente'}`;
+  $('prof-chip').innerText = chipLabel[rol] || 'Cliente';
+
+  renderAvatar(user);
+  renderDocumentosConfig();
+  buildInterface();
+  loadAllData();
+}
+
+// ══════════════════════════════════════════
+// BUILD INTERFACE
+// ══════════════════════════════════════════
 function setTab(id) {
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('on'));
-  if ($(id)) $(id).classList.add('active');
-  if (document.querySelector(`[data-tab="${id}"]`)) document.querySelector(`[data-tab="${id}"]`).classList.add('on');
+  const el = $(id);
+  if (el) el.classList.add('active');
+  const btn = document.querySelector(`[data-tab="${id}"]`);
+  if (btn) btn.classList.add('on');
 }
 
 function buildInterface() {
-  const rol = user.rol || 'cliente'; const nom = user.nombre || 'Usuario'; const ape = user.apellido || '';
+  const rol = user.rol || 'cliente';
+  const nom = user.nombre   || 'Usuario';
+  const ape = user.apellido || '';
+
   let tabs = [];
 
   if (rol === 'cliente') {
@@ -588,9 +876,19 @@ function buildInterface() {
       { id:'tab-historial',    label:'Historial',   icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
     ];
     $('main-content').innerHTML = `
-      <div id="tab-servicios" class="tab-pane"><div class="hero"><div class="hero-greet">Bienvenido,</div><div class="hero-name">${nom} <span>${ape}</span></div></div><p class="section-title">Nuestros Servicios</p><div id="lista-servicios"></div></div>
-      <div id="tab-cotizaciones" class="tab-pane"><div class="hero"><div class="hero-name">Mis <span>Solicitudes</span></div></div><div id="lista-cotizaciones" style="margin-top:12px;"></div></div>
-      <div id="tab-historial" class="tab-pane"><div class="hero"><div class="hero-name">Servicios <span>Completados</span></div></div><div id="lista-historial-cli" style="margin-top:12px;"></div></div>`;
+      <div id="tab-servicios" class="tab-pane">
+        <div class="hero"><div class="hero-greet">Bienvenido,</div><div class="hero-name">${nom} <span>${ape}</span></div></div>
+        <p class="section-title">Nuestros Servicios</p>
+        <div id="lista-servicios"></div>
+      </div>
+      <div id="tab-cotizaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Mis <span>Solicitudes</span></div></div>
+        <div id="lista-cotizaciones" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-historial" class="tab-pane">
+        <div class="hero"><div class="hero-name">Servicios <span>Completados</span></div></div>
+        <div id="lista-historial-cli" style="margin-top:12px;"></div>
+      </div>`;
   }
   else if (rol === 'buzo') {
     tabs = [
@@ -599,23 +897,41 @@ function buildInterface() {
       { id:'tab-historial',    label:'Historial',icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
     ];
     $('main-content').innerHTML = `
-      <div id="tab-asignaciones" class="tab-pane"><div class="hero"><div class="hero-greet">Panel Buzo</div><div class="hero-name">${nom} <span>${ape}</span></div></div><div style="padding:14px 18px 0;"><button class="btn-full" onclick="openReporteForm()">+ Nuevo Reporte</button></div><p class="section-title">Mis Asignaciones</p><div id="lista-asignaciones"></div></div>
-      <div id="tab-reportes" class="tab-pane"><div class="hero"><div class="hero-name">Mis <span>Reportes</span></div></div><p class="section-title" style="margin-top:10px;">Clic para editar o borrar</p><div id="lista-reportes-buzo"></div></div>
-      <div id="tab-historial" class="tab-pane"><div class="hero"><div class="hero-name">Trabajos <span>Finalizados</span></div></div><div id="lista-historial-buzo" style="margin-top:12px;"></div></div>`;
+      <div id="tab-asignaciones" class="tab-pane">
+        <div class="hero"><div class="hero-greet">Panel Buzo</div><div class="hero-name">${nom} <span>${ape}</span></div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openReporteForm()">+ Enviar Reporte</button></div>
+        <p class="section-title">Mis Asignaciones</p>
+        <div id="lista-asignaciones"></div>
+      </div>
+      <div id="tab-reportes" class="tab-pane">
+        <div class="hero"><div class="hero-name">Mis <span>Reportes</span></div></div>
+        <p class="section-title" style="margin-top:10px;">Clic para editar o borrar</p>
+        <div id="lista-reportes-buzo" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-historial" class="tab-pane">
+        <div class="hero"><div class="hero-name">Trabajos <span>Finalizados</span></div></div>
+        <div id="lista-historial-buzo" style="margin-top:12px;"></div>
+      </div>`;
   }
-  else if (rol === 'administrativo') {
-    // NUEVO ROL: Oficina, evalúa solicitudes
+  else if (rol === 'personal_admin') { // Adaptado de 'administrativo' a 'personal_admin'
     tabs = [
-      { id:'tab-dashboard',    label:'Dashboard',  icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
       { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
-      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' }
+      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-historial',    label:'Historial',  icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
     ];
     $('main-content').innerHTML = `
-      <div id="tab-dashboard" class="tab-pane"><div class="hero"><div class="hero-greet">Panel Oficina</div><div class="hero-name">${nom}</div></div>
-        <div class="stat-row" style="margin-top:16px;"><div class="stat-box"><div class="num" id="s-cotizaciones">—</div><div class="lbl">Solicitudes Nuevas</div></div><div class="stat-box"><div class="num" id="s-proyectos">—</div><div class="lbl">Proyectos en Curso</div></div></div>
+      <div id="tab-cotizaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Revisión <span>Solicitudes</span></div></div>
+        <div id="lista-cot-adm" style="margin-top:12px;"></div>
       </div>
-      <div id="tab-cotizaciones" class="tab-pane"><div class="hero"><div class="hero-name">Revisión de <span>Solicitudes</span></div></div><div id="lista-cot-adm" style="margin-top:12px;"></div></div>
-      <div id="tab-proyectos" class="tab-pane"><div class="hero"><div class="hero-name">Seguimiento <span>Proyectos</span></div></div><div id="lista-proyectos-adm" style="margin-top:12px;"></div></div>`;
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Seguimiento <span>Proyectos</span></div></div>
+        <div id="lista-proyectos-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-historial" class="tab-pane">
+        <div class="hero"><div class="hero-name">Proyectos <span>Completados</span></div></div>
+        <div id="lista-historial-adm" style="margin-top:12px;"></div>
+      </div>`;
   }
   else if (rol === 'supervisor') {
     tabs = [
@@ -625,39 +941,87 @@ function buildInterface() {
       { id:'tab-historial',    label:'Historial',  icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
     ];
     $('main-content').innerHTML = `
-      <div id="tab-proyectos" class="tab-pane"><div class="hero"><div class="hero-name">Gestión <span>Proyectos</span></div></div><div id="lista-proyectos-adm" style="margin-top:12px;"></div></div>
-      <div id="tab-asignaciones" class="tab-pane"><div class="hero"><div class="hero-name">Asignaciones</div></div><div style="padding:14px 18px 0;"><button class="btn-full" onclick="openAsignarForm()">+ Nueva Asignación</button></div><div id="lista-asig-adm" style="margin-top:12px;"></div></div>
-      <div id="tab-reportes" class="tab-pane"><div class="hero"><div class="hero-name">Revisar <span>Reportes</span></div></div><div id="lista-reportes-adm" style="margin-top:12px;"></div></div>
-      <div id="tab-historial" class="tab-pane"><div class="hero"><div class="hero-name">Proyectos <span>Completados</span></div></div><div id="lista-historial-sup" style="margin-top:12px;"></div></div>`;
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Proyectos</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openOverlay('o-crear-proyecto')">+ Nuevo Proyecto</button></div>
+        <div id="lista-proyectos-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-asignaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Asignaciones</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openAsignarForm()">+ Nueva Asignación</button></div>
+        <p class="section-title">Recientes</p>
+        <div id="lista-asig-adm"></div>
+      </div>
+      <div id="tab-reportes" class="tab-pane">
+        <div class="hero"><div class="hero-name">Revisar <span>Reportes</span></div></div>
+        <div id="lista-reportes-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-historial" class="tab-pane">
+        <div class="hero"><div class="hero-name">Proyectos <span>Completados</span></div></div>
+        <div id="lista-historial-sup" style="margin-top:12px;"></div>
+      </div>`;
   }
   else { // admin
     tabs = [
-      { id:'tab-dashboard', label:'Inicio',     icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
-      { id:'tab-proyectos', label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
-      { id:'tab-usuarios',  label:'Equipo',     icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
-      { id:'tab-historial', label:'Historial',  icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
+      { id:'tab-dashboard',    label:'Inicio',     icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
+      { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
+      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
+      { id:'tab-usuarios',     label:'Equipo',     icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-dashboard" class="tab-pane">
         <div class="hero"><div class="hero-greet">Panel de Control</div><div class="hero-name">CV <span>DIVING</span></div></div>
         <p class="section-title">Resumen General</p>
-        <div class="stat-row"><div class="stat-box"><div class="num" id="s-proyectos">—</div><div class="lbl">Proyectos Activos</div></div><div class="stat-box"><div class="num" id="s-buzos">—</div><div class="lbl">Buzos</div></div></div>
-        <div class="stat-row"><div class="stat-box"><div class="num" id="s-admin">—</div><div class="lbl">Oficina</div></div><div class="stat-box"><div class="num" id="s-clientes">—</div><div class="lbl">Clientes</div></div></div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="num" id="s-proyectos">—</div><div class="lbl">Proyectos Activos</div></div>
+          <div class="stat-box"><div class="num" id="s-cotizaciones">—</div><div class="lbl">Solicitudes Pendientes</div></div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="num" id="s-buzos">—</div><div class="lbl">Buzos</div></div>
+          <div class="stat-box"><div class="num" id="s-clientes">—</div><div class="lbl">Clientes</div></div>
+        </div>
+        <p class="section-title">Acciones Rápidas</p>
         <div style="padding:0 18px 20px;display:flex;flex-direction:column;gap:10px;">
+          <button class="btn-full" onclick="setTab('tab-cotizaciones')">📋 Ver Solicitudes Pendientes</button>
           <button class="btn-full btn-navy" onclick="openOverlay('o-crear-proyecto')">⚙️ Crear Nuevo Proyecto</button>
           <button class="btn-full btn-navy" onclick="openOverlay('o-crear-user')">👤 Añadir Miembro al Equipo</button>
         </div>
       </div>
-      <div id="tab-proyectos" class="tab-pane"><div class="hero"><div class="hero-name">Control de <span>Proyectos</span></div></div><div id="lista-proyectos-adm" style="margin-top:12px;"></div></div>
-      <div id="tab-usuarios" class="tab-pane"><div class="hero"><div class="hero-name">Gestión de <span>Personal</span></div></div><div id="lista-usuarios" style="margin-top:12px;"></div></div>
-      <div id="tab-historial" class="tab-pane"><div class="hero"><div class="hero-name">Historial <span>Global</span></div></div><div id="lista-historial-adm" style="margin-top:12px;"></div></div>`;
+      <div id="tab-cotizaciones" class="tab-pane">
+        <div class="hero"><div class="hero-name">Solicitudes</div></div>
+        <div id="lista-cot-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Proyectos</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openOverlay('o-crear-proyecto')">+ Nuevo Proyecto</button></div>
+        <div id="lista-proyectos-adm" style="margin-top:12px;"></div>
+      </div>
+      <div id="tab-usuarios" class="tab-pane">
+        <div class="hero"><div class="hero-name">Equipo</div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openOverlay('o-crear-user')">+ Añadir Miembro</button></div>
+        <div id="lista-usuarios" style="margin-top:12px;"></div>
+      </div>`;
   }
 
-  const mkBtn = (t, first) => `<button class="nav-item${first?' on':''}" data-tab="${t.id}" onclick="setTab('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${t.icon}</svg><span>${t.label}</span></button>`;
-  const mid = Math.ceil(tabs.length / 2);
-  $('main-nav').innerHTML = tabs.slice(0, mid).map((t, i) => mkBtn(t, i === 0)).join('') +
-    `<button class="nav-item" onclick="openOverlay('o-bot')" style="flex:1;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span>Max</span></button>` +
-    tabs.slice(mid).map(t => mkBtn(t, false)).join('');
+  const mid  = Math.ceil(tabs.length / 2);
+  const left = tabs.slice(0, mid);
+  const right = tabs.slice(mid);
+
+  const mkBtn = (t, first) => `
+    <button class="nav-item${first?' on':''}" data-tab="${t.id}" onclick="setTab('${t.id}')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${t.icon}</svg>
+      <span>${t.label}</span>
+    </button>`;
+
+  $('main-nav').innerHTML =
+    left.map((t, i) => mkBtn(t, i === 0)).join('') +
+    `<button class="nav-item" onclick="openOverlay('o-bot')" style="flex:1;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+      </svg>
+      <span>Max</span>
+    </button>` +
+    right.map(t => mkBtn(t, false)).join('');
 
   setTab(tabs[0].id);
 }
@@ -666,14 +1030,16 @@ function buildInterface() {
 // CARGAR DATOS
 // ══════════════════════════════════════════
 async function loadAllData() {
-  const u = user.username;
+  const rol = user.rol || 'cliente';
+  const u   = user.username;
   servicios    = await api('/api/servicios') || [];
   cotizaciones = await api(`/api/cotizaciones?username=${u}`) || [];
   proyectos    = await api(`/api/proyectos?username=${u}`) || [];
   asignaciones = await api(`/api/asignaciones?username=${u}`) || [];
   reportes     = await api(`/api/reportes?username=${u}`) || [];
-  
-  if (user.rol === 'admin' || user.rol === 'supervisor' || user.rol === 'administrativo') {
+  completados  = await api(`/api/completados?username=${u}`) || [];
+
+  if (rol === 'admin' || rol === 'supervisor' || rol === 'personal_admin') {
     stats    = await api(`/api/stats?username=${u}`) || {};
     usuarios = await api(`/api/usuarios?admin_username=${u}`) || [];
   }
@@ -681,22 +1047,23 @@ async function loadAllData() {
 }
 
 function renderAll() {
-  const rol = user.rol;
-  if (rol === 'cliente') { renderCliente(); }
-  if (rol === 'buzo') { renderBuzo(); }
-  if (rol === 'administrativo') {
-    if (stats) { if ($('s-proyectos')) $('s-proyectos').innerText = stats.proyectos_activos ?? '—'; if ($('s-cotizaciones')) $('s-cotizaciones').innerText = stats.cotizaciones_pendientes ?? '—'; }
-    renderProyectosAdm(); renderCotAdm();
+  const rol = user.rol || 'cliente';
+  if (rol === 'cliente')    { renderCliente(); }
+  if (rol === 'buzo')       { renderBuzo(); }
+  if (rol === 'personal_admin') {
+    renderProyectosAdm(); renderCotAdm(); renderHistorial();
   }
-  if (rol === 'supervisor') { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderHistorial(); }
+  if (rol === 'supervisor') { 
+    renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderHistorial();
+  }
   if (rol === 'admin') {
     if (stats) {
-      if ($('s-proyectos')) $('s-proyectos').innerText = stats.proyectos_activos ?? '—';
-      if ($('s-buzos')) $('s-buzos').innerText = stats.total_buzos ?? '—';
-      if ($('s-admin')) $('s-admin').innerText = usuarios.filter(u=>u.rol==='administrativo').length || '—';
-      if ($('s-clientes')) $('s-clientes').innerText = stats.total_clientes ?? '—';
+      if ($('s-proyectos'))    $('s-proyectos').innerText    = stats.proyectos_activos       ?? '—';
+      if ($('s-cotizaciones')) $('s-cotizaciones').innerText = stats.cotizaciones_pendientes ?? '—';
+      if ($('s-buzos'))        $('s-buzos').innerText        = stats.total_buzos             ?? '—';
+      if ($('s-clientes'))     $('s-clientes').innerText     = stats.total_clientes          ?? '—';
     }
-    renderProyectosAdm(); renderUsuarios(); renderHistorial();
+    renderProyectosAdm(); renderCotAdm(); renderUsuarios();
   }
 }
 
@@ -704,137 +1071,532 @@ function renderAll() {
 // RENDERS
 // ══════════════════════════════════════════
 function renderCliente() {
-  if ($('lista-servicios')) $('lista-servicios').innerHTML = servicios.length ? servicios.map(s => `<div class="serv-card" onclick="abrirCotizar(${s.id})"><div class="serv-icon">${s.icono}</div><div class="serv-info"><h4>${s.nombre}</h4><p>${s.descripcion}</p><div class="serv-sector">Sector ${s.sector}</div></div></div>`).join('') : '<div class="empty">No hay servicios.</div>';
-  if ($('lista-cotizaciones')) $('lista-cotizaciones').innerHTML = cotizaciones.length ? cotizaciones.map((c, i) => `<div class="list-item" onclick="abrirDetalleSolicitudCliente(${i})"><div class="list-icon">📝</div><div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmtDateOnly(c.fecha_servicio)} · ${c.ubicacion||'—'}</p></div><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div>`).join('') : '<div class="empty">Sin solicitudes.</div>';
-  
-  // Historial Cliente (Proyectos completados del cliente)
-  const comp = proyectos.filter(p => p.estado === 'completado' || p.estado === 'terminado');
-  if ($('lista-historial-cli')) $('lista-historial-cli').innerHTML = comp.length ? comp.map(p => `<div class="list-item" onclick="abrirProyectoCliente(${p.id})"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre}</h4><p>Terminado: ${fmt(p.fecha_fin_real || p.fecha_fin)}</p></div><span class="badge b-done">Completado</span></div>`).join('') : '<div class="empty">No tienes servicios completados aún.</div>';
+  const ls = $('lista-servicios');
+  if (ls) ls.innerHTML = servicios.length
+    ? servicios.map(s => `
+        <div class="serv-card" onclick="abrirCotizar(${s.id})">
+          <div class="serv-icon">${s.icono}</div>
+          <div class="serv-info">
+            <h4>${s.nombre}</h4>
+            <p>${s.descripcion}</p>
+            <div class="serv-sector">Sector ${s.sector}</div>
+          </div>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">🔍</span>No hay servicios disponibles.</div>';
+
+  const lc = $('lista-cotizaciones');
+  if (lc) lc.innerHTML = cotizaciones.length
+    ? cotizaciones.map((c, i) => `
+        <div class="list-item" onclick="abrirDetalleSolicitudCliente(${i})">
+          <div class="list-icon">📝</div>
+          <div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion||'—'}</p></div>
+          <span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📋</span>Sin solicitudes aún.</div>';
+
+  // Historial Cliente (endpoint completados)
+  const lp = $('lista-historial-cli');
+  if (lp) lp.innerHTML = completados.length
+    ? completados.map(p => `
+        <div class="card card-accent" onclick="abrirProyectoCliente(${p.id})">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <h4 style="font-family:'Barlow Condensed',sans-serif;font-size:16px;">${p.nombre}</h4>
+            <span class="badge b-done">Completado</span>
+          </div>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:10px;">Finalizado: ${fmt(p.completado_en || p.fecha_fin)}</p>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">🏁</span>No tienes servicios completados aún.</div>';
 }
 
 function renderBuzo() {
-  if ($('lista-asignaciones')) $('lista-asignaciones').innerHTML = asignaciones.filter(a=>a.estado !== 'completado').length ? asignaciones.filter(a=>a.estado !== 'completado').map((a, i) => `<div class="list-item" onclick="abrirDetalleAsignacion(${i})"><div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div><div class="list-info"><h4>${a.descripcion}</h4><p>${a.proyecto_nombre||'—'} · ${fmtDateOnly(a.fecha)}</p></div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div>`).join('') : '<div class="empty">Sin asignaciones activas.</div>';
-  
-  // Buzo puede editar sus reportes
-  if ($('lista-reportes-buzo')) $('lista-reportes-buzo').innerHTML = reportes.length ? reportes.map((r,i) => `<div class="list-item" onclick="abrirReporteBuzo(${i})"><div class="list-icon">📋</div><div class="list-info"><h4>${r.proyecto_nombre||'—'}</h4><p>${r.horas_trabajadas}h · ${fmt(r.fecha)}</p></div><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>`).join('') : '<div class="empty">No has enviado reportes.</div>';
+  const la = $('lista-asignaciones');
+  if (la) la.innerHTML = asignaciones.filter(a=>a.estado!=='completado').length
+    ? asignaciones.filter(a=>a.estado!=='completado').map((a, i) => `
+        <div class="list-item" onclick="abrirDetalleAsignacion(${i})">
+          <div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div>
+          <div class="list-info"><h4>${a.descripcion}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div>
+          <span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">✅</span>Sin asignaciones activas.</div>';
 
-  // Historial Buzo (Asignaciones completadas)
-  const comp = asignaciones.filter(a => a.estado === 'completado');
-  if ($('lista-historial-buzo')) $('lista-historial-buzo').innerHTML = comp.length ? comp.map(a => `<div class="list-item"><div class="list-icon">🏁</div><div class="list-info"><h4>${a.proyecto_nombre||'—'}</h4><p>${a.descripcion}</p></div><span class="badge b-done">Completado</span></div>`).join('') : '<div class="empty">Historial vacío.</div>';
+  const lr = $('lista-reportes-buzo');
+  if (lr) lr.innerHTML = reportes.length
+    ? reportes.map((r,i) => `
+        <div class="list-item" onclick="abrirReporteBuzo(${i})">
+          <div class="list-icon">📋</div>
+          <div class="list-info"><h4>${r.proyecto_nombre||'—'}</h4><p>${r.horas_trabajadas}h · ${fmt(r.fecha)}</p></div>
+          <span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📄</span>Aún no has enviado reportes.</div>';
+
+  // Historial Buzo (completados endpoint)
+  const lhb = $('lista-historial-buzo');
+  if (lhb) lhb.innerHTML = completados.length
+    ? completados.map(p => `
+        <div class="list-item">
+          <div class="list-icon">🏁</div>
+          <div class="list-info"><h4>${p.nombre||'—'}</h4><p>Completado el ${fmt(p.completado_en)}</p></div>
+          <span class="badge b-done">Completado</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">🏁</span>Historial vacío.</div>';
 }
 
 function renderProyectosAdm() {
-  const g = $('lista-proyectos-adm'); if (!g) return;
+  const g = $('lista-proyectos-adm');
+  if (!g) return;
   const activos = proyectos.filter(p => p.estado !== 'completado' && p.estado !== 'terminado');
-  g.innerHTML = activos.length ? activos.map(p => `<div class="list-item" onclick="${user.rol === 'administrativo' ? `abrirProyectoCliente(${p.id})` : `abrirProyectoAdmin(${p.id})`}"><div class="list-icon">⚙️</div><div class="list-info"><h4>${p.nombre}</h4><p>${p.sector||'—'} · ${p.ubicacion||'—'}</p></div><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></div>`).join('') : '<div class="empty">No hay proyectos activos.</div>';
+  g.innerHTML = activos.length
+    ? activos.map(p => `
+        <div class="list-item" onclick="${user.rol === 'personal_admin' ? `abrirProyectoCliente(${p.id})` : `abrirProyectoAdmin(${p.id})`}">
+          <div class="list-icon">⚙️</div>
+          <div class="list-info"><h4>${p.nombre}</h4><p>${p.sector||'—'} · ${p.ubicacion||'—'}</p></div>
+          <span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">⚙️</span>No hay proyectos activos.</div>';
 }
 
 function renderAsigAdm() {
-  const g = $('lista-asig-adm'); if (!g) return;
-  g.innerHTML = asignaciones.filter(a=>a.estado!=='completado').length ? asignaciones.filter(a=>a.estado!=='completado').map(a => `<div class="list-item"><div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div><div class="list-info"><h4>${a.buzo_nombre||'—'}</h4><p>${a.proyecto_nombre||'—'} · ${fmtDateOnly(a.fecha)}</p></div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div>`).join('') : '<div class="empty">Sin asignaciones.</div>';
+  const g = $('lista-asig-adm');
+  if (!g) return;
+  g.innerHTML = asignaciones.filter(a=>a.estado!=='completado').length
+    ? asignaciones.filter(a=>a.estado!=='completado').map(a => `
+        <div class="list-item">
+          <div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div>
+          <div class="list-info"><h4>${a.buzo_nombre||'—'}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div>
+          <span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">👥</span>Sin asignaciones activas.</div>';
 }
 
 function renderReportesAdm() {
-  const g = $('lista-reportes-adm'); if (!g) return;
-  g.innerHTML = reportes.length ? reportes.map((r, i) => `<div class="list-item" onclick="abrirRevisarReporte(${i})"><div class="list-icon">📋</div><div class="list-info"><h4>${r.buzo_nombre||'—'}</h4><p>${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h</p></div><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>`).join('') : '<div class="empty">No hay reportes.</div>';
+  const g = $('lista-reportes-adm');
+  if (!g) return;
+  g.innerHTML = reportes.length
+    ? reportes.map((r, i) => `
+        <div class="list-item" onclick="abrirRevisarReporte(${i})">
+          <div class="list-icon">📋</div>
+          <div class="list-info"><h4>${r.buzo_nombre||'—'}</h4><p>${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h</p></div>
+          <span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📄</span>No hay reportes.</div>';
 }
 
 function renderCotAdm() {
-  const g = $('lista-cot-adm'); if (!g) return;
-  g.innerHTML = cotizaciones.length ? cotizaciones.map((c, i) => `<div class="list-item" onclick="abrirResponderCot(${i})"><div class="list-icon">📝</div><div class="list-info"><h4>${c.cliente_nombre||c.cliente_username||'—'}</h4><p>Servicio el: ${fmtDateOnly(c.fecha_servicio)}</p></div><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div>`).join('') : '<div class="empty">No hay solicitudes.</div>';
+  const g = $('lista-cot-adm');
+  if (!g) return;
+  g.innerHTML = cotizaciones.length
+    ? cotizaciones.map((c, i) => `
+        <div class="list-item" onclick="abrirResponderCot(${i})">
+          <div class="list-icon">📝</div>
+          <div class="list-info"><h4>${c.cliente_nombre||c.cliente_username||'—'}</h4><p>Servicio: ${c.servicio_nombre}</p></div>
+          <span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span>
+        </div>`).join('')
+    : '<div class="empty"><span class="empty-icon">📋</span>No hay solicitudes.</div>';
 }
 
 function renderUsuarios() {
-  const g = $('lista-usuarios'); if (!g) return;
-  const icons = { admin:'⭐', supervisor:'🎯', administrativo:'🏢', buzo:'🤿', cliente:'👤' };
-  const classes = { admin:'role-admin', supervisor:'role-supervisor', administrativo:'role-administrativo', buzo:'role-buzo', cliente:'role-cliente' };
-  g.innerHTML = usuarios.map(u => `<div class="list-item" onclick="abrirDetalleUsuario('${u.username}')"><div class="list-icon">${u.foto && u.foto.startsWith('data:') ? `<img src="${u.foto}">` : (icons[u.rol]||'👤')}</div><div class="list-info"><h4>${u.nombre||'—'} ${u.apellido||''}</h4><p>@${u.username} · ${u.email||'—'}</p></div><span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol||'—'}</span></div>`).join('');
+  const g = $('lista-usuarios');
+  if (!g) return;
+  if (!usuarios.length) {
+    g.innerHTML = '<div class="empty"><span class="empty-icon">👤</span>No hay miembros registrados.</div>'; return;
+  }
+  const icons   = { admin:'⭐', supervisor:'🎯', personal_admin:'🏢', buzo:'🤿', cliente:'👤' };
+  const classes = { admin:'role-admin', supervisor:'role-supervisor', personal_admin:'role-personal_admin', buzo:'role-buzo', cliente:'role-cliente' };
+
+  g.innerHTML = usuarios.map(u => {
+    const hasImg = u.foto && u.foto.startsWith('data:image');
+    return `
+      <div class="list-item" onclick="abrirDetalleUsuario('${u.username}')">
+        <div class="list-icon">${hasImg ? `<img src="${u.foto}">` : (icons[u.rol]||'👤')}</div>
+        <div class="list-info">
+          <h4>${u.nombre||'—'} ${u.apellido||''}</h4>
+          <p>@${u.username} · ${u.email||'—'}</p>
+        </div>
+        <span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol||'—'}</span>
+      </div>`;
+  }).join('');
 }
 
 function renderHistorial() {
-  const gA = $('lista-historial-adm'); const gS = $('lista-historial-sup');
-  const comp = proyectos.filter(p => p.estado === 'completado' || p.estado === 'terminado');
-  const html = comp.length ? comp.map(p => `<div class="list-item" onclick="abrirProyectoAdmin(${p.id})"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre}</h4><p>Terminado: ${fmt(p.fecha_fin_real || p.fecha_fin)}</p></div><span class="badge b-done">Completado</span></div>`).join('') : '<div class="empty">Historial vacío.</div>';
-  if(gA) gA.innerHTML = html; if(gS) gS.innerHTML = html;
+  const gA = $('lista-historial-adm');
+  const gS = $('lista-historial-sup');
+  const html = completados.length ? completados.map(p => `
+    <div class="list-item" onclick="abrirProyectoAdmin(${p.id})">
+      <div class="list-icon">🏁</div>
+      <div class="list-info"><h4>${p.nombre}</h4><p>Terminado: ${fmt(p.completado_en || p.fecha_fin)}</p></div>
+      <span class="badge b-done">Completado</span>
+    </div>`).join('') : '<div class="empty"><span class="empty-icon">🏁</span>Historial vacío.</div>';
+  if(gA) gA.innerHTML = html;
+  if(gS) gS.innerHTML = html;
 }
 
 // ══════════════════════════════════════════
-// DETALLES Y ACCIONES
+// DETALLE Y ELIMINAR USUARIO
 // ══════════════════════════════════════════
 function abrirDetalleUsuario(username) {
-  const u = usuarios.find(x => x.username === username); if (!u) return; currentUserDetail = u;
-  const classes = { admin:'role-admin', supervisor:'role-supervisor', administrativo:'role-administrativo', buzo:'role-buzo', cliente:'role-cliente' };
-  $('ud-avatar').innerHTML = u.foto && u.foto.startsWith('data:') ? `<img src="${u.foto}" style="width:100%;height:100%;object-fit:cover;">` : ((u.nombre||'')[0]||'👤');
-  $('ud-nombre').innerText = `${u.nombre||'—'} ${u.apellido||''}`.trim(); $('ud-alias').innerText = `@${u.username}`;
-  $('ud-email').innerText = u.email || '—'; $('ud-tel').innerText = u.telefono || '—'; $('ud-rol').innerText = u.rol || '—';
-  $('ud-chip').className = `role-chip ${classes[u.rol]||'role-cliente'}`; $('ud-chip').innerText = u.rol || '—';
-  $('ud-acciones').innerHTML = (u.username !== user.username) ? `<button class="btn-full btn-danger" onclick="eliminarUsuario('${u.username}')">🗑️ Eliminar Usuario</button>` : `<div style="font-size:12px;color:var(--muted);text-align:center;">Tu cuenta actual.</div>`;
+  const u = usuarios.find(x => x.username === username);
+  if (!u) return;
+  currentUserDetail = u;
+
+  const classes = { admin:'role-admin', supervisor:'role-supervisor', personal_admin:'role-personal_admin', buzo:'role-buzo', cliente:'role-cliente' };
+  const labels  = { admin:'Administrador', supervisor:'Supervisor', personal_admin:'Administrativo', buzo:'Buzo', cliente:'Cliente' };
+  const hasImg  = u.foto && u.foto.startsWith('data:image');
+
+  $('ud-avatar').innerHTML = hasImg
+    ? `<img src="${u.foto}" style="width:100%;height:100%;object-fit:cover;">`
+    : ((u.nombre||'')[0]||'👤') + ((u.apellido||'')[0]||'');
+  $('ud-nombre').innerText  = `${u.nombre||'—'} ${u.apellido||''}`.trim();
+  $('ud-alias').innerText   = `@${u.username}`;
+  $('ud-email').innerText   = u.email || '—';
+  $('ud-tel').innerText     = u.telefono || u.tel || '—';
+  $('ud-rol').innerText     = labels[u.rol] || u.rol || '—';
+  $('ud-chip').className    = `role-chip ${classes[u.rol]||'role-cliente'}`;
+  $('ud-chip').innerText    = labels[u.rol] || u.rol || '—';
+
+  const canDelete = u.username !== user.username && u.username !== 'admin';
+  $('ud-acciones').innerHTML = canDelete
+    ? `<button class="btn-full btn-danger" onclick="eliminarUsuario('${u.username}')">🗑️ Eliminar Usuario</button>`
+    : `<div style="font-size:12px;color:var(--muted);text-align:center;padding:8px;">No puedes eliminar este usuario.</div>`;
+
   openOverlay('o-user-detail');
 }
 
 async function eliminarUsuario(username) {
-  if (!confirm(`⚠️ ¿Eliminar a @${username}?`)) return;
+  const u = usuarios.find(x => x.username === username);
+  const nombre = u ? `${u.nombre||''} ${u.apellido||''}`.trim() : username;
+  if (!confirm(`⚠️ ¿Eliminar definitivamente al usuario "${nombre}" (@${username})?\n\nEsta acción no se puede deshacer.`)) return;
+
   const res = await api(`/api/usuarios/${username}?admin_username=${user.username}`, 'DELETE');
-  if (res && res.success) { alert(`✅ Usuario eliminado.`); closeOverlay('o-user-detail'); loadAllData(); } else { alert('❌ Error al eliminar.'); }
+
+  if (res && res.success) {
+    alert(`✅ Usuario @${username} eliminado correctamente.`);
+    closeOverlay('o-user-detail');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al eliminar el usuario. Verifica permisos.'));
+  }
 }
 
 // ══════════════════════════════════════════
-// PROYECTOS ADMIN / SUPERVISOR
+// PROYECTOS — ADMIN / SUPERVISOR
 // ══════════════════════════════════════════
 function abrirProyectoAdmin(id) {
-  const p = proyectos.find(x => x.id === id); if (!p) return; currentProjId = id;
-  const esComp = p.estado === 'completado' || p.estado === 'terminado';
+  const p = proyectos.find(x => x.id === id) || completados.find(x => x.id === id);
+  if (!p) return;
+  currentProjId = id;
   $('opa-title').innerText = p.nombre;
+
+  const esCompletado = p.estado === 'completado' || p.estado === 'terminado';
+
   $('opa-body').innerHTML = `
     <div class="fgroup">
       <h4>Info del Proyecto</h4>
       <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'Sin descripción'}</div>
+      <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
       <div class="info-row-sep"><span class="lbl">Supervisor</span><span class="val">${p.supervisor||'—'}</span></div>
-      <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmtDateOnly(p.fecha_inicio)}</span></div>
-      ${esComp ? `<div class="info-row-sep"><span class="lbl">Finalizado el</span><span class="val" style="color:var(--yellow);">${fmt(p.fecha_fin_real || p.fecha_fin)}</span></div>` : ''}
+      <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fin estimado</span><span class="val">${fmt(p.fecha_fin)}</span></div>
     </div>
     <div class="fgroup">
-      <h4>Actualizar Progreso</h4>
+      <h4>Actualizar Estado</h4>
       <label class="finp-label">Estado</label>
-      <select class="finp" id="upd-estado" ${esComp?'disabled':''}>
-        <option value="activo" ${p.estado==='activo'?'selected':''}>Activo</option>
-        <option value="pausado" ${p.estado==='pausado'?'selected':''}>Pausado</option>
-        <option value="completado" ${esComp?'selected':''}>Completado</option>
+      <select class="finp" id="upd-estado" ${esCompletado?'disabled':''}>
+        <option value="activo"      ${p.estado==='activo'?'selected':''}>Activo</option>
+        <option value="pausado"     ${p.estado==='pausado'?'selected':''}>Pausado</option>
+        <option value="completado"  ${esCompletado?'selected':''}>Completado</option>
       </select>
       <label class="finp-label">Progreso (%)</label>
-      <input class="finp" id="upd-prog" type="number" min="0" max="100" value="${p.progreso||0}" ${esComp?'disabled':''}>
-      ${!esComp ? `<button class="btn-full" onclick="actualizarProyecto(${p.id})">Guardar Cambios</button>` : ''}
+      <input class="finp" id="upd-prog" type="number" min="0" max="100" value="${p.progreso||0}" ${esCompletado?'disabled':''}>
+      ${!esCompletado ? `<button class="btn-full" onclick="actualizarProyecto(${p.id})">Guardar Cambios</button>` : ''}
     </div>
-    ${!esComp ? `<button class="btn-full btn-green" onclick="abrirFinalizarProyecto(${p.id})">🏁 Finalizar Proyecto</button>` : `<div style="text-align:center;color:var(--green);font-size:13px;padding:10px;">✅ Proyecto concluido.</div>`}
-    ${user.rol === 'admin' ? `<button class="btn-full btn-danger" style="margin-top:10px;" onclick="eliminarProyecto(${p.id})">🗑️ Eliminar Proyecto</button>` : ''}`;
+    ${!esCompletado ? `
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+      <button class="btn-full btn-green" onclick="abrirFinalizarProyecto(${p.id})">🏁 Finalizar Proyecto</button>
+    </div>` : `
+    <div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--green);text-align:center;margin-top:4px;">
+      ✅ Este proyecto ha sido finalizado.
+    </div>`}
+    ${user.rol === 'admin' && !esCompletado ? `
+    <div style="margin-top:12px;">
+      <button class="btn-full btn-danger" onclick="eliminarProyecto(${p.id})">🗑️ Eliminar Proyecto</button>
+    </div>` : ''}`;
+
   openOverlay('o-proyecto-admin');
 }
 
 async function actualizarProyecto(id) {
-  const res = await api(`/api/proyectos/${id}`, 'PUT', { solicitante_username: user.username, proyecto_id: id, estado: $('upd-estado').value, progreso: parseInt($('upd-prog').value)||0 });
-  if (res && res.success) { alert('✅ Actualizado.'); closeOverlay('o-proyecto-admin'); loadAllData(); }
+  const estado   = $('upd-estado').value;
+  const progreso = parseInt($('upd-prog').value) || 0;
+  const res = await api(`/api/proyectos/${id}`, 'PUT', {
+    solicitante_username: user.username, proyecto_id: id, estado, progreso
+  });
+  if (res && res.success) { alert('✅ Proyecto actualizado.'); closeOverlay('o-proyecto-admin'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al actualizar.'));
 }
+
 async function eliminarProyecto(id) {
-  if (!confirm('⚠️ ¿Eliminar proyecto y sus datos? IRREVERSIBLE.')) return;
+  const p = proyectos.find(x => x.id === id);
+  const nombre = p ? p.nombre : 'este proyecto';
+  if (!confirm(`⚠️ ¿Eliminar el proyecto "${nombre}"?\n\nSe eliminarán también las asignaciones y reportes asociados.\n\nEsta acción es IRREVERSIBLE.`)) return;
+
   const res = await api(`/api/proyectos/${id}?solicitante_username=${user.username}`, 'DELETE');
-  if (res && res.success) { alert(`✅ Eliminado.`); closeOverlay('o-proyecto-admin'); loadAllData(); }
+
+  if (res && res.success) {
+    alert(`✅ Proyecto "${nombre}" eliminado correctamente.`);
+    closeOverlay('o-proyecto-admin');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al eliminar el proyecto.'));
+  }
 }
 
 function abrirFinalizarProyecto(id) {
-  const p = proyectos.find(x => x.id === id); if (!p) return; currentProjId = id;
-  $('fp-nombre-lbl').innerText = p.nombre; $('fp-fecha').value = new Date().toISOString().split('T')[0];
+  const p = proyectos.find(x => x.id === id);
+  if (!p) return;
+  currentProjId = id;
+  $('fp-nombre-lbl').innerText = p.nombre;
+  $('fp-fecha').value = new Date().toISOString().split('T')[0];
+  $('fp-resumen').value = '';
+  $('fp-resultado').value = '';
+  $('fp-obs').value = '';
+  $('fp-horas').value = '';
+  $('fp-buzos').value = '';
   openOverlay('o-finalizar-proy');
 }
+
 async function finalizarProyecto() {
-  if (!$('fp-fecha').value || !$('fp-resumen').value || !$('fp-resultado').value) { alert('⚠️ Faltan datos.'); return; }
-  $('btn-finalizar').innerText = 'Finalizando...';
-  const res = await api(`/api/proyectos/${currentProjId}`, 'PUT', { solicitante_username: user.username, proyecto_id: currentProjId, estado: 'completado', progreso: 100, fecha_fin_real: $('fp-fecha').value, resumen_final: $('fp-resumen').value });
-  $('btn-finalizar').innerText = '✅ Confirmar Finalización';
-  if (res && res.success) { alert('✅ Proyecto finalizado.'); closeOverlay('o-finalizar-proy'); closeOverlay('o-proyecto-admin'); loadAllData(); }
+  const fecha     = $('fp-fecha').value;
+  const resumen   = $('fp-resumen').value.trim();
+  const resultado = $('fp-resultado').value;
+
+  if (!fecha || !resumen || !resultado) {
+    alert('⚠️ Completa los campos obligatorios: fecha, resumen y resultado.'); return;
+  }
+
+  const btn = $('btn-finalizar');
+  btn.disabled = true; btn.innerText = 'Finalizando...';
+
+  const res = await api(`/api/proyectos/${currentProjId}`, 'PUT', {
+    solicitante_username: user.username,
+    proyecto_id:    currentProjId,
+    estado:         'completado',
+    progreso:       100,
+    fecha_fin_real: fecha,
+    resumen_final:  resumen,
+    resultado_final:resultado,
+    observaciones:  $('fp-obs').value.trim(),
+    horas_totales:  parseFloat($('fp-horas').value) || null,
+    buzos_count:    parseInt($('fp-buzos').value)   || null
+  });
+
+  btn.disabled = false; btn.innerText = '✅ Confirmar Finalización';
+
+  if (res && res.success) {
+    alert('✅ Proyecto finalizado correctamente.\nEl informe de cierre ha sido guardado.');
+    closeOverlay('o-finalizar-proy');
+    closeOverlay('o-proyecto-admin');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al finalizar el proyecto.'));
+  }
 }
 
 // ══════════════════════════════════════════
-// BUZO - EDITAR REPORTES
+// PROYECTO CLIENTE
+// ══════════════════════════════════════════
+function abrirProyectoCliente(id) {
+  const p = proyectos.find(x => x.id === id) || completados.find(x => x.id === id);
+  if (!p) return;
+  $('op-title').innerText = p.nombre;
+  $('op-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Detalles del Proyecto</h4>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'—'}</p>
+      <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></span></div>
+      <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+    </div>
+    <div class="fgroup">
+      <h4>Progreso</h4>
+      <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+      <div style="font-size:13px;color:var(--yellow);text-align:center;margin-top:8px;font-weight:700;">${p.progreso||0}% completado</div>
+    </div>`;
+  openOverlay('o-proyecto-cliente');
+}
+
+// ══════════════════════════════════════════
+// CREAR PROYECTO
+// ══════════════════════════════════════════
+async function crearProyecto() {
+  const nombre = $('cp-nombre').value.trim();
+  const sector = $('cp-sector').value;
+  if (!nombre) { alert('⚠️ El nombre del proyecto es obligatorio.'); return; }
+  if (!sector) { alert('⚠️ Selecciona un sector.'); return; }
+  const btn = $('btn-crear-proy');
+  btn.disabled = true; btn.innerText = 'Creando...';
+  const res = await api('/api/proyectos', 'POST', {
+    solicitante_username: user.username,
+    nombre, descripcion: $('cp-desc').value.trim(), sector,
+    ubicacion: $('cp-ubicacion').value.trim(),
+    cliente_username: $('cp-cliente').value.trim(),
+    supervisor: $('cp-supervisor').value.trim(),
+    fecha_inicio: $('cp-finicio').value,
+    fecha_fin: $('cp-ffin').value,
+  });
+  btn.disabled = false; btn.innerText = 'Crear Proyecto';
+  if (res && res.success) {
+    alert('✅ Proyecto creado correctamente.');
+    closeOverlay('o-crear-proyecto');
+    ['cp-nombre','cp-desc','cp-ubicacion','cp-cliente','cp-supervisor','cp-finicio','cp-ffin'].forEach(id => $(id).value = '');
+    $('cp-sector').value = '';
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al crear el proyecto.'));
+  }
+}
+
+// ══════════════════════════════════════════
+// CREAR USUARIO
+// ══════════════════════════════════════════
+async function crearUsuario() {
+  const nombre   = $('cu-nombre').value.trim();
+  const apellido = $('cu-apellido').value.trim();
+  const username = $('cu-user').value.trim();
+  const email    = $('cu-email').value.trim();
+  const password = $('cu-pass').value;
+  const rol      = $('cu-rol').value; // Ahora envía 'personal_admin' en vez de 'administrativo'
+  
+  if (!nombre || !apellido || !username || !email || !password) {
+    alert('⚠️ Todos los campos marcados con * son obligatorios.'); return;
+  }
+  const btn = $('btn-crear-user');
+  btn.disabled = true; btn.innerText = 'Registrando...';
+  
+  const res = await api('/api/crear-usuario', 'POST', {
+    admin_username: user.username,
+    nombre, apellido, username, email, password, rol,
+    telefono: $('cu-tel').value.trim()
+  });
+  
+  btn.disabled = false; btn.innerText = 'Registrar Miembro';
+  if (res && res.success) {
+    alert('✅ Miembro registrado correctamente.');
+    closeOverlay('o-crear-user');
+    ['cu-nombre','cu-apellido','cu-user','cu-email','cu-pass','cu-tel'].forEach(id => $(id).value = '');
+    loadAllData();
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al registrar el miembro.'));
+  }
+}
+
+// ══════════════════════════════════════════
+// COTIZACIONES
+// ══════════════════════════════════════════
+function abrirCotizar(servicioId) {
+  currentCotServicio = servicios.find(s => s.id === servicioId);
+  if (!currentCotServicio) return;
+  const manana = new Date(); manana.setDate(manana.getDate() + 1);
+  const minDate = manana.toISOString().split('T')[0];
+  $('cot-body').innerHTML = `
+    <div class="fgroup">
+      <h4>${currentCotServicio.icono} ${currentCotServicio.nombre}</h4>
+      <p style="font-size:13px;color:var(--muted);">${currentCotServicio.descripcion}</p>
+      <div style="font-size:11px;color:var(--yellow);font-weight:700;text-transform:uppercase;margin-top:8px;">Sector: ${currentCotServicio.sector||'—'}</div>
+    </div>
+    <div class="fgroup">
+      <h4>Detalles de la Solicitud</h4>
+      <label class="finp-label">Descripción del trabajo requerido *</label>
+      <textarea class="finp" id="cot-desc" rows="4" placeholder="Describe el trabajo que necesitas..."></textarea>
+      <label class="finp-label">Ubicación / Puerto *</label>
+      <input class="finp" id="cot-ubicacion" placeholder="Ej: Muelle Pesquero Callao">
+      <label class="finp-label">Fecha preferida del servicio *</label>
+      <input class="finp" id="cot-fecha" type="date" min="${minDate}">
+      <button class="btn-full" onclick="enviarCotizacion()">Enviar Solicitud</button>
+    </div>`;
+  openOverlay('o-cotizar');
+}
+
+async function enviarCotizacion() {
+  const desc      = $('cot-desc').value.trim();
+  const ubicacion = $('cot-ubicacion').value.trim();
+  const fecha     = $('cot-fecha').value;
+  if (!desc || !ubicacion) { alert('⚠️ Completa la descripción y ubicación.'); return; }
+  if (!fecha) { alert('⚠️ Selecciona una fecha preferida para el servicio.'); return; }
+  const res = await api('/api/cotizaciones', 'POST', {
+    cliente_username: user.username, servicio_id: currentCotServicio.id,
+    descripcion: desc, sector: currentCotServicio.sector, ubicacion,
+    fecha_servicio: fecha
+  });
+  if (res && res.success) { alert('✅ Solicitud enviada.'); closeOverlay('o-cotizar'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al enviar la solicitud.'));
+}
+
+function abrirResponderCot(idx) {
+  currentCotIdx = idx;
+  const c = cotizaciones[idx];
+  $('rc-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Solicitud de ${c.cliente_nombre||c.cliente_username||'—'}</h4>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">${c.descripcion}</p>
+      <div style="font-size:12px;color:var(--muted);">Servicio: ${c.servicio_nombre} · ${c.ubicacion||'—'}</div>
+      <div class="info-row-sep" style="margin-top:10px;"><span class="lbl">Servicio solicitado para el:</span><span class="val" style="color:var(--yellow);font-weight:700;">${fmt(c.fecha_servicio)}</span></div>
+    </div>
+    <div class="fgroup">
+      <label class="finp-label">Decisión</label>
+      <select class="finp" id="rc-estado">
+        <option value="aprobada">✅ Aprobar</option>
+        <option value="rechazada">❌ Rechazar</option>
+      </select>
+      <button class="btn-full" onclick="responderCotizacion()">Enviar Respuesta</button>
+    </div>`;
+  openOverlay('o-resp-cot');
+}
+
+async function responderCotizacion() {
+  const c = cotizaciones[currentCotIdx];
+  const res = await api(`/api/cotizaciones/${c.id}`, 'PUT', {
+    admin_username: user.username, cotizacion_id: c.id, estado: $('rc-estado').value
+  });
+  if (res && res.success) { alert('✅ Respuesta enviada.'); closeOverlay('o-resp-cot'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error.'));
+}
+
+// ══════════════════════════════════════════
+// ASIGNACIONES
+// ══════════════════════════════════════════
+async function openAsignarForm() {
+  const activos = proyectos.filter(p => p.estado === 'activo');
+  const buzos   = usuarios.filter(u => u.rol === 'buzo');
+  $('asi-proyecto').innerHTML = activos.length
+    ? activos.map(p => `<option value="${p.id}">${p.nombre}</option>`).join('')
+    : '<option value="">— Sin proyectos activos —</option>';
+  $('asi-buzo').innerHTML = buzos.length
+    ? buzos.map(b => `<option value="${b.username}">${b.nombre||''} ${b.apellido||''} (@${b.username})</option>`).join('')
+    : '<option value="">— Sin buzos registrados —</option>';
+  $('asi-fecha').value = new Date().toISOString().split('T')[0];
+  openOverlay('o-asignar');
+}
+
+async function crearAsignacion() {
+  const buzo_username = $('asi-buzo').value;
+  const desc          = $('asi-desc').value.trim();
+  const proyecto_id   = parseInt($('asi-proyecto').value);
+  if (!buzo_username || !desc || isNaN(proyecto_id)) { alert('⚠️ Completa todos los campos.'); return; }
+  const btn = $('btn-asignar');
+  btn.disabled = true; btn.innerText = 'Asignando...';
+  const res = await api('/api/asignaciones', 'POST', {
+    supervisor_username: user.username, buzo_username, proyecto_id, descripcion: desc,
+    fecha: $('asi-fecha').value, prioridad: $('asi-prioridad').value
+  });
+  btn.disabled = false; btn.innerText = 'Asignar Tarea';
+  if (res && res.success) { alert('✅ Asignación creada.'); closeOverlay('o-asignar'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al asignar.'));
+}
+
+// ══════════════════════════════════════════
+// REPORTES BUZO
 // ══════════════════════════════════════════
 function abrirReporteBuzo(idx) {
   currentRepBuzoIdx = idx;
@@ -842,63 +1604,82 @@ function abrirReporteBuzo(idx) {
   $('drb-body').innerHTML = `
     <div class="fgroup">
       <h4>${r.proyecto_nombre||'—'}</h4>
-      <div class="info-row-sep"><span class="lbl">Fecha envío</span><span class="val">${fmt(r.fecha)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fecha de envío</span><span class="val">${fmt(r.fecha)}</span></div>
       <div class="info-row-sep"><span class="lbl">Estado</span><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>
     </div>
     <div class="fgroup">
-      <label class="finp-label">Trabajo (editable si está pendiente)</label>
+      <label class="finp-label">Trabajo Realizado (editable si está pendiente)</label>
       <textarea class="finp" id="drb-desc" rows="4" ${r.estado!=='pendiente'?'disabled':''}>${r.descripcion}</textarea>
-      <label class="finp-label">Horas</label>
+      <label class="finp-label">Horas trabajadas</label>
       <input class="finp" type="number" id="drb-horas" value="${r.horas_trabajadas}" ${r.estado!=='pendiente'?'disabled':''}>
-      ${r.estado==='pendiente' ? `<button class="btn-full" onclick="editarReporteBuzo()">Guardar Cambios</button>` : `<div style="font-size:11px;color:var(--orange);text-align:center;">Solo puedes editar reportes pendientes.</div>`}
+      ${r.estado==='pendiente' ? `<button class="btn-full" onclick="editarReporteBuzo()">Guardar Cambios</button>` : `<div style="font-size:11px;color:var(--orange);text-align:center;margin-top:8px;">Este reporte ya fue evaluado, no se puede editar.</div>`}
     </div>
     ${r.estado==='pendiente' ? `<button class="btn-full btn-danger" onclick="borrarReporteBuzo()">🗑️ Eliminar Reporte</button>`:''}`;
   openOverlay('o-detalle-rep-buzo');
 }
 
+// Actualizado a V2: usa /editar
 async function editarReporteBuzo() {
   const r = reportes[currentRepBuzoIdx];
-  const res = await api(`/api/reportes/${r.id}`, 'PUT', { buzo_username: user.username, reporte_id: r.id, descripcion: $('drb-desc').value, horas_trabajadas: parseFloat($('drb-horas').value) });
-  if(res && res.success){ alert('✅ Reporte editado.'); closeOverlay('o-detalle-rep-buzo'); loadAllData(); }
-}
-async function borrarReporteBuzo() {
-  const r = reportes[currentRepBuzoIdx]; if(!confirm('¿Borrar reporte?')) return;
-  const res = await api(`/api/reportes/${r.id}?buzo_username=${user.username}`, 'DELETE');
-  if(res && res.success){ alert('✅ Borrado.'); closeOverlay('o-detalle-rep-buzo'); loadAllData(); }
+  const res = await api(`/api/reportes/${r.id}/editar`, 'PUT', { 
+    buzo_username: user.username, 
+    reporte_id: r.id, 
+    descripcion: $('drb-desc').value, 
+    horas_trabajadas: parseFloat($('drb-horas').value) 
+  });
+  if(res && res.success){ alert('✅ Reporte editado correctamente.'); closeOverlay('o-detalle-rep-buzo'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al editar.'));
 }
 
-function openReporteForm() {
-  $('rep-proyecto').innerHTML = asignaciones.filter(a=>a.estado!=='completado').map(a => `<option value="${a.proyecto_id}">${a.proyecto_nombre}</option>`).join('');
-  $('rep-desc').value=''; $('rep-horas').value=''; $('rep-incidentes').value='';
+async function borrarReporteBuzo() {
+  const r = reportes[currentRepBuzoIdx]; if(!confirm('¿Borrar reporte definitivamente?')) return;
+  const res = await api(`/api/reportes/${r.id}?buzo_username=${user.username}`, 'DELETE');
+  if(res && res.success){ alert('✅ Reporte eliminado.'); closeOverlay('o-detalle-rep-buzo'); loadAllData(); }
+}
+
+async function openReporteForm() {
+  $('rep-proyecto').innerHTML = proyectos.length
+    ? proyectos.map(p => `<option value="${p.id}">${p.nombre}</option>`).join('')
+    : '<option value="">— Sin proyectos —</option>';
   openOverlay('o-reporte');
 }
+
 async function enviarReporte() {
-  const desc = $('rep-desc').value.trim(), horas = parseFloat($('rep-horas').value), pid = parseInt($('rep-proyecto').value);
-  if (!desc || isNaN(horas) || isNaN(pid)) { alert('⚠️ Completa trabajo y horas.'); return; }
-  $('btn-rep').innerText = 'Enviando...';
-  const res = await api('/api/reportes', 'POST', { buzo_username: user.username, proyecto_id: pid, descripcion: desc, horas_trabajadas: horas, condiciones: $('rep-cond').value, incidentes: $('rep-incidentes').value });
-  $('btn-rep').innerText = 'Guardar Reporte';
-  if (res && res.success) { alert('✅ Enviado.'); closeOverlay('o-reporte'); loadAllData(); }
+  const desc  = $('rep-desc').value.trim();
+  const horas = parseFloat($('rep-horas').value);
+  const pid   = parseInt($('rep-proyecto').value);
+  if (!desc || isNaN(horas) || isNaN(pid)) { alert('⚠️ Descripción y horas son obligatorios.'); return; }
+  const btn = $('btn-rep');
+  btn.disabled = true; btn.innerText = 'Enviando...';
+  const res = await api('/api/reportes', 'POST', {
+    buzo_username: user.username, proyecto_id: pid, descripcion: desc,
+    horas_trabajadas: horas, condiciones: $('rep-cond').value,
+    incidentes: $('rep-incidentes').value.trim()
+  });
+  btn.disabled = false; btn.innerText = 'Enviar Reporte';
+  if (res && res.success) { alert('✅ Reporte enviado.'); closeOverlay('o-reporte'); loadAllData(); }
+  else alert('❌ ' + (res?.msg || 'Error al enviar el reporte.'));
 }
 
 // ══════════════════════════════════════════
-// SUPERVISOR - SUBIR PDF INFORME
+// REVISAR REPORTES SUPERVISOR (CON PDF v2)
 // ══════════════════════════════════════════
 function abrirRevisarReporte(idx) {
-  currentRepIdx = idx; const r = reportes[idx];
+  currentRepIdx = idx;
+  const r = reportes[idx];
   $('rr-body').innerHTML = `
     <div class="fgroup">
-      <h4>De: ${r.buzo_nombre||'—'}</h4>
+      <h4>Reporte de ${r.buzo_nombre||'—'}</h4>
       <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">${r.descripcion}</p>
-      <div class="info-row-sep"><span class="lbl">Proyecto</span><span class="val">${r.proyecto_nombre||'—'}</span></div>
-      <div class="info-row-sep"><span class="lbl">Horas</span><span class="val">${r.horas_trabajadas}h</span></div>
-      <div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmt(r.fecha)}</span></div>
+      <div style="font-size:12px;color:var(--muted);">Proyecto: ${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h trabajadas</div>
+      ${r.condiciones ? `<div style="font-size:12px;color:var(--muted);margin-top:4px;">Condiciones: ${r.condiciones}</div>` : ''}
+      ${r.incidentes  ? `<div style="font-size:12px;color:var(--orange);margin-top:4px;">⚠️ Incidentes: ${r.incidentes}</div>` : ''}
     </div>
     <div class="fgroup" style="background:rgba(245,215,0,.05); border-color:rgba(245,215,0,.3);">
       <h4 style="color:var(--yellow);">Documentación (Supervisor)</h4>
-      <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Sube el informe PDF relacionado a este reporte del buzo antes de aprobarlo.</p>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Sube el informe PDF del proyecto antes de aprobar el reporte (Opcional pero recomendado).</p>
       <input type="file" id="sup-pdf" accept="application/pdf" style="display:none;" onchange="document.getElementById('pdf-name').innerText = this.files[0].name">
-      <button class="btn-full btn-outline" onclick="document.getElementById('sup-pdf').click()">📄 Seleccionar PDF</button>
+      <button class="btn-full btn-outline" onclick="document.getElementById('sup-pdf').click()">📄 Seleccionar Archivo PDF</button>
       <div id="pdf-name" style="font-size:11px;color:var(--white);text-align:center;margin-top:6px;"></div>
     </div>
     <div class="fgroup">
@@ -912,68 +1693,187 @@ function abrirRevisarReporte(idx) {
 
 async function revisarReporte(estado) {
   const r = reportes[currentRepIdx];
-  const file = $('sup-pdf') ? $('sup-pdf').files[0] : null;
+  const fileInp = $('sup-pdf');
   
-  // Simularemos el Base64. (En tu Backend necesitas procesar este campo 'pdf_informe')
-  let base64Pdf = null;
-  if(file) {
-    base64Pdf = await new Promise(resolve => { const reader = new FileReader(); reader.onload = e => resolve(e.target.result); reader.readAsDataURL(file); });
-  }
-  if(estado === 'aprobada' && !base64Pdf) {
-    if(!confirm("⚠️ ¿Estás seguro de aprobar SIN adjuntar el documento PDF?")) return;
+  // 1. Si el supervisor subió un PDF, primero creamos el informe usando el endpoint /api/informes
+  if (fileInp && fileInp.files.length > 0) {
+    const file = fileInp.files[0];
+    const base64Pdf = await new Promise(resolve => { const reader = new FileReader(); reader.onload = e => resolve(e.target.result); reader.readAsDataURL(file); });
+    
+    const informeRes = await api('/api/informes', 'POST', {
+      supervisor_username: user.username,
+      proyecto_id: r.proyecto_id,
+      titulo: `Informe de Reporte ${r.id}`,
+      archivo_pdf: base64Pdf
+    });
+    
+    if (!informeRes || !informeRes.success) {
+      alert('❌ Error al subir el informe PDF. El reporte no se ha revisado.');
+      return;
+    }
+  } else if (estado === 'aprobada') {
+    if (!confirm("⚠️ ¿Estás seguro de aprobar este reporte SIN adjuntar el documento PDF?")) return;
   }
 
-  const res = await api(`/api/reportes/${r.id}`, 'PUT', { supervisor_username: user.username, reporte_id: r.id, estado, pdf_informe: base64Pdf });
-  if (res && res.success) { alert(`✅ Reporte ${estado}.`); closeOverlay('o-revisar-rep'); loadAllData(); } else alert('❌ ' + (res?.msg || 'Error.'));
+  // 2. Revisamos el reporte usando el endpoint V2: /api/reportes/{id}/revisar
+  const res = await api(`/api/reportes/${r.id}/revisar`, 'PUT', {
+    supervisor_username: user.username, 
+    reporte_id: r.id, 
+    estado: estado,
+    comentario: "" // Espacio para comentario opcional si lo deseas
+  });
+
+  if (res && res.success) { 
+    alert(`✅ Reporte ${estado}.`); 
+    closeOverlay('o-revisar-rep'); 
+    loadAllData(); 
+  } else {
+    alert('❌ ' + (res?.msg || 'Error al revisar el reporte.'));
+  }
 }
 
 // ══════════════════════════════════════════
-// OTRAS FUNCIONES (ADMIN, CLIENTE, ETC)
+// DETALLE SOLICITUD — CLIENTE
 // ══════════════════════════════════════════
-async function crearProyecto() {
-  const res = await api('/api/proyectos', 'POST', { solicitante_username: user.username, nombre: $('cp-nombre').value, descripcion: $('cp-desc').value, sector: $('cp-sector').value, ubicacion: $('cp-ubicacion').value, cliente_username: $('cp-cliente').value, supervisor: $('cp-supervisor').value, fecha_inicio: $('cp-finicio').value, fecha_fin: $('cp-ffin').value });
-  if (res && res.success) { alert('✅ Proyecto creado.'); closeOverlay('o-crear-proyecto'); loadAllData(); }
-}
-async function crearUsuario() {
-  const res = await api('/api/crear-usuario', 'POST', { admin_username: user.username, nombre:$('cu-nombre').value, apellido:$('cu-apellido').value, username:$('cu-user').value, email:$('cu-email').value, password:$('cu-pass').value, rol:$('cu-rol').value, telefono:$('cu-tel').value });
-  if (res && res.success) { alert('✅ Miembro registrado.'); closeOverlay('o-crear-user'); loadAllData(); }
-}
-function abrirCotizar(id) { currentCotServicio=servicios.find(s=>s.id===id); $('cot-body').innerHTML=`<div class="fgroup"><h4>${currentCotServicio.nombre}</h4></div><div class="fgroup"><label class="finp-label">Descripción *</label><textarea class="finp" id="cot-desc" rows="4"></textarea><label class="finp-label">Ubicación *</label><input class="finp" id="cot-ubi"><label class="finp-label">Fecha Preferida *</label><input class="finp" type="date" id="cot-fecha"><button class="btn-full" onclick="enviarCotizacion()">Enviar Solicitud</button></div>`; openOverlay('o-cotizar'); }
-async function enviarCotizacion() {
-  const res = await api('/api/cotizaciones', 'POST', { cliente_username: user.username, servicio_id: currentCotServicio.id, descripcion: $('cot-desc').value, sector: currentCotServicio.sector, ubicacion: $('cot-ubi').value, fecha_servicio: $('cot-fecha').value });
-  if (res && res.success) { alert('✅ Solicitud enviada.'); closeOverlay('o-cotizar'); loadAllData(); }
-}
-function abrirResponderCot(idx) { currentCotIdx=idx; const c=cotizaciones[idx]; $('rc-body').innerHTML=`<div class="fgroup"><h4>${c.cliente_nombre||'—'}</h4><p>${c.descripcion}</p><div class="info-row-sep" style="margin-top:10px;"><span class="lbl">Servicio solicitado el</span><span class="val" style="color:var(--yellow);font-weight:700;">${fmtDateOnly(c.fecha_servicio)}</span></div></div><div class="fgroup"><select class="finp" id="rc-estado"><option value="aprobada">✅ Aprobar</option><option value="rechazada">❌ Rechazar</option></select><button class="btn-full" onclick="responderCotizacion()">Responder</button></div>`; openOverlay('o-resp-cot'); }
-async function responderCotizacion() {
-  const c = cotizaciones[currentCotIdx];
-  const res = await api(`/api/cotizaciones/${c.id}`, 'PUT', { admin_username: user.username, cotizacion_id: c.id, estado: $('rc-estado').value });
-  if (res && res.success) { alert('✅ Respuesta enviada.'); closeOverlay('o-resp-cot'); loadAllData(); }
-}
-async function openAsignarForm() { $('asi-proyecto').innerHTML=proyectos.filter(p=>p.estado==='activo').map(p=>`<option value="${p.id}">${p.nombre}</option>`).join(''); $('asi-buzo').innerHTML=usuarios.filter(u=>u.rol==='buzo').map(b=>`<option value="${b.username}">${b.nombre}</option>`).join(''); $('asi-fecha').value=new Date().toISOString().split('T')[0]; openOverlay('o-asignar'); }
-async function crearAsignacion() {
-  const res = await api('/api/asignaciones', 'POST', { supervisor_username: user.username, buzo_username: $('asi-buzo').value, proyecto_id: parseInt($('asi-proyecto').value), descripcion: $('asi-desc').value, fecha: $('asi-fecha').value, prioridad: $('asi-prioridad').value });
-  if (res && res.success) { alert('✅ Asignado.'); closeOverlay('o-asignar'); loadAllData(); }
-}
-function abrirProyectoCliente(id) {
-  const p = proyectos.find(x => x.id === id); if (!p) return;
-  $('op-title').innerText = p.nombre;
-  $('op-body').innerHTML = `<div class="fgroup"><h4>Detalles</h4><p style="font-size:13px;color:var(--muted);">${p.descripcion||'—'}</p><div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmtDateOnly(p.fecha_inicio)}</span></div><div class="info-row-sep"><span class="lbl">Estado</span><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></div></div><div class="fgroup"><h4>Progreso</h4><div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div></div>`;
-  openOverlay('o-proyecto-cliente');
-}
 function abrirDetalleSolicitudCliente(idx) {
-  const c = cotizaciones[idx]; if(!c) return;
-  $('ds-body').innerHTML = `<div class="fgroup"><h4>${c.servicio_nombre}</h4><div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${c.ubicacion||'—'}</span></div><div class="info-row-sep"><span class="lbl">Fecha que solicitaste</span><span class="val" style="color:var(--yellow);">${fmtDateOnly(c.fecha_servicio)}</span></div><div class="info-row-sep"><span class="lbl">Estado</span><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div></div><div class="fgroup"><p style="font-size:13px;color:var(--muted);">${c.descripcion||'—'}</p></div>`;
+  const c = cotizaciones[idx];
+  if (!c) return;
+
+  const pasos = [
+    { key: 'creacion',  label: 'Solicitud enviada',      desc: 'Tu solicitud fue recibida por el equipo.',             done: true },
+    { key: 'revision',  label: 'En revisión por el equipo', desc: 'El equipo de Oficina está evaluando tu solicitud.',        done: ['aprobada','rechazada'].includes(c.estado) },
+    { key: 'respuesta', label: 'Respuesta del equipo',    desc: c.estado === 'aprobada' ? '✅ Solicitud aprobada. Pronto te contactaremos.' : c.estado === 'rechazada' ? '❌ Solicitud rechazada.' : 'Pendiente de respuesta.', done: ['aprobada','rechazada'].includes(c.estado) },
+  ];
+
+  const tlHtml = pasos.map((p, i) => `
+    <div style="display:flex;gap:12px;padding-bottom:${i < pasos.length-1 ? '18px' : '0'};position:relative;">
+      ${i < pasos.length-1 ? '<div style="position:absolute;left:11px;top:24px;bottom:0;width:2px;background:rgba(30,74,104,.5);"></div>' : ''}
+      <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+        background:${p.done ? 'var(--green)' : 'rgba(30,74,104,.5)'};
+        border:2px solid ${p.done ? 'var(--green)' : 'var(--border)'};
+        color:${p.done ? 'var(--black)' : 'var(--muted)'};">
+        ${p.done ? '✓' : (i+1)}
+      </div>
+      <div style="flex:1;padding-top:2px;">
+        <div style="font-size:14px;font-weight:600;color:${p.done ? 'var(--white)' : 'var(--muted)'};">${p.label}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">${p.desc}</div>
+      </div>
+    </div>`).join('');
+
+  $('ds-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Información del Servicio</h4>
+      <div class="info-row-sep"><span class="lbl">Servicio</span><span class="val">${c.servicio_nombre||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${c.ubicacion||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fecha solicitada</span><span class="val" style="color:var(--yellow);font-weight:700;">${fmt(c.fecha_servicio||c.fecha_solicitud)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fecha envío</span><span class="val">${fmt(c.fecha_solicitud)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></span></div>
+    </div>
+    <div class="fgroup">
+      <h4>Descripción del Trabajo</h4>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6;">${c.descripcion||'—'}</p>
+    </div>
+    <div class="fgroup">
+      <h4>Seguimiento</h4>
+      ${tlHtml}
+    </div>`;
   openOverlay('o-detalle-solicitud');
 }
+
+// ══════════════════════════════════════════
+// DETALLE ASIGNACIÓN — BUZO (con info del proyecto)
+// ══════════════════════════════════════════
 function abrirDetalleAsignacion(idx) {
-  const a = asignaciones[idx]; if (!a) return; const p = proyectos.find(x => x.id === a.proyecto_id);
-  $('da-body').innerHTML = `<div class="fgroup"><h4>Tarea Asignada</h4><p style="font-size:14px;">${a.descripcion}</p><div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmtDateOnly(a.fecha)}</span></div></div><div class="fgroup"><h4>Proyecto: ${p?p.nombre:a.proyecto_nombre}</h4>${p?`<p style="font-size:12px;color:var(--muted);">${p.descripcion||''}</p>`:''}</div>`;
+  const a = asignaciones[idx];
+  if (!a) return;
+
+  const p = proyectos.find(x => x.id === a.proyecto_id || x.nombre === a.proyecto_nombre);
+
+  $('da-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Tarea Asignada</h4>
+      <p style="font-size:14px;color:var(--white);line-height:1.6;margin-bottom:12px;">${a.descripcion||'—'}</p>
+      <div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmt(a.fecha)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Prioridad</span>
+        <span class="val" style="color:${a.prioridad==='alta'?'var(--red)':a.prioridad==='baja'?'var(--muted)':'var(--yellow)'};font-weight:700;text-transform:capitalize;">${a.prioridad||'Normal'}</span>
+      </div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></span></div>
+    </div>
+
+    <div class="fgroup">
+      <h4>🏗️ Información del Proyecto</h4>
+      ${p ? `
+        <div class="info-row-sep"><span class="lbl">Nombre</span><span class="val">${p.nombre}</span></div>
+        <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector||'—'}</span></div>
+        <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
+        <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></span></div>
+        <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+        <div class="info-row-sep"><span class="lbl">Fin estimado</span><span class="val">${fmt(p.fecha_fin)}</span></div>
+        ${p.descripcion ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(30,74,104,.4);">
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:6px;">Descripción</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;">${p.descripcion}</p>
+        </div>` : ''}
+        <div style="margin-top:12px;">
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:6px;">Progreso del Proyecto</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+          <div style="font-size:12px;color:var(--yellow);text-align:right;margin-top:4px;font-weight:700;">${p.progreso||0}%</div>
+        </div>
+      ` : `<p style="font-size:13px;color:var(--muted);">${a.proyecto_nombre||'—'} — Información no disponible.</p>`}
+    </div>
+
+    <button class="btn-full" onclick="openReporteFormFromAsig(${a.proyecto_id||'null'});closeOverlay('o-detalle-asignacion');">
+      + Enviar Reporte de esta Tarea
+    </button>`;
   openOverlay('o-detalle-asignacion');
 }
+
+function openReporteFormFromAsig(proyectoId) {
+  openReporteForm().then(() => {
+    if (proyectoId) {
+      const sel = $('rep-proyecto');
+      if (sel) sel.value = proyectoId;
+    }
+  });
+}
+
+// ══════════════════════════════════════════
+// BOT ASISTENTE
+// ══════════════════════════════════════════
 function sendBot() {
-  const inp = $('chat-input'); const msg = inp.value.trim(); if (!msg) return; const hist = $('chat-history');
-  hist.innerHTML += `<div class="msg user">${msg}</div>`; inp.value = ''; hist.scrollTop = hist.scrollHeight;
-  setTimeout(() => { hist.innerHTML += `<div class="msg bot">Estoy procesando tu solicitud. Por ahora, prueba crear un proyecto o ver el historial.</div>`; hist.scrollTop = hist.scrollHeight; }, 600);
+  const input = $('chat-input');
+  const msg   = input.value.trim();
+  if (!msg) return;
+  const history = $('chat-history');
+  history.innerHTML += `<div class="msg user">${msg}</div>`;
+  input.value = ''; history.scrollTop = history.scrollHeight;
+  setTimeout(() => {
+    const m = msg.toLowerCase();
+    let reply = 'No estoy seguro de entenderte. Puedo ayudarte con proyectos, reportes, solicitudes o el uso de la app.';
+    if (m.includes('hola') || m.includes('buenas') || m.includes('hey'))
+      reply = `¡Hola! Soy Max 🤖, el asistente de CV Diving. ¿En qué te puedo ayudar?`;
+    else if (m.includes('crear') && m.includes('proyecto'))
+      reply = 'Para crear un proyecto, ve a la pestaña <strong>Proyectos</strong> y pulsa <strong>"+ Nuevo Proyecto"</strong>. Necesitas ser admin o supervisor.';
+    else if (m.includes('eliminar') && m.includes('proyecto'))
+      reply = 'Abre el proyecto desde la lista y al final encontrarás el botón <strong>"🗑️ Eliminar Proyecto"</strong>. Se pedirá doble confirmación por seguridad.';
+    else if (m.includes('finalizar') || (m.includes('terminar') && m.includes('proyecto')))
+      reply = 'Para finalizar un proyecto, ábrelo desde la lista y pulsa <strong>"🏁 Finalizar Proyecto"</strong>. Tendrás que rellenar el informe de cierre con fecha, resumen y resultado.';
+    else if (m.includes('eliminar') && m.includes('usuario'))
+      reply = 'Ve a la pestaña <strong>Equipo</strong>, toca un usuario y al final encontrarás el botón <strong>"🗑️ Eliminar Usuario"</strong>. Solo el admin puede hacerlo.';
+    else if (m.includes('reporte'))
+      reply = 'Los buzos envían reportes desde su panel pulsando <strong>"+ Enviar Reporte"</strong>. Los supervisores los revisan en la pestaña <strong>Reportes</strong>.';
+    else if (m.includes('solicitud') || m.includes('cotiz'))
+      reply = 'Como cliente puedes ir a <strong>Servicios</strong>, elegir uno y enviar tu solicitud. El equipo te responderá pronto.';
+    else if (m.includes('buzo') || m.includes('asign'))
+      reply = 'Para asignar a un buzo, ve a <strong>Asignar</strong> y crea una nueva asignación con el proyecto y buzo correspondiente.';
+    else if (m.includes('foto') || m.includes('perfil'))
+      reply = 'Pulsa tu avatar en la esquina superior derecha para abrir tu perfil y cambiar tu foto o subir tus documentos correspondientes.';
+    else if (m.includes('admin') || m.includes('contraseña'))
+      reply = 'El administrador por defecto es <strong>admin</strong> con contraseña <strong>cvdiving2024</strong>. Cámbiala desde tu perfil.';
+    else if (m.includes('gracias'))
+      reply = '¡De nada! Si necesitas algo más, aquí estaré. 🤿';
+    history.innerHTML += `<div class="msg bot">${reply}</div>`;
+    history.scrollTop = history.scrollHeight;
+  }, 600);
 }
 </script>
 </body>
