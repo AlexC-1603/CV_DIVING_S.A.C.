@@ -240,6 +240,24 @@ textarea.finp{resize:none;}
   <nav class="navbar" id="main-nav"></nav>
 </div>
 
+<!-- ══ OVERLAY: DETALLE SOLICITUD CLIENTE ══ -->
+<div id="o-detalle-solicitud" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-detalle-solicitud')">←</button>
+    <div class="overlay-title">Detalle de Solicitud</div>
+  </div>
+  <div class="overlay-body" id="ds-body"></div>
+</div>
+
+<!-- ══ OVERLAY: DETALLE ASIGNACIÓN BUZO ══ -->
+<div id="o-detalle-asignacion" class="overlay">
+  <div class="overlay-header">
+    <button class="back-btn" onclick="closeOverlay('o-detalle-asignacion')">←</button>
+    <div class="overlay-title">Detalle de Tarea</div>
+  </div>
+  <div class="overlay-body" id="da-body"></div>
+</div>
+
 <!-- ══ OVERLAY: BOT ══ -->
 <div id="o-bot" class="overlay">
   <div class="overlay-header">
@@ -767,10 +785,10 @@ function buildInterface() {
   let tabs = [];
 
   if (rol === 'cliente') {
+    // FIX: cliente solo ve Servicios y Solicitudes, NO proyectos
     tabs = [
       { id:'tab-servicios',    label:'Servicios',  icon:'<path d="M4 6h16M4 12h16M4 18h7"/>' },
       { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
-      { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-servicios" class="tab-pane">
@@ -781,10 +799,6 @@ function buildInterface() {
       <div id="tab-cotizaciones" class="tab-pane">
         <div class="hero"><div class="hero-name">Mis <span>Solicitudes</span></div></div>
         <div id="lista-cotizaciones" style="margin-top:12px;"></div>
-      </div>
-      <div id="tab-proyectos" class="tab-pane">
-        <div class="hero"><div class="hero-name">Mis <span>Proyectos</span></div></div>
-        <div id="lista-proyectos" style="margin-top:12px;"></div>
       </div>`;
   }
   else if (rol === 'buzo') {
@@ -805,11 +819,11 @@ function buildInterface() {
       </div>`;
   }
   else if (rol === 'supervisor') {
+    // FIX: supervisor NO gestiona solicitudes de clientes, solo admin
     tabs = [
       { id:'tab-proyectos',    label:'Proyectos',  icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>' },
       { id:'tab-asignaciones', label:'Asignar',    icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
       { id:'tab-reportes',     label:'Reportes',   icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>' },
-      { id:'tab-cotizaciones', label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>' },
     ];
     $('main-content').innerHTML = `
       <div id="tab-proyectos" class="tab-pane">
@@ -826,10 +840,6 @@ function buildInterface() {
       <div id="tab-reportes" class="tab-pane">
         <div class="hero"><div class="hero-name">Revisar <span>Reportes</span></div></div>
         <div id="lista-reportes-adm" style="margin-top:12px;"></div>
-      </div>
-      <div id="tab-cotizaciones" class="tab-pane">
-        <div class="hero"><div class="hero-name">Solicitudes</div></div>
-        <div id="lista-cot-adm" style="margin-top:12px;"></div>
       </div>`;
   }
   else { // admin
@@ -921,7 +931,8 @@ function renderAll() {
   const rol = user.rol || 'cliente';
   if (rol === 'cliente')    { renderCliente(); }
   if (rol === 'buzo')       { renderBuzo(); }
-  if (rol === 'supervisor') { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderCotAdm(); }
+  // FIX: supervisor NO renderiza cotizaciones (eso es solo admin)
+  if (rol === 'supervisor') { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); }
   if (rol === 'admin') {
     if (stats) {
       if ($('s-proyectos'))    $('s-proyectos').innerText    = stats.proyectos_activos       ?? '—';
@@ -952,8 +963,8 @@ function renderCliente() {
 
   const lc = $('lista-cotizaciones');
   if (lc) lc.innerHTML = cotizaciones.length
-    ? cotizaciones.map(c => `
-        <div class="list-item">
+    ? cotizaciones.map((c, i) => `
+        <div class="list-item" onclick="abrirDetalleSolicitudCliente(${i})">
           <div class="list-icon">📝</div>
           <div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion||'—'}</p></div>
           <span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span>
@@ -978,8 +989,8 @@ function renderCliente() {
 function renderBuzo() {
   const la = $('lista-asignaciones');
   if (la) la.innerHTML = asignaciones.length
-    ? asignaciones.map(a => `
-        <div class="list-item">
+    ? asignaciones.map((a, i) => `
+        <div class="list-item" onclick="abrirDetalleAsignacion(${i})">
           <div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div>
           <div class="list-info"><h4>${a.descripcion}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div>
           <span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span>
@@ -1349,10 +1360,14 @@ async function crearUsuario() {
 function abrirCotizar(servicioId) {
   currentCotServicio = servicios.find(s => s.id === servicioId);
   if (!currentCotServicio) return;
+  // Fecha mínima = mañana
+  const manana = new Date(); manana.setDate(manana.getDate() + 1);
+  const minDate = manana.toISOString().split('T')[0];
   $('cot-body').innerHTML = `
     <div class="fgroup">
       <h4>${currentCotServicio.icono} ${currentCotServicio.nombre}</h4>
       <p style="font-size:13px;color:var(--muted);">${currentCotServicio.descripcion}</p>
+      <div style="font-size:11px;color:var(--yellow);font-weight:700;text-transform:uppercase;margin-top:8px;">Sector: ${currentCotServicio.sector||'—'}</div>
     </div>
     <div class="fgroup">
       <h4>Detalles de la Solicitud</h4>
@@ -1360,6 +1375,8 @@ function abrirCotizar(servicioId) {
       <textarea class="finp" id="cot-desc" rows="4" placeholder="Describe el trabajo que necesitas..."></textarea>
       <label class="finp-label">Ubicación / Puerto *</label>
       <input class="finp" id="cot-ubicacion" placeholder="Ej: Muelle Pesquero Callao">
+      <label class="finp-label">Fecha preferida del servicio *</label>
+      <input class="finp" id="cot-fecha" type="date" min="${minDate}">
       <button class="btn-full" onclick="enviarCotizacion()">Enviar Solicitud</button>
     </div>`;
   openOverlay('o-cotizar');
@@ -1368,10 +1385,13 @@ function abrirCotizar(servicioId) {
 async function enviarCotizacion() {
   const desc      = $('cot-desc').value.trim();
   const ubicacion = $('cot-ubicacion').value.trim();
+  const fecha     = $('cot-fecha').value;
   if (!desc || !ubicacion) { alert('⚠️ Completa la descripción y ubicación.'); return; }
+  if (!fecha) { alert('⚠️ Selecciona una fecha preferida para el servicio.'); return; }
   const res = await api('/api/cotizaciones', 'POST', {
     cliente_username: user.username, servicio_id: currentCotServicio.id,
-    descripcion: desc, sector: currentCotServicio.sector, ubicacion
+    descripcion: desc, sector: currentCotServicio.sector, ubicacion,
+    fecha_servicio: fecha
   });
   if (res && res.success) { alert('✅ Solicitud enviada.'); closeOverlay('o-cotizar'); loadAllData(); }
   else alert('❌ ' + (res?.msg || 'Error al enviar la solicitud.'));
@@ -1492,6 +1512,113 @@ async function revisarReporte(estado) {
   });
   if (res && res.success) { alert(`✅ Reporte ${estado}.`); closeOverlay('o-revisar-rep'); loadAllData(); }
   else alert('❌ ' + (res?.msg || 'Error.'));
+}
+
+// ══════════════════════════════════════════
+// DETALLE SOLICITUD — CLIENTE
+// ══════════════════════════════════════════
+function abrirDetalleSolicitudCliente(idx) {
+  const c = cotizaciones[idx];
+  if (!c) return;
+
+  // Timeline de estados
+  const pasos = [
+    { key: 'creacion',  label: 'Solicitud enviada',      desc: 'Tu solicitud fue recibida por el equipo.',            done: true },
+    { key: 'revision',  label: 'En revisión por el admin', desc: 'El administrador está evaluando tu solicitud.',       done: ['aprobada','rechazada'].includes(c.estado) },
+    { key: 'respuesta', label: 'Respuesta del equipo',    desc: c.estado === 'aprobada' ? '✅ Solicitud aprobada. Pronto te contactaremos.' : c.estado === 'rechazada' ? '❌ Solicitud rechazada.' : 'Pendiente de respuesta.', done: ['aprobada','rechazada'].includes(c.estado) },
+  ];
+
+  const tlHtml = pasos.map((p, i) => `
+    <div style="display:flex;gap:12px;padding-bottom:${i < pasos.length-1 ? '18px' : '0'};position:relative;">
+      ${i < pasos.length-1 ? '<div style="position:absolute;left:11px;top:24px;bottom:0;width:2px;background:rgba(30,74,104,.5);"></div>' : ''}
+      <div style="width:24px;height:24px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;
+        background:${p.done ? 'var(--green)' : 'rgba(30,74,104,.5)'};
+        border:2px solid ${p.done ? 'var(--green)' : 'var(--border)'};
+        color:${p.done ? 'var(--black)' : 'var(--muted)'};">
+        ${p.done ? '✓' : (i+1)}
+      </div>
+      <div style="flex:1;padding-top:2px;">
+        <div style="font-size:14px;font-weight:600;color:${p.done ? 'var(--white)' : 'var(--muted)'};">${p.label}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:3px;">${p.desc}</div>
+      </div>
+    </div>`).join('');
+
+  $('ds-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Información del Servicio</h4>
+      <div class="info-row-sep"><span class="lbl">Servicio</span><span class="val">${c.servicio_nombre||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${c.ubicacion||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fecha solicitada</span><span class="val">${fmt(c.fecha_servicio||c.fecha_solicitud)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fecha envío</span><span class="val">${fmt(c.fecha_solicitud)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></span></div>
+    </div>
+    <div class="fgroup">
+      <h4>Descripción del Trabajo</h4>
+      <p style="font-size:13px;color:var(--muted);line-height:1.6;">${c.descripcion||'—'}</p>
+    </div>
+    <div class="fgroup">
+      <h4>Seguimiento</h4>
+      ${tlHtml}
+    </div>`;
+  openOverlay('o-detalle-solicitud');
+}
+
+// ══════════════════════════════════════════
+// DETALLE ASIGNACIÓN — BUZO (con info del proyecto)
+// ══════════════════════════════════════════
+function abrirDetalleAsignacion(idx) {
+  const a = asignaciones[idx];
+  if (!a) return;
+
+  // Buscar proyecto asociado
+  const p = proyectos.find(x => x.id === a.proyecto_id || x.nombre === a.proyecto_nombre);
+
+  $('da-body').innerHTML = `
+    <div class="fgroup">
+      <h4>Tarea Asignada</h4>
+      <p style="font-size:14px;color:var(--white);line-height:1.6;margin-bottom:12px;">${a.descripcion||'—'}</p>
+      <div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmt(a.fecha)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Prioridad</span>
+        <span class="val" style="color:${a.prioridad==='alta'?'var(--red)':a.prioridad==='baja'?'var(--muted)':'var(--yellow)'};font-weight:700;text-transform:capitalize;">${a.prioridad||'Normal'}</span>
+      </div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></span></div>
+    </div>
+
+    <div class="fgroup">
+      <h4>🏗️ Información del Proyecto</h4>
+      ${p ? `
+        <div class="info-row-sep"><span class="lbl">Nombre</span><span class="val">${p.nombre}</span></div>
+        <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector||'—'}</span></div>
+        <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
+        <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></span></div>
+        <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+        <div class="info-row-sep"><span class="lbl">Fin estimado</span><span class="val">${fmt(p.fecha_fin)}</span></div>
+        ${p.descripcion ? `<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(30,74,104,.4);">
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:6px;">Descripción</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;">${p.descripcion}</p>
+        </div>` : ''}
+        <div style="margin-top:12px;">
+          <div style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:6px;">Progreso del Proyecto</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+          <div style="font-size:12px;color:var(--yellow);text-align:right;margin-top:4px;font-weight:700;">${p.progreso||0}%</div>
+        </div>
+      ` : `<p style="font-size:13px;color:var(--muted);">${a.proyecto_nombre||'—'} — Información no disponible.</p>`}
+    </div>
+
+    <button class="btn-full" onclick="openReporteFormFromAsig(${a.proyecto_id||'null'});closeOverlay('o-detalle-asignacion');">
+      + Enviar Reporte de esta Tarea
+    </button>`;
+  openOverlay('o-detalle-asignacion');
+}
+
+// Abrir reporte preseleccionando el proyecto de la asignación
+function openReporteFormFromAsig(proyectoId) {
+  openReporteForm().then(() => {
+    if (proyectoId) {
+      const sel = $('rep-proyecto');
+      if (sel) sel.value = proyectoId;
+    }
+  });
 }
 
 // ══════════════════════════════════════════
