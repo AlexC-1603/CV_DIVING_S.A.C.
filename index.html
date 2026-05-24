@@ -6,14 +6,9 @@
 <title>CV DIVING S.A.C</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --yellow:#F5D700; --navy:#103752; --navy2:#0D2C42; --black:#090709;
-  --gray:#353533; --gray2:#4A4A48; --white:#FFFFFF; --border:#1E4A68;
-  --muted:#8AAABF; --green:#2ECC71; --red:#E74C3C; --orange:#F39C12; --purple:#9B59B6;
-}
+:root{--yellow:#F5D700;--navy:#103752;--navy2:#0D2C42;--black:#090709;--gray:#353533;--gray2:#4A4A48;--white:#FFFFFF;--border:#1E4A68;--muted:#8AAABF;--green:#2ECC71;--red:#E74C3C;--orange:#F39C12;--purple:#9B59B6;}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);min-height:100vh;max-width:480px;margin:0 auto;overflow-x:hidden;}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
 .anim{animation:fadeUp .3s ease both;}
@@ -40,13 +35,13 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .login-msg.err{display:block;color:var(--orange);background:rgba(243,156,18,.1);border:1px solid rgba(243,156,18,.3);}
 .login-msg.ok{display:block;color:var(--green);background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);}
 
-/* ── MAIN APP ── */
+/* ── APP ── */
 #app{display:none;flex-direction:column;min-height:100vh;}
 #app.active{display:flex;}
 
 /* ── TOPBAR ── */
 .topbar{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:56px;background:rgba(9,7,9,.97);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;z-index:200;backdrop-filter:blur(10px);gap:10px;}
-.topbar-logo{flex:0 0 auto;display:flex;align-items:center;}
+.topbar-logo{flex:0 0 auto;}
 .topbar-logo-txt{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:var(--yellow);letter-spacing:1px;}
 .topbar-spacer{flex:1;}
 .topbar-right{flex:0 0 auto;display:flex;align-items:center;gap:8px;}
@@ -56,17 +51,15 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .role-buzo{background:rgba(52,152,219,.15);color:#3498DB;border:1px solid rgba(52,152,219,.3);}
 .role-cliente{background:rgba(138,170,191,.15);color:var(--muted);border:1px solid rgba(138,170,191,.3);}
 .role-personal_admin{background:rgba(155,89,182,.15);color:var(--purple);border:1px solid rgba(155,89,182,.3);}
-.avatar-btn{width:34px;height:34px;border-radius:50%;background:var(--navy);border:1.5px solid var(--yellow);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:16px;font-weight:700;color:var(--yellow);font-family:'Barlow Condensed',sans-serif;}
+.avatar-btn{width:34px;height:34px;border-radius:50%;background:var(--navy);border:1.5px solid var(--yellow);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;font-size:15px;font-weight:700;color:var(--yellow);font-family:'Barlow Condensed',sans-serif;}
 .avatar-btn img{width:100%;height:100%;object-fit:cover;display:block;}
 
-/* ── CONTENT ── */
+/* ── CONTENT & NAV ── */
 .content{flex:1;overflow-y:auto;padding:56px 0 62px;}
 .tab-pane{display:none;animation:fadeUp .25s ease;}
 .tab-pane.active{display:block;}
-
-/* ── NAVBAR ── */
 .navbar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(9,7,9,.97);border-top:1px solid var(--border);display:flex;justify-content:space-around;align-items:center;height:62px;z-index:200;backdrop-filter:blur(10px);}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 10px;background:none;border:none;color:var(--gray2);transition:.2s;min-width:0;flex:1;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 8px;background:none;border:none;color:var(--gray2);transition:.2s;min-width:0;flex:1;}
 .nav-item svg{width:22px;height:22px;flex-shrink:0;}
 .nav-item span{font-size:10px;font-weight:600;white-space:nowrap;}
 .nav-item.on{color:var(--yellow);}
@@ -105,7 +98,6 @@ textarea.finp{resize:none;}
 .list-info{flex:1;min-width:0;}
 .list-info h4{font-size:14px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .list-info p{font-size:12px;color:var(--muted);margin-top:2px;}
-
 .badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;flex-shrink:0;}
 .b-pending{background:rgba(243,156,18,.15);color:var(--orange);border:1px solid rgba(243,156,18,.3);}
 .b-active{background:rgba(46,204,113,.15);color:var(--green);border:1px solid rgba(46,204,113,.3);}
@@ -132,7 +124,7 @@ textarea.finp{resize:none;}
 .chat-inp-area input{flex:1;border-radius:20px;padding:12px 16px;margin:0;}
 .chat-send{width:44px;height:44px;border-radius:50%;background:var(--yellow);border:none;color:var(--black);font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
 
-/* ── HERO & SECCIÓN ── */
+/* ── HERO ── */
 .hero{background:linear-gradient(135deg,var(--navy2) 0%,rgba(9,7,9,.8) 100%);padding:24px 18px 20px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
 .hero::after{content:'»';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:'Barlow Condensed',sans-serif;font-size:90px;font-weight:800;color:rgba(245,215,0,.04);line-height:1;pointer-events:none;}
 .hero-greet{font-size:13px;color:var(--muted);margin-bottom:4px;}
@@ -144,7 +136,6 @@ textarea.finp{resize:none;}
 
 /* ── PERFIL ── */
 .prof-header{display:flex;flex-direction:column;align-items:center;padding:30px 18px 20px;gap:10px;}
-.prof-av-wrap{width:90px;height:90px;}
 .prof-avatar{width:90px;height:90px;border-radius:50%;background:var(--navy);border:2px solid var(--yellow);display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;font-weight:700;font-family:'Barlow Condensed',sans-serif;color:var(--yellow);}
 .prof-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .edit-foto-btn{font-size:11px;background:rgba(255,255,255,.1);padding:5px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);cursor:pointer;color:white;transition:.2s;}
@@ -170,6 +161,22 @@ textarea.finp{resize:none;}
 .doc-status.ok{color:var(--green);}
 .doc-status.no{color:var(--red);}
 .btn-sm{background:var(--yellow);border:none;border-radius:6px;padding:6px 10px;font-size:11px;font-weight:700;color:var(--black);cursor:pointer;}
+
+/* ── ASIGNACIÓN DETALLE BUZO ── */
+.asig-detail-card{background:rgba(16,55,82,.3);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;}
+.asig-detail-row{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px solid rgba(30,74,104,.25);}
+.asig-detail-row:last-child{border-bottom:none;}
+.asig-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+.asig-label{font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:2px;}
+.asig-val{font-size:13px;color:var(--white);}
+
+/* ── PDF UPLOAD ── */
+.pdf-upload-zone{border:2px dashed rgba(245,215,0,.4);border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:.2s;background:rgba(245,215,0,.03);}
+.pdf-upload-zone:hover{border-color:var(--yellow);background:rgba(245,215,0,.06);}
+.pdf-upload-zone.has-file{border-color:var(--green);background:rgba(46,204,113,.05);}
+.pdf-upload-icon{font-size:32px;margin-bottom:8px;}
+.pdf-upload-txt{font-size:13px;color:var(--muted);}
+.pdf-upload-name{font-size:13px;color:var(--green);font-weight:600;margin-top:6px;}
 </style>
 </head>
 <body>
@@ -177,11 +184,9 @@ textarea.finp{resize:none;}
 <!-- ══ LOGIN ══ -->
 <div id="s-login">
   <div class="login-top anim">
-    <!-- Logo: si tienes imagen en el repo, cambia esto por <img src="nuevo_logo-removebg.png"> -->
     <div class="login-logo-text">CV DIVING S.A.C</div>
     <div class="login-sub">BUCEO COMERCIAL · PERÚ</div>
   </div>
-
   <div class="login-card" id="form-login">
     <h3>Iniciar Sesión</h3>
     <label class="inp-label">Usuario</label>
@@ -192,7 +197,6 @@ textarea.finp{resize:none;}
     <div class="login-msg" id="login-msg"></div>
     <button class="btn-sec" onclick="showForm('register')">No tengo cuenta — Registrarme</button>
   </div>
-
   <div class="login-card" id="form-register" style="display:none;margin-top:12px;">
     <h3>Nueva Cuenta</h3>
     <div class="inp-row" style="margin-bottom:0;">
@@ -214,9 +218,7 @@ textarea.finp{resize:none;}
 <!-- ══ APP ══ -->
 <div id="app">
   <div class="topbar">
-    <div class="topbar-logo">
-      <span class="topbar-logo-txt">CV DIVING</span>
-    </div>
+    <div class="topbar-logo"><span class="topbar-logo-txt">CV DIVING</span></div>
     <div class="topbar-spacer"></div>
     <div class="topbar-right">
       <span id="role-chip" class="role-chip role-cliente">Cliente</span>
@@ -238,7 +240,7 @@ textarea.finp{resize:none;}
   </div>
   <div class="chat-wrap">
     <div class="chat-history" id="chat-history">
-      <div class="msg bot">👋 ¡Hola! Soy <strong>Max</strong>, el asistente virtual de CV Diving. ¿En qué te ayudo hoy?</div>
+      <div class="msg bot">👋 ¡Hola! Soy <strong>Max</strong>. Puedo ayudarte con proyectos, reportes, solicitudes o el uso de la app. ¿En qué te ayudo?</div>
     </div>
     <div class="chat-inp-area">
       <input type="text" id="chat-input" class="finp" style="margin:0;" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendBot()">
@@ -254,9 +256,7 @@ textarea.finp{resize:none;}
     <div class="overlay-title">Mi Perfil</div>
   </div>
   <div class="prof-header">
-    <div class="prof-av-wrap">
-      <div class="prof-avatar" id="prof-av">?</div>
-    </div>
+    <div class="prof-avatar" id="prof-av">?</div>
     <input type="file" id="inp-foto" accept="image/*" style="display:none;" onchange="subirFoto(this)">
     <button class="edit-foto-btn" onclick="document.getElementById('inp-foto').click()">✏️ Cambiar foto</button>
     <div class="prof-name-txt" id="prof-name-txt">—</div>
@@ -271,7 +271,7 @@ textarea.finp{resize:none;}
     </div>
     <div class="fgroup" id="sec-documentos" style="display:none;">
       <h4>Mis Documentos</h4>
-      <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">Sube tus documentos habilitantes (.pdf o imagen). Máx ~3.5 MB.</p>
+      <p style="font-size:11px;color:var(--muted);margin-bottom:12px;">Sube tus documentos habilitantes. Máx ~3.5 MB.</p>
       <div id="lista-docs-perfil">Cargando...</div>
     </div>
     <div id="foto-status" style="font-size:12px;text-align:center;margin-bottom:10px;display:none;"></div>
@@ -304,15 +304,12 @@ textarea.finp{resize:none;}
           </select>
         </div>
         <div><label class="finp-label">Estado</label>
-          <select class="finp" id="cp-estado">
-            <option value="activo">Activo</option>
-            <option value="pausado">Pausado</option>
-          </select>
+          <select class="finp" id="cp-estado"><option value="activo">Activo</option><option value="pausado">Pausado</option></select>
         </div>
       </div>
       <label class="finp-label">Ubicación / Puerto</label>
       <input class="finp" id="cp-ubicacion" placeholder="Ej: Callao, Lima">
-      <label class="finp-label">Username del Cliente (opcional)</label>
+      <label class="finp-label">Username del Cliente</label>
       <input class="finp" id="cp-cliente" placeholder="username del cliente">
       <label class="finp-label">Username del Supervisor</label>
       <input class="finp" id="cp-supervisor" placeholder="username del supervisor">
@@ -383,7 +380,7 @@ textarea.finp{resize:none;}
   </div>
 </div>
 
-<!-- PROYECTO ADMIN -->
+<!-- PROYECTO ADMIN/SUP -->
 <div id="o-proyecto-admin" class="overlay">
   <div class="overlay-header">
     <button class="back-btn" onclick="closeOverlay('o-proyecto-admin')">←</button>
@@ -401,6 +398,17 @@ textarea.finp{resize:none;}
   <div class="overlay-body">
     <div style="background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.25);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:13px;color:var(--green);">
       ✅ Finalizando: <strong id="fp-nombre-lbl" style="color:var(--white);"></strong>
+    </div>
+    <!-- PDF OBLIGATORIO -->
+    <div class="fgroup" style="border-color:rgba(245,215,0,.4);background:rgba(245,215,0,.04);">
+      <h4>📄 Informe PDF del Servicio <span style="color:var(--red);">*</span></h4>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px;">Es obligatorio subir el informe PDF del servicio antes de finalizar.</p>
+      <input type="file" id="fp-pdf-input" accept="application/pdf" style="display:none;" onchange="onFpPdfChange(this)">
+      <div class="pdf-upload-zone" id="fp-pdf-zone" onclick="document.getElementById('fp-pdf-input').click()">
+        <div class="pdf-upload-icon">📄</div>
+        <div class="pdf-upload-txt">Toca para seleccionar el PDF</div>
+        <div class="pdf-upload-name" id="fp-pdf-name" style="display:none;"></div>
+      </div>
     </div>
     <div class="fgroup">
       <h4>Informe de Cierre</h4>
@@ -427,7 +435,7 @@ textarea.finp{resize:none;}
   </div>
 </div>
 
-<!-- PROYECTO CLIENTE -->
+<!-- PROYECTO CLIENTE/ADMIN_PERSONAL -->
 <div id="o-proyecto-cliente" class="overlay">
   <div class="overlay-header">
     <button class="back-btn" onclick="closeOverlay('o-proyecto-cliente')">←</button>
@@ -476,14 +484,14 @@ textarea.finp{resize:none;}
       <select class="finp" id="asi-proyecto"></select>
       <label class="finp-label">Buzo Asignado</label>
       <select class="finp" id="asi-buzo"></select>
-      <label class="finp-label">Descripción *</label>
-      <textarea class="finp" id="asi-desc" rows="3" placeholder="Detalla la tarea..."></textarea>
+      <label class="finp-label">Descripción de la tarea *</label>
+      <textarea class="finp" id="asi-desc" rows="3" placeholder="Detalla la tarea a realizar..."></textarea>
       <div class="finp-row">
         <div><label class="finp-label">Fecha</label><input class="finp" id="asi-fecha" type="date"></div>
         <div><label class="finp-label">Prioridad</label>
           <select class="finp" id="asi-prioridad">
             <option value="normal">Normal</option>
-            <option value="alta">Alta</option>
+            <option value="alta">Alta 🔴</option>
             <option value="baja">Baja</option>
           </select>
         </div>
@@ -514,7 +522,7 @@ textarea.finp{resize:none;}
       <label class="finp-label">Proyecto</label>
       <select class="finp" id="rep-proyecto"></select>
       <label class="finp-label">Trabajo realizado *</label>
-      <textarea class="finp" id="rep-desc" rows="4" placeholder="Describe el trabajo..."></textarea>
+      <textarea class="finp" id="rep-desc" rows="4" placeholder="Describe el trabajo realizado..."></textarea>
       <div class="finp-row">
         <div><label class="finp-label">Horas trabajadas *</label><input class="finp" id="rep-horas" type="number" min="0.5" step="0.5" placeholder="Ej: 4.5"></div>
         <div><label class="finp-label">Condiciones del mar</label>
@@ -551,254 +559,193 @@ textarea.finp{resize:none;}
 
 <script>
 // ══════════════════════════════════════════
-// ⚠️ URL DEL BACKEND — ACTUALIZA SI CAMBIA
+// CONFIG
 // ══════════════════════════════════════════
 const API = 'https://backend-cv-aq0s.onrender.com';
 
-let user = null;
-let servicios=[], cotizaciones=[], proyectos=[], asignaciones=[], reportes=[], usuarios=[], completados=[], stats={};
+let user=null, servicios=[], cotizaciones=[], proyectos=[], asignaciones=[], reportes=[], usuarios=[], completados=[], stats={};
 let currentCotServicio=null, currentCotIdx=null, currentRepIdx=null, currentProjId=null, currentRepBuzoIdx=null;
+let fpPdfBase64=null;
 
-function $(id){ return document.getElementById(id); }
-function openOverlay(id){ $(id).classList.add('active'); }
-function closeOverlay(id){ $(id).classList.remove('active'); }
-
+function $(id){return document.getElementById(id);}
+function openOverlay(id){$(id).classList.add('active');}
+function closeOverlay(id){$(id).classList.remove('active');}
 function showForm(mode){
-  $('form-login').style.display    = mode==='login'    ? 'block':'none';
-  $('form-register').style.display = mode==='register' ? 'block':'none';
-  $('login-msg').className = 'login-msg';
-  $('reg-msg').className   = 'login-msg';
+  $('form-login').style.display    = mode==='login'   ?'block':'none';
+  $('form-register').style.display = mode==='register'?'block':'none';
+  $('login-msg').className='login-msg'; $('reg-msg').className='login-msg';
 }
-
 function fmt(iso){
-  if(!iso) return '—';
-  try{ return new Date(iso).toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'}); }
-  catch{ return iso; }
+  if(!iso)return'—';
+  try{return new Date(iso).toLocaleDateString('es-PE',{day:'2-digit',month:'short',year:'numeric'});}
+  catch{return iso;}
 }
+function stateMap(e){const m={pendiente:'b-pending',activo:'b-active',aprobada:'b-active',completado:'b-done',completada:'b-done',terminada:'b-done',terminado:'b-done',rechazada:'b-rejected',cancelado:'b-rejected',en_revision:'b-yellow',en_progreso:'b-yellow',pausado:'b-yellow'};return m[e]||'b-pending';}
+function stateLabel(e){const m={pendiente:'Pendiente',activo:'Activo',aprobada:'Aprobada',completado:'Completado',completada:'Completada',terminada:'Terminada',terminado:'Terminado',rechazada:'Rechazada',cancelado:'Cancelado',en_revision:'En revisión',en_progreso:'En progreso',pausado:'Pausado'};return m[e]||e;}
 
-function stateMap(e){
-  const m={pendiente:'b-pending',activo:'b-active',aprobada:'b-active',completado:'b-done',
-           completada:'b-done',terminada:'b-done',terminado:'b-done',rechazada:'b-rejected',
-           cancelado:'b-rejected',en_revision:'b-yellow',en_progreso:'b-yellow',pausado:'b-yellow'};
-  return m[e]||'b-pending';
-}
-function stateLabel(e){
-  const m={pendiente:'Pendiente',activo:'Activo',aprobada:'Aprobada',completado:'Completado',
-           completada:'Completada',terminada:'Terminada',terminado:'Terminado',rechazada:'Rechazada',
-           cancelado:'Cancelado',en_revision:'En revisión',en_progreso:'En progreso',pausado:'Pausado'};
-  return m[e]||e;
-}
-
-// ══════════════════════════════════════════
-// API WRAPPER
-// ══════════════════════════════════════════
-async function api(path, method='GET', body=null){
-  const opts={ method, headers:{'Content-Type':'application/json','Cache-Control':'no-cache'} };
-  if(body) opts.body = JSON.stringify(body);
+// ── API ────────────────────────────────────────────────
+async function api(path,method='GET',body=null){
+  const opts={method,headers:{'Content-Type':'application/json','Cache-Control':'no-cache'}};
+  if(body)opts.body=JSON.stringify(body);
   try{
-    const r = await fetch(API+path, opts);
-    const data = await r.json();
-    if(!r.ok){ console.error('API error:',r.status,data); return null; }
+    const r=await fetch(API+path,opts);
+    const data=await r.json();
+    if(!r.ok){console.error('API error:',r.status,data);return null;}
     return data;
-  } catch(e){ console.error('Fetch error:',e); return null; }
+  }catch(e){console.error('Fetch error:',e);return null;}
 }
 
-// ══════════════════════════════════════════
-// AUTH
-// ══════════════════════════════════════════
-window.onload = () => {
-  const saved = localStorage.getItem('cvdiving_user');
+// ── AUTH ───────────────────────────────────────────────
+window.onload=()=>{
+  const saved=localStorage.getItem('cvdiving_user');
   if(saved){
     try{
-      const parsed = JSON.parse(saved);
-      if(parsed && parsed.username && parsed.username!=='undefined'){ initApp(parsed); return; }
+      const p=JSON.parse(saved);
+      if(p&&p.username&&p.username!=='undefined'){initApp(p);return;}
     }catch{}
   }
   $('s-login').style.display='flex';
 };
 
-function showMsg(elId, txt, type){
-  const el=$(elId); el.innerText=txt; el.className=`login-msg ${type}`;
-}
+function showMsg(elId,txt,type){const el=$(elId);el.innerText=txt;el.className=`login-msg ${type}`;}
 
 async function doLogin(){
-  const u=$('log-user').value.trim(), p=$('log-pass').value;
-  if(!u||!p){ showMsg('login-msg','⚠️ Ingresa usuario y contraseña.','err'); return; }
-  const btn=$('btn-login'); btn.disabled=true; btn.innerText='Conectando...';
+  const u=$('log-user').value.trim(),p=$('log-pass').value;
+  if(!u||!p){showMsg('login-msg','⚠️ Ingresa usuario y contraseña.','err');return;}
+  const btn=$('btn-login');btn.disabled=true;btn.innerText='Conectando...';
   $('login-msg').className='login-msg';
-  const res = await api('/api/login','POST',{username:u, password:p});
-  btn.disabled=false; btn.innerText='Ingresar';
-  if(!res){ showMsg('login-msg','⚠️ Sin conexión al servidor. El servidor puede estar iniciando (espera 30s y reintenta).','err'); return; }
-  if(!res.success){ showMsg('login-msg','❌ '+(res.msg||'Usuario o contraseña incorrectos.'),'err'); return; }
-  localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
+  const res=await api('/api/login','POST',{username:u,password:p});
+  btn.disabled=false;btn.innerText='Ingresar';
+  if(!res){showMsg('login-msg','⚠️ Sin conexión. El servidor puede estar iniciando (espera ~30s y reintenta).','err');return;}
+  if(!res.success){showMsg('login-msg','❌ '+(res.msg||'Usuario o contraseña incorrectos.'),'err');return;}
+  localStorage.setItem('cvdiving_user',JSON.stringify(res.data));
   initApp(res.data);
 }
 
 async function doRegister(){
-  const nombre=$('reg-nombre').value.trim(), apellido=$('reg-apellido').value.trim();
-  const username=$('reg-user').value.trim(), email=$('reg-email').value.trim(), password=$('reg-pass').value;
-  if(!nombre||!apellido||!username||!email||!password){ showMsg('reg-msg','⚠️ Completa todos los campos.','err'); return; }
-  const btn=$('btn-register'); btn.disabled=true; btn.innerText='Creando cuenta...';
-  const res = await api('/api/register','POST',{username, password, email, nombre, apellido});
-  btn.disabled=false; btn.innerText='Crear Cuenta';
-  if(!res){ showMsg('reg-msg','⚠️ Sin conexión. El servidor puede estar iniciando, espera 30s.','err'); return; }
-  if(!res.success){ showMsg('reg-msg','❌ '+(res.msg||'Error al registrar.'),'err'); return; }
-  localStorage.setItem('cvdiving_user', JSON.stringify(res.data));
+  const nombre=$('reg-nombre').value.trim(),apellido=$('reg-apellido').value.trim();
+  const username=$('reg-user').value.trim(),email=$('reg-email').value.trim(),password=$('reg-pass').value;
+  if(!nombre||!apellido||!username||!email||!password){showMsg('reg-msg','⚠️ Completa todos los campos.','err');return;}
+  const btn=$('btn-register');btn.disabled=true;btn.innerText='Creando...';
+  const res=await api('/api/register','POST',{username,password,email,nombre,apellido});
+  btn.disabled=false;btn.innerText='Crear Cuenta';
+  if(!res){showMsg('reg-msg','⚠️ Sin conexión al servidor.','err');return;}
+  if(!res.success){showMsg('reg-msg','❌ '+(res.msg||'Error al registrar.'),'err');return;}
+  localStorage.setItem('cvdiving_user',JSON.stringify(res.data));
   initApp(res.data);
 }
 
-function doLogout(){
-  localStorage.removeItem('cvdiving_user');
-  location.reload();
-}
+function doLogout(){localStorage.removeItem('cvdiving_user');location.reload();}
 
-// ══════════════════════════════════════════
-// AVATAR
-// ══════════════════════════════════════════
-function getInitials(u){
-  return (((u.nombre||'')[0]||'') + ((u.apellido||'')[0]||'')).toUpperCase() || '?';
-}
+// ── AVATAR ─────────────────────────────────────────────
+function getInitials(u){return(((u.nombre||'')[0]||'')+((u.apellido||'')[0]||'')).toUpperCase()||'?';}
 
 function renderAvatar(u){
-  const isImg = u.foto && typeof u.foto==='string' && u.foto.startsWith('data:image');
-  const topEl=$('top-avatar'), profEl=$('prof-av');
+  const isImg=u.foto&&typeof u.foto==='string'&&u.foto.startsWith('data:image');
+  const topEl=$('top-avatar'),profEl=$('prof-av');
   if(isImg){
-    topEl.innerHTML  = `<img src="${u.foto}" alt="av">`;
-    profEl.innerHTML = `<img src="${u.foto}" alt="av">`;
-  } else {
-    const ini = getInitials(u);
-    topEl.innerHTML  = ini;
-    profEl.innerHTML = ini;
+    topEl.innerHTML=`<img src="${u.foto}" alt="av">`;
+    profEl.innerHTML=`<img src="${u.foto}" alt="av">`;
+  }else{
+    const ini=getInitials(u);
+    topEl.innerHTML=ini; profEl.innerHTML=ini;
   }
 }
 
 async function subirFoto(input){
-  const file=input.files[0]; if(!file) return;
+  const file=input.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=function(e){
     const img=new Image();
     img.onload=async function(){
-      const canvas=document.createElement('canvas'); const MAX=400;
-      let w=img.width, h=img.height;
+      const canvas=document.createElement('canvas');const MAX=400;
+      let w=img.width,h=img.height;
       if(w>h){if(w>MAX){h=h*MAX/w;w=MAX;}}else{if(h>MAX){w=w*MAX/h;h=MAX;}}
-      canvas.width=w; canvas.height=h;
+      canvas.width=w;canvas.height=h;
       canvas.getContext('2d').drawImage(img,0,0,w,h);
       const b64=canvas.toDataURL('image/jpeg',0.75);
-
-      // Preview inmediato
       $('top-avatar').innerHTML=`<img src="${b64}" alt="av">`;
-      $('prof-av').innerHTML   =`<img src="${b64}" alt="av">`;
-
-      const res=await api(`/api/usuarios/${user.username}`,'PUT',{
-        admin_username:user.username, username:user.username, foto:b64
-      });
-      const st=$('foto-status');
-      st.style.display='block';
-      if(res&&res.success){
-        user.foto=b64; localStorage.setItem('cvdiving_user',JSON.stringify(user));
-        st.style.color='var(--green)'; st.innerText='✅ Foto actualizada.';
-      } else {
-        // Guardar solo local si el servidor falla
-        user.foto=b64; localStorage.setItem('cvdiving_user',JSON.stringify(user));
-        st.style.color='var(--orange)'; st.innerText='⚠️ Guardada localmente.';
-      }
-      setTimeout(()=>{ st.style.display='none'; },3000);
+      $('prof-av').innerHTML=`<img src="${b64}" alt="av">`;
+      const res=await api(`/api/usuarios/${user.username}`,'PUT',{admin_username:user.username,username:user.username,foto:b64});
+      const st=$('foto-status');st.style.display='block';
+      if(res&&res.success){user.foto=b64;localStorage.setItem('cvdiving_user',JSON.stringify(user));st.style.color='var(--green)';st.innerText='✅ Foto actualizada.';}
+      else{user.foto=b64;localStorage.setItem('cvdiving_user',JSON.stringify(user));st.style.color='var(--orange)';st.innerText='⚠️ Guardada localmente.';}
+      setTimeout(()=>{st.style.display='none';},3000);
     };
     img.src=e.target.result;
   };
   reader.readAsDataURL(file);
 }
 
-// ══════════════════════════════════════════
-// DOCUMENTOS PERFIL
-// ══════════════════════════════════════════
+// ── DOCUMENTOS PERFIL ──────────────────────────────────
 async function renderDocumentosConfig(){
-  const docsSec=$('sec-documentos'), lista=$('lista-docs-perfil');
-  if(!user||user.rol==='cliente'){ docsSec.style.display='none'; return; }
+  const docsSec=$('sec-documentos'),lista=$('lista-docs-perfil');
+  if(!user||user.rol==='cliente'){docsSec.style.display='none';return;}
   docsSec.style.display='block';
-  const requeridos = await api(`/api/docs-por-rol?username=${user.username}`) || [];
-  const subidos    = await api(`/api/documentos?username=${user.username}`) || [];
-  lista.innerHTML  = requeridos.map(docReq=>{
-    const existe  = subidos.find(s=>s.tipo===docReq);
-    const idSafe  = docReq.replace(/[\s/]/g,'-');
-    if(existe){
-      return `<div class="doc-item"><div><div class="doc-name">${docReq}</div><div class="doc-status ok">✓ ${existe.nombre}</div></div>
-        <button class="btn-sm" style="background:var(--red);color:var(--white);" onclick="eliminarDocumento(${existe.id},'${docReq}')">Borrar</button></div>`;
-    }
-    return `<div class="doc-item"><div><div class="doc-name">${docReq}</div><div class="doc-status no" id="sts-${idSafe}">Faltante</div></div>
-      <div><input type="file" id="inp-${idSafe}" style="display:none;" onchange="subirDocumento(this,'${docReq}')">
-      <button class="btn-sm" onclick="document.getElementById('inp-${idSafe}').click()">Subir</button></div></div>`;
+  const[requeridos,subidos]=await Promise.all([
+    api(`/api/docs-por-rol?username=${user.username}`),
+    api(`/api/documentos?username=${user.username}`)
+  ]);
+  const req=requeridos||[],sub=subidos||[];
+  lista.innerHTML=req.map(docReq=>{
+    const existe=sub.find(s=>s.tipo===docReq);
+    const idSafe=docReq.replace(/[\s/]/g,'-');
+    if(existe)return`<div class="doc-item"><div><div class="doc-name">${docReq}</div><div class="doc-status ok">✓ ${existe.nombre}</div></div><button class="btn-sm" style="background:var(--red);color:var(--white);" onclick="eliminarDocumento(${existe.id},'${docReq}')">Borrar</button></div>`;
+    return`<div class="doc-item"><div><div class="doc-name">${docReq}</div><div class="doc-status no" id="sts-${idSafe}">Faltante</div></div><div><input type="file" id="inp-${idSafe}" style="display:none;" onchange="subirDocumento(this,'${docReq}')"><button class="btn-sm" onclick="document.getElementById('inp-${idSafe}').click()">Subir</button></div></div>`;
   }).join('');
 }
 
-async function subirDocumento(input, docName){
-  const file=input.files[0]; if(!file) return;
+async function subirDocumento(input,docName){
+  const file=input.files[0];if(!file)return;
   const idSts=`sts-${docName.replace(/[\s/]/g,'-')}`;
-  const stEl=$(idSts); if(stEl){stEl.innerText='Subiendo...'; stEl.className='doc-status';}
+  const stEl=$(idSts);if(stEl){stEl.innerText='Subiendo...';stEl.className='doc-status';}
   const reader=new FileReader();
   reader.onload=async function(e){
-    const res=await api('/api/documentos','POST',{
-      username:user.username, tipo:docName, nombre:file.name,
-      archivo:e.target.result, extension:file.name.split('.').pop(),
-      size_kb:Math.round(file.size/1024)
-    });
-    if(res&&res.success){ renderDocumentosConfig(); }
-    else {
-      if(stEl){stEl.innerText='Faltante'; stEl.className='doc-status no';}
-      alert('❌ Error al subir: '+(res?.msg||'Archivo muy grande'));
-    }
+    const res=await api('/api/documentos','POST',{username:user.username,tipo:docName,nombre:file.name,archivo:e.target.result,extension:file.name.split('.').pop(),size_kb:Math.round(file.size/1024)});
+    if(res&&res.success)renderDocumentosConfig();
+    else{if(stEl){stEl.innerText='Faltante';stEl.className='doc-status no';}alert('❌ Error al subir: '+(res?.msg||'Archivo muy grande'));}
   };
   reader.readAsDataURL(file);
 }
 
-async function eliminarDocumento(id, docName){
-  if(!confirm(`¿Eliminar documento "${docName}"?`)) return;
+async function eliminarDocumento(id,docName){
+  if(!confirm(`¿Eliminar "${docName}"?`))return;
   const res=await api(`/api/documentos/${id}?username=${user.username}`,'DELETE');
-  if(res&&res.success) renderDocumentosConfig();
+  if(res&&res.success)renderDocumentosConfig();
 }
 
-// ══════════════════════════════════════════
-// INIT APP
-// ══════════════════════════════════════════
+// ── INIT APP ───────────────────────────────────────────
 function initApp(userData){
   user=userData;
-  if(!user||!user.username){ doLogout(); return; }
+  if(!user||!user.username){doLogout();return;}
   $('s-login').style.display='none';
   $('app').classList.add('active');
-
-  const nom=user.nombre||'Usuario', ape=user.apellido||'', rol=user.rol||'cliente';
-  $('prof-name-txt').innerText  = `${nom} ${ape}`.trim();
-  $('prof-alias-txt').innerText = `@${user.username}`;
-  $('prof-email-txt').innerText = user.email||'—';
-
-  const labels    = {admin:'Administrador',supervisor:'Supervisor',personal_admin:'Administrativo',buzo:'Buzo',cliente:'Cliente'};
-  const chipClass = {admin:'role-admin',supervisor:'role-supervisor',personal_admin:'role-personal_admin',buzo:'role-buzo',cliente:'role-cliente'};
-  const chipLabel = {admin:'Admin',supervisor:'Supervisor',personal_admin:'Adm. Oficina',buzo:'Buzo',cliente:'Cliente'};
-
-  $('prof-rol-txt').innerText  = labels[rol]||rol;
-  $('role-chip').className     = `role-chip ${chipClass[rol]||'role-cliente'}`;
-  $('role-chip').innerText     = chipLabel[rol]||'Cliente';
-  $('prof-chip').className     = `role-chip ${chipClass[rol]||'role-cliente'}`;
-  $('prof-chip').innerText     = chipLabel[rol]||'Cliente';
-
+  const nom=user.nombre||'Usuario',ape=user.apellido||'',rol=user.rol||'cliente';
+  $('prof-name-txt').innerText=`${nom} ${ape}`.trim();
+  $('prof-alias-txt').innerText=`@${user.username}`;
+  $('prof-email-txt').innerText=user.email||'—';
+  const labels={admin:'Administrador',supervisor:'Supervisor',personal_admin:'Administrativo',buzo:'Buzo',cliente:'Cliente'};
+  const chipClass={admin:'role-admin',supervisor:'role-supervisor',personal_admin:'role-personal_admin',buzo:'role-buzo',cliente:'role-cliente'};
+  const chipLabel={admin:'Admin',supervisor:'Supervisor',personal_admin:'Adm. Oficina',buzo:'Buzo',cliente:'Cliente'};
+  $('prof-rol-txt').innerText=labels[rol]||rol;
+  $('role-chip').className=`role-chip ${chipClass[rol]||'role-cliente'}`;$('role-chip').innerText=chipLabel[rol]||'Cliente';
+  $('prof-chip').className=`role-chip ${chipClass[rol]||'role-cliente'}`;$('prof-chip').innerText=chipLabel[rol]||'Cliente';
   renderAvatar(user);
   renderDocumentosConfig();
   buildInterface();
   loadAllData();
 }
 
-// ══════════════════════════════════════════
-// BUILD INTERFACE
-// ══════════════════════════════════════════
+// ── BUILD INTERFACE ────────────────────────────────────
 function setTab(id){
   document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('on'));
-  const el=$(id); if(el) el.classList.add('active');
-  const btn=document.querySelector(`[data-tab="${id}"]`); if(btn) btn.classList.add('on');
+  const el=$(id);if(el)el.classList.add('active');
+  const btn=document.querySelector(`[data-tab="${id}"]`);if(btn)btn.classList.add('on');
 }
 
 function buildInterface(){
-  const rol=user.rol||'cliente', nom=user.nombre||'Usuario', ape=user.apellido||'';
+  const rol=user.rol||'cliente',nom=user.nombre||'Usuario',ape=user.apellido||'';
   let tabs=[];
 
   if(rol==='cliente'){
@@ -824,29 +771,29 @@ function buildInterface(){
   else if(rol==='buzo'){
     tabs=[
       {id:'tab-asignaciones',label:'Tareas',   icon:'<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>'},
-      {id:'tab-reportes',    label:'Reportes', icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
-      {id:'tab-historial',   label:'Historial',icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'},
+      {id:'tab-proyectos',   label:'Proyectos', icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'},
+      {id:'tab-reportes',    label:'Reportes',  icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>'},
     ];
     $('main-content').innerHTML=`
       <div id="tab-asignaciones" class="tab-pane">
         <div class="hero"><div class="hero-greet">Panel Buzo</div><div class="hero-name">${nom} <span>${ape}</span></div></div>
-        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openReporteForm()">+ Enviar Reporte</button></div>
         <p class="section-title">Mis Asignaciones</p><div id="lista-asignaciones"></div>
+      </div>
+      <div id="tab-proyectos" class="tab-pane">
+        <div class="hero"><div class="hero-name">Mis <span>Proyectos</span></div></div>
+        <div style="padding:14px 18px 0;"><button class="btn-full" onclick="openReporteForm()">+ Enviar Reporte</button></div>
+        <div id="lista-proyectos-buzo" style="margin-top:12px;"></div>
       </div>
       <div id="tab-reportes" class="tab-pane">
         <div class="hero"><div class="hero-name">Mis <span>Reportes</span></div></div>
         <div id="lista-reportes-buzo" style="margin-top:12px;"></div>
-      </div>
-      <div id="tab-historial" class="tab-pane">
-        <div class="hero"><div class="hero-name">Trabajos <span>Finalizados</span></div></div>
-        <div id="lista-historial-buzo" style="margin-top:12px;"></div>
       </div>`;
   }
   else if(rol==='personal_admin'){
     tabs=[
       {id:'tab-cotizaciones',label:'Solicitudes',icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>'},
       {id:'tab-proyectos',   label:'Proyectos', icon:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'},
-      {id:'tab-historial',   label:'Historial', icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'},
+      {id:'tab-historial',   label:'Historial',  icon:'<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>'},
     ];
     $('main-content').innerHTML=`
       <div id="tab-cotizaciones" class="tab-pane">
@@ -889,7 +836,7 @@ function buildInterface(){
         <div id="lista-historial-sup" style="margin-top:12px;"></div>
       </div>`;
   }
-  else { // admin
+  else{ // admin
     tabs=[
       {id:'tab-dashboard',   label:'Inicio',     icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>'},
       {id:'tab-cotizaciones',label:'Solicitudes', icon:'<path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/>'},
@@ -932,40 +879,43 @@ function buildInterface(){
   }
 
   // Navbar con bot en el centro
-  const mid=Math.ceil(tabs.length/2);
-  const left=tabs.slice(0,mid), right=tabs.slice(mid);
-  const mkBtn=(t,first)=>`
-    <button class="nav-item${first?' on':''}" data-tab="${t.id}" onclick="setTab('${t.id}')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${t.icon}</svg>
-      <span>${t.label}</span>
-    </button>`;
-  $('main-nav').innerHTML =
-    left.map((t,i)=>mkBtn(t,i===0)).join('') +
+  const mid=Math.ceil(tabs.length/2),left=tabs.slice(0,mid),right=tabs.slice(mid);
+  const mkBtn=(t,first)=>`<button class="nav-item${first?' on':''}" data-tab="${t.id}" onclick="setTab('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${t.icon}</svg><span>${t.label}</span></button>`;
+  $('main-nav').innerHTML=
+    left.map((t,i)=>mkBtn(t,i===0)).join('')+
     `<button class="nav-item" onclick="openOverlay('o-bot')" style="flex:1;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-      </svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
       <span>Max</span>
-    </button>` +
+    </button>`+
     right.map(t=>mkBtn(t,false)).join('');
   setTab(tabs[0].id);
 }
 
-// ══════════════════════════════════════════
-// CARGAR DATOS
-// ══════════════════════════════════════════
+// ── CARGAR DATOS (paralelo para mayor velocidad) ───────
 async function loadAllData(){
-  const rol=user.rol||'cliente', u=user.username;
-  servicios    = await api('/api/servicios')||[];
-  cotizaciones = await api(`/api/cotizaciones?username=${u}`)||[];
-  proyectos    = await api(`/api/proyectos?username=${u}`)||[];
-  asignaciones = await api(`/api/asignaciones?username=${u}`)||[];
-  reportes     = await api(`/api/reportes?username=${u}`)||[];
-  completados  = await api(`/api/completados?username=${u}`)||[];
+  const rol=user.rol||'cliente',u=user.username;
+  // Todas las llamadas en paralelo
+  const calls=[
+    api('/api/servicios'),
+    api(`/api/cotizaciones?username=${u}`),
+    api(`/api/proyectos?username=${u}`),
+    api(`/api/asignaciones?username=${u}`),
+    api(`/api/reportes?username=${u}`),
+    api(`/api/completados?username=${u}`),
+  ];
   if(['admin','supervisor','personal_admin'].includes(rol)){
-    stats    = await api(`/api/stats?username=${u}`)||{};
-    usuarios = await api(`/api/usuarios?admin_username=${u}`)||[];
+    calls.push(api(`/api/stats?username=${u}`));
+    calls.push(api(`/api/usuarios?admin_username=${u}`));
   }
+  const results=await Promise.all(calls);
+  servicios    = results[0]||[];
+  cotizaciones = results[1]||[];
+  proyectos    = results[2]||[];
+  asignaciones = results[3]||[];
+  reportes     = results[4]||[];
+  completados  = results[5]||[];
+  if(results[6]) stats    = results[6];
+  if(results[7]) usuarios = results[7];
   renderAll();
 }
 
@@ -973,8 +923,8 @@ function renderAll(){
   const rol=user.rol||'cliente';
   if(rol==='cliente')       renderCliente();
   if(rol==='buzo')          renderBuzo();
-  if(rol==='personal_admin'){ renderProyectosAdm(); renderCotAdm(); renderHistorial(); }
-  if(rol==='supervisor')    { renderProyectosAdm(); renderAsigAdm(); renderReportesAdm(); renderHistorial(); }
+  if(rol==='personal_admin'){renderProyectosAdm();renderCotAdm();renderHistorial();}
+  if(rol==='supervisor')    {renderProyectosAdm();renderAsigAdm();renderReportesAdm();renderHistorial();}
   if(rol==='admin'){
     if(stats){
       if($('s-proyectos'))    $('s-proyectos').innerText    = stats.proyectos_activos       ??'—';
@@ -982,234 +932,185 @@ function renderAll(){
       if($('s-buzos'))        $('s-buzos').innerText        = stats.total_buzos             ??'—';
       if($('s-clientes'))     $('s-clientes').innerText     = stats.total_clientes          ??'—';
     }
-    renderProyectosAdm(); renderCotAdm(); renderUsuarios();
+    renderProyectosAdm();renderCotAdm();renderUsuarios();
   }
 }
 
-// ══════════════════════════════════════════
-// RENDERS
-// ══════════════════════════════════════════
+// ── RENDERS ────────────────────────────────────────────
 function renderCliente(){
   const ls=$('lista-servicios');
-  if(ls) ls.innerHTML = servicios.length
-    ? servicios.map(s=>`<div class="serv-card" onclick="abrirCotizar(${s.id})"><div class="serv-icon">${s.icono}</div><div class="serv-info"><h4>${s.nombre}</h4><p>${s.descripcion}</p><div class="serv-sector">Sector ${s.sector}</div></div></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">🔍</span>No hay servicios disponibles.</div>';
-
+  if(ls)ls.innerHTML=servicios.length?servicios.map(s=>`<div class="serv-card" onclick="abrirCotizar(${s.id})"><div class="serv-icon">${s.icono}</div><div class="serv-info"><h4>${s.nombre}</h4><p>${s.descripcion}</p><div class="serv-sector">Sector ${s.sector}</div></div></div>`).join(''):'<div class="empty"><span class="empty-icon">🔍</span>No hay servicios disponibles.</div>';
   const lc=$('lista-cotizaciones');
-  if(lc) lc.innerHTML = cotizaciones.length
-    ? cotizaciones.map((c,i)=>`<div class="list-item" onclick="abrirDetalleSolicitudCliente(${i})"><div class="list-icon">📝</div><div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion||'—'}</p></div><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">📋</span>Sin solicitudes aún.</div>';
-
+  if(lc)lc.innerHTML=cotizaciones.length?cotizaciones.map((c,i)=>`<div class="list-item" onclick="abrirDetalleSolicitudCliente(${i})"><div class="list-icon">📝</div><div class="list-info"><h4>${c.servicio_nombre}</h4><p>${fmt(c.fecha_solicitud)} · ${c.ubicacion||'—'}</p></div><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">📋</span>Sin solicitudes aún.</div>';
   const lh=$('lista-historial-cli');
-  if(lh) lh.innerHTML = completados.length
-    ? completados.map(p=>`<div class="list-item"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre}</h4><p>Finalizado: ${fmt(p.completado_en||p.fecha_fin)}</p></div><span class="badge b-done">Completado</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">🏁</span>No tienes servicios completados aún.</div>';
+  if(lh)lh.innerHTML=completados.length?completados.map(p=>`<div class="list-item"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre}</h4><p>Finalizado: ${fmt(p.completado_en||p.fecha_fin)}</p></div><span class="badge b-done">Completado</span></div>`).join(''):'<div class="empty"><span class="empty-icon">🏁</span>No tienes servicios completados aún.</div>';
 }
 
 function renderBuzo(){
+  // Asignaciones activas
   const la=$('lista-asignaciones');
   if(la){
     const activas=asignaciones.filter(a=>a.estado!=='completado');
-    la.innerHTML = activas.length
-      ? activas.map((a,i)=>`<div class="list-item" onclick="abrirDetalleAsignacion(${i})"><div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div><div class="list-info"><h4>${a.descripcion}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div>`).join('')
-      : '<div class="empty"><span class="empty-icon">✅</span>Sin asignaciones activas.</div>';
+    la.innerHTML=activas.length?activas.map((a,i)=>`<div class="list-item" onclick="abrirDetalleAsignacion(${i})"><div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div><div class="list-info"><h4>${a.descripcion}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">✅</span>Sin asignaciones activas.</div>';
   }
+  // Proyectos del buzo
+  const lp=$('lista-proyectos-buzo');
+  if(lp)lp.innerHTML=proyectos.length?proyectos.map(p=>`<div class="card card-accent" onclick="abrirProyectoCliente(${p.id})"><div style="display:flex;justify-content:space-between;margin-bottom:8px;"><h4 style="font-family:'Barlow Condensed',sans-serif;font-size:16px;">${p.nombre}</h4><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:6px;">📍 ${p.ubicacion||'—'} · Sector ${p.sector||'—'}</p><div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div><div style="font-size:11px;color:var(--muted);margin-top:4px;text-align:right;">${p.progreso||0}% completado</div></div>`).join(''):'<div class="empty"><span class="empty-icon">⚙️</span>Aún no estás asignado a ningún proyecto.</div>';
+  // Reportes
   const lr=$('lista-reportes-buzo');
-  if(lr) lr.innerHTML = reportes.length
-    ? reportes.map((r,i)=>`<div class="list-item" onclick="abrirReporteBuzo(${i})"><div class="list-icon">📋</div><div class="list-info"><h4>${r.proyecto_nombre||'—'}</h4><p>${r.horas_trabajadas}h · ${fmt(r.fecha)}</p></div><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">📄</span>Sin reportes enviados.</div>';
-  const lhb=$('lista-historial-buzo');
-  if(lhb) lhb.innerHTML = completados.length
-    ? completados.map(p=>`<div class="list-item"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre||'—'}</h4><p>Completado el ${fmt(p.completado_en)}</p></div><span class="badge b-done">Completado</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">🏁</span>Historial vacío.</div>';
+  if(lr)lr.innerHTML=reportes.length?reportes.map((r,i)=>`<div class="list-item" onclick="abrirReporteBuzo(${i})"><div class="list-icon">📋</div><div class="list-info"><h4>${r.proyecto_nombre||'—'}</h4><p>${r.horas_trabajadas}h · ${fmt(r.fecha)}</p></div><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">📄</span>Sin reportes enviados.</div>';
 }
 
 function renderProyectosAdm(){
-  const g=$('lista-proyectos-adm'); if(!g) return;
+  const g=$('lista-proyectos-adm');if(!g)return;
   const activos=proyectos.filter(p=>p.estado!=='completado'&&p.estado!=='terminado');
-  g.innerHTML = activos.length
-    ? activos.map(p=>`<div class="list-item" onclick="${user.rol==='personal_admin'?`abrirProyectoCliente(${p.id})`:`abrirProyectoAdmin(${p.id})`}"><div class="list-icon">⚙️</div><div class="list-info"><h4>${p.nombre}</h4><p>${p.sector||'—'} · ${p.ubicacion||'—'}</p></div><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">⚙️</span>No hay proyectos activos.</div>';
+  g.innerHTML=activos.length?activos.map(p=>`<div class="list-item" onclick="${user.rol==='personal_admin'?`abrirProyectoCliente(${p.id})`:`abrirProyectoAdmin(${p.id})`}"><div class="list-icon">⚙️</div><div class="list-info"><h4>${p.nombre}</h4><p>${p.sector||'—'} · ${p.ubicacion||'—'}</p></div><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">⚙️</span>No hay proyectos activos.<br><small style="font-size:11px;">Los proyectos aparecen aquí cuando se aprueba una solicitud.</small></div>';
 }
 
 function renderAsigAdm(){
-  const g=$('lista-asig-adm'); if(!g) return;
+  const g=$('lista-asig-adm');if(!g)return;
   const activos=asignaciones.filter(a=>a.estado!=='completado');
-  g.innerHTML = activos.length
-    ? activos.map(a=>`<div class="list-item"><div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div><div class="list-info"><h4>${a.buzo_nombre||'—'}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">👥</span>Sin asignaciones activas.</div>';
+  g.innerHTML=activos.length?activos.map(a=>`<div class="list-item"><div class="list-icon">${a.prioridad==='alta'?'🔴':'🔵'}</div><div class="list-info"><h4>${a.buzo_nombre||'—'}</h4><p>${a.proyecto_nombre||'—'} · ${fmt(a.fecha)}</p></div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">👥</span>Sin asignaciones activas.</div>';
 }
 
 function renderReportesAdm(){
-  const g=$('lista-reportes-adm'); if(!g) return;
-  g.innerHTML = reportes.length
-    ? reportes.map((r,i)=>`<div class="list-item" onclick="abrirRevisarReporte(${i})"><div class="list-icon">📋</div><div class="list-info"><h4>${r.buzo_nombre||'—'}</h4><p>${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h</p></div><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">📄</span>No hay reportes.</div>';
+  const g=$('lista-reportes-adm');if(!g)return;
+  g.innerHTML=reportes.length?reportes.map((r,i)=>`<div class="list-item" onclick="abrirRevisarReporte(${i})"><div class="list-icon">📋</div><div class="list-info"><h4>${r.buzo_nombre||'—'}</h4><p>${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h</p></div><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">📄</span>No hay reportes.</div>';
 }
 
 function renderCotAdm(){
-  const g=$('lista-cot-adm'); if(!g) return;
-  g.innerHTML = cotizaciones.length
-    ? cotizaciones.map((c,i)=>`<div class="list-item" onclick="abrirResponderCot(${i})"><div class="list-icon">📝</div><div class="list-info"><h4>${c.cliente_nombre||c.cliente_username||'—'}</h4><p>Servicio: ${c.servicio_nombre}</p></div><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">📋</span>No hay solicitudes.</div>';
+  const g=$('lista-cot-adm');if(!g)return;
+  g.innerHTML=cotizaciones.length?cotizaciones.map((c,i)=>`<div class="list-item" onclick="abrirResponderCot(${i})"><div class="list-icon">📝</div><div class="list-info"><h4>${c.cliente_nombre||c.cliente_username||'—'}</h4><p>${c.servicio_nombre} · ${fmt(c.fecha_servicio||c.fecha_solicitud)}</p></div><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></div>`).join(''):'<div class="empty"><span class="empty-icon">📋</span>No hay solicitudes.</div>';
 }
 
 function renderUsuarios(){
-  const g=$('lista-usuarios'); if(!g) return;
-  if(!usuarios.length){ g.innerHTML='<div class="empty"><span class="empty-icon">👤</span>No hay miembros registrados.</div>'; return; }
-  const icons   ={admin:'⭐',supervisor:'🎯',personal_admin:'🏢',buzo:'🤿',cliente:'👤'};
-  const classes ={admin:'role-admin',supervisor:'role-supervisor',personal_admin:'role-personal_admin',buzo:'role-buzo',cliente:'role-cliente'};
-  g.innerHTML = usuarios.map(u=>{
+  const g=$('lista-usuarios');if(!g)return;
+  if(!usuarios.length){g.innerHTML='<div class="empty"><span class="empty-icon">👤</span>No hay miembros registrados.</div>';return;}
+  const icons={admin:'⭐',supervisor:'🎯',personal_admin:'🏢',buzo:'🤿',cliente:'👤'};
+  const classes={admin:'role-admin',supervisor:'role-supervisor',personal_admin:'role-personal_admin',buzo:'role-buzo',cliente:'role-cliente'};
+  g.innerHTML=usuarios.map(u=>{
     const hasImg=u.foto&&u.foto.startsWith('data:image');
     const ini=(((u.nombre||'')[0]||'')+((u.apellido||'')[0]||'')).toUpperCase()||'?';
-    return `<div class="list-item" onclick="abrirDetalleUsuario('${u.username}')">
-      <div class="list-icon">${hasImg?`<img src="${u.foto}">`:(icons[u.rol]||ini)}</div>
-      <div class="list-info"><h4>${u.nombre||'—'} ${u.apellido||''}</h4><p>@${u.username} · ${u.email||'—'}</p></div>
-      <span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol||'—'}</span>
-    </div>`;
+    return`<div class="list-item" onclick="abrirDetalleUsuario('${u.username}')"><div class="list-icon">${hasImg?`<img src="${u.foto}">`:(icons[u.rol]||ini)}</div><div class="list-info"><h4>${u.nombre||'—'} ${u.apellido||''}</h4><p>@${u.username} · ${u.email||'—'}</p></div><span class="role-chip ${classes[u.rol]||''}" style="font-size:9px;">${u.rol||'—'}</span></div>`;
   }).join('');
 }
 
 function renderHistorial(){
-  const gA=$('lista-historial-adm'), gS=$('lista-historial-sup');
-  const html = completados.length
-    ? completados.map(p=>`<div class="list-item" onclick="abrirProyectoAdmin(${p.id})"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre}</h4><p>Terminado: ${fmt(p.completado_en||p.fecha_fin)}</p></div><span class="badge b-done">Completado</span></div>`).join('')
-    : '<div class="empty"><span class="empty-icon">🏁</span>Historial vacío.</div>';
-  if(gA) gA.innerHTML=html;
-  if(gS) gS.innerHTML=html;
+  const gA=$('lista-historial-adm'),gS=$('lista-historial-sup');
+  const html=completados.length?completados.map(p=>`<div class="list-item" onclick="abrirProyectoAdmin(${p.id})"><div class="list-icon">🏁</div><div class="list-info"><h4>${p.nombre}</h4><p>Terminado: ${fmt(p.completado_en||p.fecha_fin)}</p></div><span class="badge b-done">Completado</span></div>`).join(''):'<div class="empty"><span class="empty-icon">🏁</span>Historial vacío.</div>';
+  if(gA)gA.innerHTML=html;if(gS)gS.innerHTML=html;
 }
 
-// ══════════════════════════════════════════
-// DETALLE USUARIO
-// ══════════════════════════════════════════
-function abrirDetalleUsuario(username){
-  const u=usuarios.find(x=>x.username===username); if(!u) return;
-  const classes={admin:'role-admin',supervisor:'role-supervisor',personal_admin:'role-personal_admin',buzo:'role-buzo',cliente:'role-cliente'};
-  const labels ={admin:'Administrador',supervisor:'Supervisor',personal_admin:'Administrativo',buzo:'Buzo',cliente:'Cliente'};
-  const hasImg=u.foto&&u.foto.startsWith('data:image');
-  const ini=(((u.nombre||'')[0]||'')+((u.apellido||'')[0]||'')).toUpperCase()||'?';
-  $('ud-avatar').innerHTML = hasImg?`<img src="${u.foto}" style="width:100%;height:100%;object-fit:cover;">`:ini;
-  $('ud-nombre').innerText  = `${u.nombre||'—'} ${u.apellido||''}`.trim();
-  $('ud-alias').innerText   = `@${u.username}`;
-  $('ud-email').innerText   = u.email||'—';
-  $('ud-tel').innerText     = u.telefono||u.tel||'—';
-  $('ud-rol').innerText     = labels[u.rol]||u.rol||'—';
-  $('ud-chip').className    = `role-chip ${classes[u.rol]||'role-cliente'}`;
-  $('ud-chip').innerText    = labels[u.rol]||u.rol||'—';
-  const canDelete = u.username!==user.username && u.username!=='admin';
-  $('ud-acciones').innerHTML = canDelete
-    ? `<button class="btn-full btn-danger" onclick="eliminarUsuario('${u.username}')">🗑️ Eliminar Usuario</button>`
-    : `<div style="font-size:12px;color:var(--muted);text-align:center;padding:8px;">No puedes eliminar este usuario.</div>`;
-  openOverlay('o-user-detail');
+// ── DETALLE ASIGNACIÓN BUZO (con info completa del proyecto) ──
+function abrirDetalleAsignacion(idx){
+  const a=asignaciones[idx];if(!a)return;
+  const p=proyectos.find(x=>x.id===a.proyecto_id)||proyectos.find(x=>x.nombre===a.proyecto_nombre);
+  const prioColor=a.prioridad==='alta'?'var(--red)':a.prioridad==='baja'?'var(--muted)':'var(--yellow)';
+
+  $('da-body').innerHTML=`
+    <div class="asig-detail-card">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:var(--yellow);text-transform:uppercase;font-weight:700;margin-bottom:10px;">📋 Tarea Asignada</div>
+      <p style="font-size:15px;color:var(--white);line-height:1.6;margin-bottom:14px;font-weight:500;">${a.descripcion||'—'}</p>
+      <div class="asig-detail-row">
+        <span class="asig-icon">📅</span>
+        <div><div class="asig-label">Fecha</div><div class="asig-val">${fmt(a.fecha)}</div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">⚡</span>
+        <div><div class="asig-label">Prioridad</div><div class="asig-val" style="color:${prioColor};font-weight:700;text-transform:capitalize;">${a.prioridad||'Normal'}</div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">🔄</span>
+        <div><div class="asig-label">Estado</div><div><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">👷</span>
+        <div><div class="asig-label">Asignado por</div><div class="asig-val">@${a.asignado_por||'—'}</div></div>
+      </div>
+    </div>
+
+    ${p?`
+    <div class="asig-detail-card">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:var(--yellow);text-transform:uppercase;font-weight:700;margin-bottom:10px;">🏗️ Información del Proyecto</div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">📌</span>
+        <div><div class="asig-label">Nombre del Proyecto</div><div class="asig-val" style="font-weight:600;">${p.nombre}</div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">📍</span>
+        <div><div class="asig-label">Ubicación / Puerto</div><div class="asig-val">${p.ubicacion||'No especificada'}</div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">🌊</span>
+        <div><div class="asig-label">Sector</div><div class="asig-val" style="text-transform:capitalize;">${p.sector||'—'}</div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">📆</span>
+        <div><div class="asig-label">Inicio estimado</div><div class="asig-val">${fmt(p.fecha_inicio)}</div></div>
+      </div>
+      <div class="asig-detail-row">
+        <span class="asig-icon">🏁</span>
+        <div><div class="asig-label">Fin estimado</div><div class="asig-val">${fmt(p.fecha_fin)}</div></div>
+      </div>
+      ${p.descripcion?`
+      <div class="asig-detail-row" style="flex-direction:column;gap:4px;">
+        <span style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;">Descripción del Proyecto</span>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;">${p.descripcion}</p>
+      </div>`:''}
+      <div style="margin-top:12px;">
+        <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:6px;">Progreso</div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
+        <div style="font-size:12px;color:var(--yellow);text-align:right;margin-top:4px;font-weight:700;">${p.progreso||0}%</div>
+      </div>
+    </div>`:`
+    <div class="asig-detail-card">
+      <p style="font-size:13px;color:var(--muted);text-align:center;">Proyecto: <strong style="color:var(--white);">${a.proyecto_nombre||'—'}</strong></p>
+    </div>`}
+
+    <button class="btn-full" onclick="openReporteFormFromAsig(${a.proyecto_id||'null'});closeOverlay('o-detalle-asignacion');">
+      + Enviar Reporte de esta Tarea
+    </button>`;
+  openOverlay('o-detalle-asignacion');
 }
 
-async function eliminarUsuario(username){
-  const u=usuarios.find(x=>x.username===username);
-  const nombre=u?`${u.nombre||''} ${u.apellido||''}`.trim():username;
-  if(!confirm(`⚠️ ¿Eliminar definitivamente al usuario "${nombre}" (@${username})?\n\nEsta acción no se puede deshacer.`)) return;
-  const res=await api(`/api/usuarios/${username}?admin_username=${user.username}`,'DELETE');
-  if(res&&res.success){ alert(`✅ Usuario @${username} eliminado.`); closeOverlay('o-user-detail'); loadAllData(); }
-  else alert('❌ '+(res?.msg||'Error al eliminar.'));
-}
-
-// ══════════════════════════════════════════
-// PROYECTOS
-// ══════════════════════════════════════════
-async function crearProyecto(){
-  const nombre=$('cp-nombre').value.trim(), sector=$('cp-sector').value;
-  if(!nombre){ alert('⚠️ El nombre es obligatorio.'); return; }
-  if(!sector){ alert('⚠️ Selecciona un sector.'); return; }
-  const btn=$('btn-crear-proy'); btn.disabled=true; btn.innerText='Creando...';
-  const res=await api('/api/proyectos','POST',{
-    solicitante_username:user.username, nombre, descripcion:$('cp-desc').value.trim(),
-    sector, ubicacion:$('cp-ubicacion').value.trim(),
-    cliente_username:$('cp-cliente').value.trim(), supervisor:$('cp-supervisor').value.trim(),
-    fecha_inicio:$('cp-finicio').value, fecha_fin:$('cp-ffin').value,
-  });
-  btn.disabled=false; btn.innerText='Crear Proyecto';
-  if(res&&res.success){
-    alert('✅ Proyecto creado.'); closeOverlay('o-crear-proyecto');
-    ['cp-nombre','cp-desc','cp-ubicacion','cp-cliente','cp-supervisor','cp-finicio','cp-ffin'].forEach(id=>$(id).value='');
-    $('cp-sector').value=''; loadAllData();
-  } else alert('❌ '+(res?.msg||'Error al crear el proyecto.'));
-}
-
+// ── PROYECTO VISTA ─────────────────────────────────────
 function abrirProyectoAdmin(id){
-  const p=proyectos.find(x=>x.id===id)||completados.find(x=>x.id===id); if(!p) return;
-  currentProjId=id; $('opa-title').innerText=p.nombre;
+  const p=proyectos.find(x=>x.id===id)||completados.find(x=>x.id===id);if(!p)return;
+  currentProjId=id;$('opa-title').innerText=p.nombre;
   const esComp=p.estado==='completado'||p.estado==='terminado';
   $('opa-body').innerHTML=`
     <div class="fgroup"><h4>Info del Proyecto</h4>
       <div style="font-size:13px;color:var(--muted);margin-bottom:12px;">${p.descripcion||'Sin descripción'}</div>
       <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector||'—'}</span></div>
       <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
-      <div class="info-row-sep"><span class="lbl">Supervisor</span><span class="val">${p.supervisor||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Supervisor</span><span class="val">${p.supervisor||'No asignado'}</span></div>
       <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
       <div class="info-row-sep"><span class="lbl">Fin est.</span><span class="val">${fmt(p.fecha_fin)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Buzos asignados</span><span class="val">${(p.buzos_asignados||[]).length>0?(p.buzos_asignados||[]).join(', '):'Ninguno aún'}</span></div>
     </div>
+    ${!esComp?`
     <div class="fgroup"><h4>Actualizar</h4>
       <label class="finp-label">Estado</label>
-      <select class="finp" id="upd-estado" ${esComp?'disabled':''}>
+      <select class="finp" id="upd-estado">
         <option value="activo" ${p.estado==='activo'?'selected':''}>Activo</option>
         <option value="pausado" ${p.estado==='pausado'?'selected':''}>Pausado</option>
-        <option value="completado" ${esComp?'selected':''}>Completado</option>
       </select>
       <label class="finp-label">Progreso (%)</label>
-      <input class="finp" id="upd-prog" type="number" min="0" max="100" value="${p.progreso||0}" ${esComp?'disabled':''}>
-      ${!esComp?`<button class="btn-full" onclick="actualizarProyecto(${p.id})">Guardar Cambios</button>`:''}
+      <input class="finp" id="upd-prog" type="number" min="0" max="100" value="${p.progreso||0}">
+      <label class="finp-label">Supervisor asignado</label>
+      <input class="finp" id="upd-sup" value="${p.supervisor||''}" placeholder="username del supervisor">
+      <button class="btn-full" onclick="actualizarProyecto(${p.id})">Guardar Cambios</button>
     </div>
-    ${!esComp?`<div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
       <button class="btn-full btn-green" onclick="abrirFinalizarProyecto(${p.id})">🏁 Finalizar Proyecto</button>
-    </div>`:`<div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--green);text-align:center;margin-top:4px;">✅ Proyecto finalizado.</div>`}
-    ${user.rol==='admin'&&!esComp?`<div style="margin-top:12px;"><button class="btn-full btn-danger" onclick="eliminarProyecto(${p.id})">🗑️ Eliminar Proyecto</button></div>`:''}`;
+    </div>
+    ${user.rol==='admin'?`<div style="margin-top:12px;"><button class="btn-full btn-danger" onclick="eliminarProyecto(${p.id})">🗑️ Eliminar Proyecto</button></div>`:''}
+    `:`<div style="background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.2);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--green);text-align:center;margin-top:4px;">✅ Proyecto finalizado correctamente.</div>`}`;
   openOverlay('o-proyecto-admin');
 }
 
-async function actualizarProyecto(id){
-  const res=await api(`/api/proyectos/${id}`,'PUT',{
-    solicitante_username:user.username, proyecto_id:id,
-    estado:$('upd-estado').value, progreso:parseInt($('upd-prog').value)||0
-  });
-  if(res&&res.success){ alert('✅ Actualizado.'); closeOverlay('o-proyecto-admin'); loadAllData(); }
-  else alert('❌ '+(res?.msg||'Error.'));
-}
-
-async function eliminarProyecto(id){
-  const p=proyectos.find(x=>x.id===id);
-  if(!confirm(`⚠️ ¿Eliminar "${p?.nombre||'este proyecto'}"?\n\nSe eliminarán también las asignaciones y reportes. IRREVERSIBLE.`)) return;
-  const res=await api(`/api/proyectos/${id}?solicitante_username=${user.username}`,'DELETE');
-  if(res&&res.success){ alert('✅ Proyecto eliminado.'); closeOverlay('o-proyecto-admin'); loadAllData(); }
-  else alert('❌ '+(res?.msg||'Error.'));
-}
-
-function abrirFinalizarProyecto(id){
-  const p=proyectos.find(x=>x.id===id); if(!p) return;
-  currentProjId=id; $('fp-nombre-lbl').innerText=p.nombre;
-  $('fp-fecha').value=new Date().toISOString().split('T')[0];
-  ['fp-resumen','fp-obs','fp-horas','fp-buzos'].forEach(id=>$(id).value='');
-  $('fp-resultado').value='';
-  openOverlay('o-finalizar-proy');
-}
-
-async function finalizarProyecto(){
-  const fecha=$('fp-fecha').value, resumen=$('fp-resumen').value.trim(), resultado=$('fp-resultado').value;
-  if(!fecha||!resumen||!resultado){ alert('⚠️ Completa fecha, resumen y resultado.'); return; }
-  const btn=$('btn-finalizar'); btn.disabled=true; btn.innerText='Finalizando...';
-  const res=await api(`/api/proyectos/${currentProjId}`,'PUT',{
-    solicitante_username:user.username, proyecto_id:currentProjId,
-    estado:'completado', progreso:100, fecha_fin_real:fecha,
-    resumen_final:resumen, resultado_final:resultado,
-    observaciones:$('fp-obs').value.trim(),
-    horas_totales:parseFloat($('fp-horas').value)||null,
-    buzos_count:parseInt($('fp-buzos').value)||null,
-  });
-  btn.disabled=false; btn.innerText='✅ Confirmar Finalización';
-  if(res&&res.success){ alert('✅ Proyecto finalizado.'); closeOverlay('o-finalizar-proy'); closeOverlay('o-proyecto-admin'); loadAllData(); }
-  else alert('❌ '+(res?.msg||'Error.'));
-}
-
 function abrirProyectoCliente(id){
-  const p=proyectos.find(x=>x.id===id)||completados.find(x=>x.id===id); if(!p) return;
+  const p=proyectos.find(x=>x.id===id)||completados.find(x=>x.id===id);if(!p)return;
   $('op-title').innerText=p.nombre;
   $('op-body').innerHTML=`
     <div class="fgroup"><h4>Detalles</h4>
@@ -1218,6 +1119,7 @@ function abrirProyectoCliente(id){
       <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
       <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(p.estado)}">${stateLabel(p.estado)}</span></span></div>
       <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Fin estimado</span><span class="val">${fmt(p.fecha_fin)}</span></div>
     </div>
     <div class="fgroup"><h4>Progreso</h4>
       <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
@@ -1226,30 +1128,147 @@ function abrirProyectoCliente(id){
   openOverlay('o-proyecto-cliente');
 }
 
-// ══════════════════════════════════════════
-// CREAR USUARIO
-// ══════════════════════════════════════════
-async function crearUsuario(){
-  const nombre=$('cu-nombre').value.trim(), apellido=$('cu-apellido').value.trim();
-  const username=$('cu-user').value.trim(), email=$('cu-email').value.trim();
-  const password=$('cu-pass').value, rol=$('cu-rol').value;
-  if(!nombre||!apellido||!username||!email||!password){ alert('⚠️ Todos los campos con * son obligatorios.'); return; }
-  const btn=$('btn-crear-user'); btn.disabled=true; btn.innerText='Registrando...';
-  const res=await api('/api/crear-usuario','POST',{
-    admin_username:user.username, nombre, apellido, username, email, password, rol,
-    telefono:$('cu-tel').value.trim()
+async function actualizarProyecto(id){
+  const campos={
+    solicitante_username:user.username,proyecto_id:id,
+    estado:$('upd-estado').value,
+    progreso:parseInt($('upd-prog').value)||0,
+  };
+  // Actualizar supervisor si cambió
+  const supVal=$('upd-sup')?.value?.trim();
+  if(supVal!==undefined){
+    const res2=await api(`/api/proyectos/${id}`,'PUT',{...campos,notas:''});
+    // También actualizar campo supervisor directamente
+    if(supVal){await api(`/api/proyectos/${id}`,'PUT',{solicitante_username:user.username,proyecto_id:id,notas:`supervisor:${supVal}`});}
+  }
+  const res=await api(`/api/proyectos/${id}`,'PUT',campos);
+  if(res&&res.success){alert('✅ Actualizado.');closeOverlay('o-proyecto-admin');loadAllData();}
+  else alert('❌ '+(res?.msg||'Error.'));
+}
+
+async function eliminarProyecto(id){
+  const p=proyectos.find(x=>x.id===id);
+  if(!confirm(`⚠️ ¿Eliminar "${p?.nombre||'este proyecto'}"?\n\nSe eliminarán asignaciones y reportes. IRREVERSIBLE.`))return;
+  const res=await api(`/api/proyectos/${id}?solicitante_username=${user.username}`,'DELETE');
+  if(res&&res.success){alert('✅ Proyecto eliminado.');closeOverlay('o-proyecto-admin');loadAllData();}
+  else alert('❌ '+(res?.msg||'Error.'));
+}
+
+// ── FINALIZAR PROYECTO (PDF OBLIGATORIO) ───────────────
+let fpProjId=null;
+
+function onFpPdfChange(input){
+  const file=input.files[0];if(!file)return;
+  const zone=$('fp-pdf-zone'),name=$('fp-pdf-name');
+  if(file.size>8*1024*1024){alert('⚠️ El PDF es demasiado grande (máx 6 MB).');input.value='';return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    fpPdfBase64=e.target.result;
+    zone.classList.add('has-file');
+    name.style.display='block';
+    name.innerText='✅ '+file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+function abrirFinalizarProyecto(id){
+  const p=proyectos.find(x=>x.id===id);if(!p)return;
+  fpProjId=id; fpPdfBase64=null;
+  $('fp-nombre-lbl').innerText=p.nombre;
+  $('fp-fecha').value=new Date().toISOString().split('T')[0];
+  ['fp-resumen','fp-obs','fp-horas','fp-buzos'].forEach(i=>$(i).value='');
+  $('fp-resultado').value='';
+  $('fp-pdf-input').value='';
+  $('fp-pdf-zone').classList.remove('has-file');
+  $('fp-pdf-name').style.display='none';
+  $('fp-pdf-name').innerText='';
+  openOverlay('o-finalizar-proy');
+}
+
+async function finalizarProyecto(){
+  const fecha=$('fp-fecha').value,resumen=$('fp-resumen').value.trim(),resultado=$('fp-resultado').value;
+  if(!fpPdfBase64){alert('⚠️ Debes adjuntar el informe PDF del servicio para poder finalizar el proyecto.');return;}
+  if(!fecha||!resumen||!resultado){alert('⚠️ Completa fecha, resumen y resultado.');return;}
+  const btn=$('btn-finalizar');btn.disabled=true;btn.innerText='Finalizando...';
+  const res=await api(`/api/proyectos/${fpProjId}/finalizar`,'POST',{
+    supervisor_username:user.username,proyecto_id:fpProjId,
+    fecha_fin_real:fecha,resumen_final:resumen,resultado_final:resultado,
+    observaciones:$('fp-obs').value.trim(),
+    horas_totales:parseFloat($('fp-horas').value)||null,
+    buzos_count:parseInt($('fp-buzos').value)||null,
+    pdf_titulo:`Informe de Cierre — ${fecha}`,
+    pdf_archivo:fpPdfBase64,
   });
-  btn.disabled=false; btn.innerText='Registrar Miembro';
-  if(res&&res.success){ alert('✅ Miembro registrado.'); closeOverlay('o-crear-user'); ['cu-nombre','cu-apellido','cu-user','cu-email','cu-pass','cu-tel'].forEach(id=>$(id).value=''); loadAllData(); }
+  btn.disabled=false;btn.innerText='✅ Confirmar Finalización';
+  if(res&&res.success){
+    alert('✅ Proyecto finalizado correctamente.\nEl informe PDF ha sido guardado.');
+    fpPdfBase64=null;closeOverlay('o-finalizar-proy');closeOverlay('o-proyecto-admin');loadAllData();
+  }else alert('❌ '+(res?.msg||'Error al finalizar.'));
+}
+
+// ── DETALLE USUARIO ─────────────────────────────────────
+function abrirDetalleUsuario(username){
+  const u=usuarios.find(x=>x.username===username);if(!u)return;
+  const classes={admin:'role-admin',supervisor:'role-supervisor',personal_admin:'role-personal_admin',buzo:'role-buzo',cliente:'role-cliente'};
+  const labels={admin:'Administrador',supervisor:'Supervisor',personal_admin:'Administrativo',buzo:'Buzo',cliente:'Cliente'};
+  const hasImg=u.foto&&u.foto.startsWith('data:image');
+  const ini=(((u.nombre||'')[0]||'')+((u.apellido||'')[0]||'')).toUpperCase()||'?';
+  $('ud-avatar').innerHTML=hasImg?`<img src="${u.foto}" style="width:100%;height:100%;object-fit:cover;">`:ini;
+  $('ud-nombre').innerText=`${u.nombre||'—'} ${u.apellido||''}`.trim();
+  $('ud-alias').innerText=`@${u.username}`;
+  $('ud-email').innerText=u.email||'—';
+  $('ud-tel').innerText=u.telefono||u.tel||'—';
+  $('ud-rol').innerText=labels[u.rol]||u.rol||'—';
+  $('ud-chip').className=`role-chip ${classes[u.rol]||'role-cliente'}`;
+  $('ud-chip').innerText=labels[u.rol]||u.rol||'—';
+  const canDelete=u.username!==user.username&&u.username!=='admin';
+  $('ud-acciones').innerHTML=canDelete?`<button class="btn-full btn-danger" onclick="eliminarUsuario('${u.username}')">🗑️ Eliminar Usuario</button>`:`<div style="font-size:12px;color:var(--muted);text-align:center;padding:8px;">No puedes eliminar este usuario.</div>`;
+  openOverlay('o-user-detail');
+}
+
+async function eliminarUsuario(username){
+  const u=usuarios.find(x=>x.username===username);
+  const nombre=u?`${u.nombre||''} ${u.apellido||''}`.trim():username;
+  if(!confirm(`⚠️ ¿Eliminar definitivamente al usuario "${nombre}" (@${username})?\n\nEsta acción no se puede deshacer.`))return;
+  const res=await api(`/api/usuarios/${username}?admin_username=${user.username}`,'DELETE');
+  if(res&&res.success){alert(`✅ Usuario @${username} eliminado.`);closeOverlay('o-user-detail');loadAllData();}
+  else alert('❌ '+(res?.msg||'Error al eliminar.'));
+}
+
+// ── CREAR PROYECTO ──────────────────────────────────────
+async function crearProyecto(){
+  const nombre=$('cp-nombre').value.trim(),sector=$('cp-sector').value;
+  if(!nombre){alert('⚠️ El nombre es obligatorio.');return;}
+  if(!sector){alert('⚠️ Selecciona un sector.');return;}
+  const btn=$('btn-crear-proy');btn.disabled=true;btn.innerText='Creando...';
+  const res=await api('/api/proyectos','POST',{
+    solicitante_username:user.username,nombre,descripcion:$('cp-desc').value.trim(),
+    sector,ubicacion:$('cp-ubicacion').value.trim(),
+    cliente_username:$('cp-cliente').value.trim(),supervisor:$('cp-supervisor').value.trim(),
+    fecha_inicio:$('cp-finicio').value,fecha_fin:$('cp-ffin').value,
+  });
+  btn.disabled=false;btn.innerText='Crear Proyecto';
+  if(res&&res.success){alert('✅ Proyecto creado.');closeOverlay('o-crear-proyecto');['cp-nombre','cp-desc','cp-ubicacion','cp-cliente','cp-supervisor','cp-finicio','cp-ffin'].forEach(id=>$(id).value='');$('cp-sector').value='';loadAllData();}
+  else alert('❌ '+(res?.msg||'Error al crear el proyecto.'));
+}
+
+// ── CREAR USUARIO ───────────────────────────────────────
+async function crearUsuario(){
+  const nombre=$('cu-nombre').value.trim(),apellido=$('cu-apellido').value.trim();
+  const username=$('cu-user').value.trim(),email=$('cu-email').value.trim();
+  const password=$('cu-pass').value,rol=$('cu-rol').value;
+  if(!nombre||!apellido||!username||!email||!password){alert('⚠️ Todos los campos con * son obligatorios.');return;}
+  const btn=$('btn-crear-user');btn.disabled=true;btn.innerText='Registrando...';
+  const res=await api('/api/crear-usuario','POST',{admin_username:user.username,nombre,apellido,username,email,password,rol,telefono:$('cu-tel').value.trim()});
+  btn.disabled=false;btn.innerText='Registrar Miembro';
+  if(res&&res.success){alert('✅ Miembro registrado.');closeOverlay('o-crear-user');['cu-nombre','cu-apellido','cu-user','cu-email','cu-pass','cu-tel'].forEach(id=>$(id).value='');loadAllData();}
   else alert('❌ '+(res?.msg||'Error al registrar.'));
 }
 
-// ══════════════════════════════════════════
-// COTIZACIONES
-// ══════════════════════════════════════════
+// ── COTIZACIONES ────────────────────────────────────────
 function abrirCotizar(servicioId){
-  currentCotServicio=servicios.find(s=>s.id===servicioId); if(!currentCotServicio) return;
-  const manana=new Date(); manana.setDate(manana.getDate()+1);
+  currentCotServicio=servicios.find(s=>s.id===servicioId);if(!currentCotServicio)return;
+  const manana=new Date();manana.setDate(manana.getDate()+1);
   $('cot-body').innerHTML=`
     <div class="fgroup"><h4>${currentCotServicio.icono} ${currentCotServicio.nombre}</h4>
       <p style="font-size:13px;color:var(--muted);">${currentCotServicio.descripcion}</p>
@@ -1260,7 +1279,7 @@ function abrirCotizar(servicioId){
       <textarea class="finp" id="cot-desc" rows="4" placeholder="Describe el trabajo que necesitas..."></textarea>
       <label class="finp-label">Ubicación / Puerto *</label>
       <input class="finp" id="cot-ubicacion" placeholder="Ej: Muelle Pesquero Callao">
-      <label class="finp-label">Fecha preferida *</label>
+      <label class="finp-label">Fecha preferida del servicio *</label>
       <input class="finp" id="cot-fecha" type="date" min="${manana.toISOString().split('T')[0]}">
       <button class="btn-full" onclick="enviarCotizacion()">Enviar Solicitud</button>
     </div>`;
@@ -1268,23 +1287,20 @@ function abrirCotizar(servicioId){
 }
 
 async function enviarCotizacion(){
-  const desc=$('cot-desc').value.trim(), ubicacion=$('cot-ubicacion').value.trim(), fecha=$('cot-fecha').value;
-  if(!desc||!ubicacion){ alert('⚠️ Completa la descripción y ubicación.'); return; }
-  if(!fecha){ alert('⚠️ Selecciona una fecha preferida.'); return; }
-  const res=await api('/api/cotizaciones','POST',{
-    cliente_username:user.username, servicio_id:currentCotServicio.id,
-    descripcion:desc, sector:currentCotServicio.sector, ubicacion, fecha_servicio:fecha
-  });
-  if(res&&res.success){ alert('✅ Solicitud enviada.'); closeOverlay('o-cotizar'); loadAllData(); }
+  const desc=$('cot-desc').value.trim(),ubicacion=$('cot-ubicacion').value.trim(),fecha=$('cot-fecha').value;
+  if(!desc||!ubicacion){alert('⚠️ Completa la descripción y ubicación.');return;}
+  if(!fecha){alert('⚠️ Selecciona una fecha preferida.');return;}
+  const res=await api('/api/cotizaciones','POST',{cliente_username:user.username,servicio_id:currentCotServicio.id,descripcion:desc,sector:currentCotServicio.sector,ubicacion,fecha_servicio:fecha});
+  if(res&&res.success){alert('✅ Solicitud enviada. El equipo te contactará pronto.');closeOverlay('o-cotizar');loadAllData();}
   else alert('❌ '+(res?.msg||'Error.'));
 }
 
 function abrirDetalleSolicitudCliente(idx){
-  const c=cotizaciones[idx]; if(!c) return;
+  const c=cotizaciones[idx];if(!c)return;
   const pasos=[
-    {label:'Solicitud enviada',    desc:'Tu solicitud fue recibida por el equipo.',                             done:true},
-    {label:'En revisión',          desc:'El equipo está evaluando tu solicitud.',                               done:['aprobada','rechazada'].includes(c.estado)},
-    {label:'Respuesta del equipo', desc:c.estado==='aprobada'?'✅ Aprobada. Pronto te contactaremos.':c.estado==='rechazada'?'❌ Solicitud rechazada.':'Pendiente de respuesta.', done:['aprobada','rechazada'].includes(c.estado)},
+    {label:'Solicitud enviada',    desc:'Tu solicitud fue recibida por el equipo.',done:true},
+    {label:'En revisión del equipo',desc:'El equipo de Oficina está evaluando tu solicitud.',done:['aprobada','rechazada'].includes(c.estado)},
+    {label:'Respuesta del equipo', desc:c.estado==='aprobada'?'✅ Aprobada. El proyecto ha sido creado y pronto te contactaremos.':c.estado==='rechazada'?'❌ Solicitud rechazada.':'Pendiente de respuesta.',done:['aprobada','rechazada'].includes(c.estado)},
   ];
   const tlHtml=pasos.map((p,i)=>`
     <div style="display:flex;gap:12px;padding-bottom:${i<pasos.length-1?'18px':'0'};position:relative;">
@@ -1293,7 +1309,7 @@ function abrirDetalleSolicitudCliente(idx){
       <div style="flex:1;padding-top:2px;"><div style="font-size:14px;font-weight:600;color:${p.done?'var(--white)':'var(--muted)'};">${p.label}</div><div style="font-size:12px;color:var(--muted);margin-top:3px;">${p.desc}</div></div>
     </div>`).join('');
   $('ds-body').innerHTML=`
-    <div class="fgroup"><h4>Información del Servicio</h4>
+    <div class="fgroup"><h4>Información</h4>
       <div class="info-row-sep"><span class="lbl">Servicio</span><span class="val">${c.servicio_nombre||'—'}</span></div>
       <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${c.ubicacion||'—'}</span></div>
       <div class="info-row-sep"><span class="lbl">Fecha solicitada</span><span class="val" style="color:var(--yellow);font-weight:700;">${fmt(c.fecha_servicio||c.fecha_solicitud)}</span></div>
@@ -1305,102 +1321,90 @@ function abrirDetalleSolicitudCliente(idx){
 }
 
 function abrirResponderCot(idx){
-  currentCotIdx=idx; const c=cotizaciones[idx];
+  currentCotIdx=idx;const c=cotizaciones[idx];
+  const yaRespondida=c.estado!=='pendiente';
   $('rc-body').innerHTML=`
     <div class="fgroup"><h4>Solicitud de ${c.cliente_nombre||c.cliente_username||'—'}</h4>
       <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">${c.descripcion}</p>
-      <div class="info-row-sep"><span class="lbl">Servicio</span><span class="val">${c.servicio_nombre} · ${c.ubicacion||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Servicio</span><span class="val">${c.servicio_nombre}</span></div>
+      <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${c.ubicacion||'—'}</span></div>
       <div class="info-row-sep"><span class="lbl">Fecha preferida</span><span class="val" style="color:var(--yellow);font-weight:700;">${fmt(c.fecha_servicio)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Estado actual</span><span><span class="badge ${stateMap(c.estado)}">${stateLabel(c.estado)}</span></span></div>
     </div>
-    <div class="fgroup"><label class="finp-label">Decisión</label>
-      <select class="finp" id="rc-estado"><option value="aprobada">✅ Aprobar</option><option value="rechazada">❌ Rechazar</option></select>
+    ${!yaRespondida?`
+    <div class="fgroup">
+      <h4>Respuesta</h4>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">⚠️ Al <strong>Aprobar</strong>, se creará automáticamente un proyecto asignado a este cliente.</p>
+      <label class="finp-label">Decisión</label>
+      <select class="finp" id="rc-estado"><option value="aprobada">✅ Aprobar — Crear Proyecto</option><option value="rechazada">❌ Rechazar</option></select>
       <button class="btn-full" onclick="responderCotizacion()">Enviar Respuesta</button>
-    </div>`;
+    </div>`:`<div style="background:rgba(46,204,113,.06);border:1px solid rgba(46,204,113,.2);border-radius:12px;padding:14px;text-align:center;font-size:13px;color:var(--muted);">Esta solicitud ya fue respondida.</div>`}`;
   openOverlay('o-resp-cot');
 }
 
 async function responderCotizacion(){
   const c=cotizaciones[currentCotIdx];
-  const res=await api(`/api/cotizaciones/${c.id}`,'PUT',{admin_username:user.username, cotizacion_id:c.id, estado:$('rc-estado').value});
-  if(res&&res.success){ alert('✅ Respuesta enviada.'); closeOverlay('o-resp-cot'); loadAllData(); }
-  else alert('❌ '+(res?.msg||'Error.'));
+  const res=await api(`/api/cotizaciones/${c.id}`,'PUT',{admin_username:user.username,cotizacion_id:c.id,estado:$('rc-estado').value});
+  if(res&&res.success){
+    const msg=$('rc-estado').value==='aprobada'?'✅ Solicitud aprobada. Se ha creado el proyecto automáticamente en la sección Proyectos.':'✅ Respuesta enviada.';
+    alert(msg);closeOverlay('o-resp-cot');loadAllData();
+  }else alert('❌ '+(res?.msg||'Error.'));
 }
 
-// ══════════════════════════════════════════
-// ASIGNACIONES
-// ══════════════════════════════════════════
+// ── ASIGNACIONES ────────────────────────────────────────
 async function openAsignarForm(){
+  // Tomar proyectos activos
   const activos=proyectos.filter(p=>p.estado==='activo');
+  // FIX: buzos vienen de usuarios (que ahora incluye supervisor y personal_admin también)
   const buzos=usuarios.filter(u=>u.rol==='buzo');
-  $('asi-proyecto').innerHTML=activos.length?activos.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join(''):'<option value="">— Sin proyectos activos —</option>';
+  $('asi-proyecto').innerHTML=activos.length?activos.map(p=>`<option value="${p.id}">${p.nombre} (${p.ubicacion||p.sector||'—'})</option>`).join(''):'<option value="">— Sin proyectos activos —</option>';
   $('asi-buzo').innerHTML=buzos.length?buzos.map(b=>`<option value="${b.username}">${b.nombre||''} ${b.apellido||''} (@${b.username})</option>`).join(''):'<option value="">— Sin buzos registrados —</option>';
   $('asi-fecha').value=new Date().toISOString().split('T')[0];
   openOverlay('o-asignar');
 }
 
 async function crearAsignacion(){
-  const buzo_username=$('asi-buzo').value, desc=$('asi-desc').value.trim(), proyecto_id=parseInt($('asi-proyecto').value);
-  if(!buzo_username||!desc||isNaN(proyecto_id)){ alert('⚠️ Completa todos los campos.'); return; }
-  const btn=$('btn-asignar'); btn.disabled=true; btn.innerText='Asignando...';
-  const res=await api('/api/asignaciones','POST',{supervisor_username:user.username, buzo_username, proyecto_id, descripcion:desc, fecha:$('asi-fecha').value, prioridad:$('asi-prioridad').value});
-  btn.disabled=false; btn.innerText='Asignar Tarea';
-  if(res&&res.success){ alert('✅ Asignación creada.'); closeOverlay('o-asignar'); loadAllData(); }
+  const buzo_username=$('asi-buzo').value,desc=$('asi-desc').value.trim(),proyecto_id=parseInt($('asi-proyecto').value);
+  if(!buzo_username||!desc||isNaN(proyecto_id)){alert('⚠️ Completa todos los campos.');return;}
+  const btn=$('btn-asignar');btn.disabled=true;btn.innerText='Asignando...';
+  const res=await api('/api/asignaciones','POST',{supervisor_username:user.username,buzo_username,proyecto_id,descripcion:desc,fecha:$('asi-fecha').value,prioridad:$('asi-prioridad').value});
+  btn.disabled=false;btn.innerText='Asignar Tarea';
+  if(res&&res.success){alert('✅ Buzo asignado al proyecto.');closeOverlay('o-asignar');loadAllData();}
   else alert('❌ '+(res?.msg||'Error al asignar.'));
 }
 
-function abrirDetalleAsignacion(idx){
-  const a=asignaciones[idx]; if(!a) return;
-  const p=proyectos.find(x=>x.id===a.proyecto_id||x.nombre===a.proyecto_nombre);
-  $('da-body').innerHTML=`
-    <div class="fgroup"><h4>Tarea Asignada</h4>
-      <p style="font-size:14px;color:var(--white);line-height:1.6;margin-bottom:12px;">${a.descripcion||'—'}</p>
-      <div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmt(a.fecha)}</span></div>
-      <div class="info-row-sep"><span class="lbl">Prioridad</span><span class="val" style="color:${a.prioridad==='alta'?'var(--red)':a.prioridad==='baja'?'var(--muted)':'var(--yellow)'};font-weight:700;text-transform:capitalize;">${a.prioridad||'Normal'}</span></div>
-      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(a.estado)}">${stateLabel(a.estado)}</span></span></div>
-    </div>
-    <div class="fgroup"><h4>🏗️ Información del Proyecto</h4>
-      ${p?`
-        <div class="info-row-sep"><span class="lbl">Nombre</span><span class="val">${p.nombre}</span></div>
-        <div class="info-row-sep"><span class="lbl">Sector</span><span class="val" style="text-transform:capitalize;">${p.sector||'—'}</span></div>
-        <div class="info-row-sep"><span class="lbl">Ubicación</span><span class="val">${p.ubicacion||'—'}</span></div>
-        <div class="info-row-sep"><span class="lbl">Inicio</span><span class="val">${fmt(p.fecha_inicio)}</span></div>
-        <div style="margin-top:12px;"><div style="font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;margin-bottom:6px;">Progreso del Proyecto</div>
-        <div class="progress-bar"><div class="progress-fill" style="width:${p.progreso||0}%"></div></div>
-        <div style="font-size:12px;color:var(--yellow);text-align:right;margin-top:4px;font-weight:700;">${p.progreso||0}%</div></div>
-      `:`<p style="font-size:13px;color:var(--muted);">${a.proyecto_nombre||'—'}</p>`}
-    </div>
-    <button class="btn-full" onclick="openReporteFormFromAsig(${a.proyecto_id||'null'});closeOverlay('o-detalle-asignacion');">+ Enviar Reporte de esta Tarea</button>`;
-  openOverlay('o-detalle-asignacion');
-}
-
-function openReporteFormFromAsig(proyectoId){
-  openReporteForm().then(()=>{ if(proyectoId){ const sel=$('rep-proyecto'); if(sel) sel.value=proyectoId; } });
-}
-
-// ══════════════════════════════════════════
-// REPORTES
-// ══════════════════════════════════════════
+// ── REPORTES ────────────────────────────────────────────
 async function openReporteForm(){
-  $('rep-proyecto').innerHTML=proyectos.length?proyectos.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join(''):'<option value="">— Sin proyectos —</option>';
+  // FIX: Para buzo, usar todos los proyectos en los que está asignado
+  const listaProy=proyectos.length?proyectos:[];
+  $('rep-proyecto').innerHTML=listaProy.length?listaProy.map(p=>`<option value="${p.id}">${p.nombre}</option>`).join(''):'<option value="">— Sin proyectos asignados —</option>';
+  $('rep-desc').value='';$('rep-horas').value='';$('rep-cond').value='';$('rep-incidentes').value='';
   openOverlay('o-reporte');
 }
 
+function openReporteFormFromAsig(proyectoId){
+  openReporteForm().then(()=>{
+    if(proyectoId){const sel=$('rep-proyecto');if(sel)sel.value=proyectoId;}
+  });
+}
+
 async function enviarReporte(){
-  const desc=$('rep-desc').value.trim(), horas=parseFloat($('rep-horas').value), pid=parseInt($('rep-proyecto').value);
-  if(!desc||isNaN(horas)||isNaN(pid)){ alert('⚠️ Descripción y horas son obligatorios.'); return; }
-  const btn=$('btn-rep'); btn.disabled=true; btn.innerText='Enviando...';
-  const res=await api('/api/reportes','POST',{buzo_username:user.username, proyecto_id:pid, descripcion:desc, horas_trabajadas:horas, condiciones:$('rep-cond').value, incidentes:$('rep-incidentes').value.trim()});
-  btn.disabled=false; btn.innerText='Enviar Reporte';
-  if(res&&res.success){ alert('✅ Reporte enviado.'); closeOverlay('o-reporte'); loadAllData(); }
+  const desc=$('rep-desc').value.trim(),horas=parseFloat($('rep-horas').value),pid=parseInt($('rep-proyecto').value);
+  if(!desc||isNaN(horas)||isNaN(pid)){alert('⚠️ Descripción, horas y proyecto son obligatorios.');return;}
+  const btn=$('btn-rep');btn.disabled=true;btn.innerText='Enviando...';
+  const res=await api('/api/reportes','POST',{buzo_username:user.username,proyecto_id:pid,descripcion:desc,horas_trabajadas:horas,condiciones:$('rep-cond').value,incidentes:$('rep-incidentes').value.trim()});
+  btn.disabled=false;btn.innerText='Enviar Reporte';
+  if(res&&res.success){alert('✅ Reporte enviado.');closeOverlay('o-reporte');loadAllData();}
   else alert('❌ '+(res?.msg||'Error.'));
 }
 
 function abrirReporteBuzo(idx){
-  currentRepBuzoIdx=idx; const r=reportes[idx];
+  currentRepBuzoIdx=idx;const r=reportes[idx];
   $('drb-body').innerHTML=`
     <div class="fgroup"><h4>${r.proyecto_nombre||'—'}</h4>
       <div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmt(r.fecha)}</span></div>
-      <div class="info-row-sep"><span class="lbl">Estado</span><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></div>
+      <div class="info-row-sep"><span class="lbl">Estado</span><span><span class="badge ${stateMap(r.estado)}">${stateLabel(r.estado)}</span></span></div>
+      ${r.comentario_supervisor?`<div class="info-row-sep"><span class="lbl">Comentario sup.</span><span class="val" style="color:var(--yellow);">${r.comentario_supervisor}</span></div>`:''}
     </div>
     <div class="fgroup">
       <label class="finp-label">Trabajo Realizado ${r.estado!=='pendiente'?'(solo lectura)':'(editable)'}</label>
@@ -1415,78 +1419,66 @@ function abrirReporteBuzo(idx){
 
 async function editarReporteBuzo(){
   const r=reportes[currentRepBuzoIdx];
-  const res=await api(`/api/reportes/${r.id}/editar`,'PUT',{buzo_username:user.username, reporte_id:r.id, descripcion:$('drb-desc').value, horas_trabajadas:parseFloat($('drb-horas').value)});
-  if(res&&res.success){ alert('✅ Reporte editado.'); closeOverlay('o-detalle-rep-buzo'); loadAllData(); }
+  const res=await api(`/api/reportes/${r.id}/editar`,'PUT',{buzo_username:user.username,reporte_id:r.id,descripcion:$('drb-desc').value,horas_trabajadas:parseFloat($('drb-horas').value)});
+  if(res&&res.success){alert('✅ Reporte editado.');closeOverlay('o-detalle-rep-buzo');loadAllData();}
   else alert('❌ '+(res?.msg||'Error.'));
 }
 
 async function borrarReporteBuzo(){
-  const r=reportes[currentRepBuzoIdx]; if(!confirm('¿Borrar reporte definitivamente?')) return;
+  const r=reportes[currentRepBuzoIdx];if(!confirm('¿Borrar reporte definitivamente?'))return;
   const res=await api(`/api/reportes/${r.id}?buzo_username=${user.username}`,'DELETE');
-  if(res&&res.success){ alert('✅ Reporte eliminado.'); closeOverlay('o-detalle-rep-buzo'); loadAllData(); }
+  if(res&&res.success){alert('✅ Reporte eliminado.');closeOverlay('o-detalle-rep-buzo');loadAllData();}
 }
 
 function abrirRevisarReporte(idx){
-  currentRepIdx=idx; const r=reportes[idx];
+  currentRepIdx=idx;const r=reportes[idx];
   $('rr-body').innerHTML=`
     <div class="fgroup"><h4>Reporte de ${r.buzo_nombre||'—'}</h4>
       <p style="font-size:13px;color:var(--muted);margin-bottom:10px;">${r.descripcion}</p>
-      <div style="font-size:12px;color:var(--muted);">Proyecto: ${r.proyecto_nombre||'—'} · ${r.horas_trabajadas}h</div>
-      ${r.condiciones?`<div style="font-size:12px;color:var(--muted);margin-top:4px;">Condiciones: ${r.condiciones}</div>`:''}
-      ${r.incidentes?`<div style="font-size:12px;color:var(--orange);margin-top:4px;">⚠️ Incidentes: ${r.incidentes}</div>`:''}
+      <div class="info-row-sep"><span class="lbl">Proyecto</span><span class="val">${r.proyecto_nombre||'—'}</span></div>
+      <div class="info-row-sep"><span class="lbl">Horas</span><span class="val">${r.horas_trabajadas}h</span></div>
+      <div class="info-row-sep"><span class="lbl">Fecha</span><span class="val">${fmt(r.fecha)}</span></div>
+      ${r.condiciones?`<div class="info-row-sep"><span class="lbl">Condiciones</span><span class="val">${r.condiciones}</span></div>`:''}
+      ${r.incidentes?`<div class="info-row-sep"><span class="lbl">⚠️ Incidentes</span><span class="val" style="color:var(--orange);">${r.incidentes}</span></div>`:''}
     </div>
-    <div class="fgroup" style="background:rgba(245,215,0,.05);border-color:rgba(245,215,0,.3);">
-      <h4 style="color:var(--yellow);">Documentación PDF (opcional)</h4>
-      <p style="font-size:11px;color:var(--muted);margin-bottom:10px;">Adjunta el informe PDF antes de aprobar.</p>
-      <input type="file" id="sup-pdf" accept="application/pdf" style="display:none;" onchange="document.getElementById('pdf-name').innerText=this.files[0].name">
-      <button class="btn-full btn-outline" onclick="document.getElementById('sup-pdf').click()">📄 Seleccionar PDF</button>
-      <div id="pdf-name" style="font-size:11px;color:var(--white);text-align:center;margin-top:6px;"></div>
-    </div>
-    <div class="fgroup"><div style="display:flex;gap:10px;">
-      <button class="btn-full" style="background:var(--green);color:var(--black);" onclick="revisarReporte('aprobada')">✅ Aprobar</button>
-      <button class="btn-full btn-danger" onclick="revisarReporte('rechazada')">❌ Rechazar</button>
-    </div></div>`;
+    <div class="fgroup">
+      <label class="finp-label">Comentario (opcional)</label>
+      <textarea class="finp" id="rr-comentario" rows="2" placeholder="Observaciones al buzo..."></textarea>
+      <div style="display:flex;gap:10px;margin-top:4px;">
+        <button class="btn-full" style="background:var(--green);color:var(--black);" onclick="revisarReporte('aprobada')">✅ Aprobar</button>
+        <button class="btn-full btn-danger" onclick="revisarReporte('rechazada')">❌ Rechazar</button>
+      </div>
+    </div>`;
   openOverlay('o-revisar-rep');
 }
 
 async function revisarReporte(estado){
   const r=reportes[currentRepIdx];
-  const fileInp=$('sup-pdf');
-  if(fileInp&&fileInp.files.length>0){
-    const file=fileInp.files[0];
-    const base64Pdf=await new Promise(resolve=>{ const reader=new FileReader(); reader.onload=e=>resolve(e.target.result); reader.readAsDataURL(file); });
-    const informeRes=await api('/api/informes','POST',{supervisor_username:user.username, proyecto_id:r.proyecto_id, titulo:`Informe Reporte ${r.id}`, archivo_pdf:base64Pdf});
-    if(!informeRes||!informeRes.success){ alert('❌ Error al subir el PDF. Inténtalo sin PDF.'); return; }
-  } else if(estado==='aprobada'){
-    if(!confirm('⚠️ ¿Aprobar sin adjuntar el PDF?')) return;
-  }
-  const res=await api(`/api/reportes/${r.id}/revisar`,'PUT',{supervisor_username:user.username, reporte_id:r.id, estado, comentario:''});
-  if(res&&res.success){ alert(`✅ Reporte ${estado}.`); closeOverlay('o-revisar-rep'); loadAllData(); }
+  const comentario=$('rr-comentario')?.value?.trim()||'';
+  const res=await api(`/api/reportes/${r.id}/revisar`,'PUT',{supervisor_username:user.username,reporte_id:r.id,estado,comentario});
+  if(res&&res.success){alert(`✅ Reporte ${estado}.`);closeOverlay('o-revisar-rep');loadAllData();}
   else alert('❌ '+(res?.msg||'Error.'));
 }
 
-// ══════════════════════════════════════════
-// BOT ASISTENTE
-// ══════════════════════════════════════════
+// ── BOT ────────────────────────────────────────────────
 function sendBot(){
-  const input=$('chat-input'); const msg=input.value.trim(); if(!msg) return;
+  const input=$('chat-input');const msg=input.value.trim();if(!msg)return;
   const history=$('chat-history');
   history.innerHTML+=`<div class="msg user">${msg}</div>`;
-  input.value=''; history.scrollTop=history.scrollHeight;
+  input.value='';history.scrollTop=history.scrollHeight;
   setTimeout(()=>{
     const m=msg.toLowerCase();
-    let reply='No estoy seguro. Puedo ayudarte con proyectos, reportes, solicitudes o el uso de la app.';
-    if(m.includes('hola')||m.includes('buenas')||m.includes('hey')) reply='¡Hola! Soy Max 🤖, el asistente de CV Diving. ¿En qué te puedo ayudar?';
-    else if(m.includes('crear')&&m.includes('proyecto')) reply='Ve a la pestaña <strong>Proyectos</strong> y pulsa <strong>"+ Nuevo Proyecto"</strong>. Necesitas ser admin o supervisor.';
-    else if(m.includes('finalizar')||m.includes('terminar')&&m.includes('proyecto')) reply='Abre el proyecto y pulsa <strong>"🏁 Finalizar Proyecto"</strong>. Rellena el informe de cierre.';
-    else if(m.includes('eliminar')&&m.includes('proyecto')) reply='Abre el proyecto y al final verás el botón <strong>"🗑️ Eliminar Proyecto"</strong>. Solo para admins.';
-    else if(m.includes('eliminar')&&m.includes('usuario')) reply='Ve a <strong>Equipo</strong>, toca un usuario y pulsa <strong>"🗑️ Eliminar Usuario"</strong>. Solo el admin puede hacerlo.';
-    else if(m.includes('reporte')) reply='Los buzos envían reportes desde <strong>"+ Enviar Reporte"</strong>. Los supervisores los revisan en <strong>Reportes</strong>.';
-    else if(m.includes('solicitud')||m.includes('cotiz')) reply='Como cliente ve a <strong>Servicios</strong>, elige uno y envía tu solicitud. El equipo te responderá.';
-    else if(m.includes('buzo')||m.includes('asign')) reply='Ve a <strong>Asignar</strong> y crea una nueva asignación con el proyecto y buzo.';
-    else if(m.includes('foto')||m.includes('perfil')) reply='Toca tu avatar en la esquina superior derecha para abrir tu perfil y cambiar la foto.';
-    else if(m.includes('admin')) reply='El administrador por defecto es <strong>admin</strong> con contraseña <strong>cvdiving2024</strong>.';
-    else if(m.includes('documento')) reply='En tu Perfil verás la sección <strong>Mis Documentos</strong> donde puedes subir tus certificaciones y habilitaciones.';
+    let reply='No estoy seguro de entenderte. Puedo ayudarte con proyectos, reportes, solicitudes o el uso de la app.';
+    if(m.includes('hola')||m.includes('buenas')) reply='¡Hola! Soy Max 🤖, el asistente de CV Diving. ¿En qué te puedo ayudar?';
+    else if(m.includes('proyecto')&&m.includes('crear')) reply='Ve a la pestaña <strong>Proyectos</strong> y pulsa <strong>"+ Nuevo Proyecto"</strong>. Necesitas ser admin o supervisor.';
+    else if(m.includes('finalizar')||m.includes('terminar')) reply='Abre el proyecto y pulsa <strong>"🏁 Finalizar Proyecto"</strong>. Es obligatorio subir el PDF del informe del servicio antes de confirmar.';
+    else if(m.includes('eliminar')&&m.includes('proyecto')) reply='Abre el proyecto como admin y al final verás <strong>"🗑️ Eliminar Proyecto"</strong>.';
+    else if(m.includes('pdf')||m.includes('informe')) reply='El supervisor debe subir el PDF del informe del servicio al momento de <strong>Finalizar el Proyecto</strong>. Sin PDF no se puede cerrar.';
+    else if(m.includes('solicitud')||m.includes('cotiz')) reply='Como cliente ve a <strong>Servicios</strong>, elige uno y envía tu solicitud. Al ser aprobada, <strong>se crea automáticamente el proyecto</strong>.';
+    else if(m.includes('buzo')&&m.includes('asign')) reply='Ve a <strong>Asignar</strong>, elige el proyecto y el buzo. El buzo verá la tarea y todos los detalles del proyecto en su panel.';
+    else if(m.includes('reporte')) reply='Los buzos envían reportes desde la pestaña <strong>Proyectos → + Enviar Reporte</strong>. Los supervisores los revisan en <strong>Reportes</strong>.';
+    else if(m.includes('foto')||m.includes('perfil')) reply='Toca tu avatar arriba a la derecha → <strong>Mi Perfil</strong> → <strong>Cambiar foto</strong>.';
+    else if(m.includes('demora')||m.includes('lento')) reply='El servidor se "duerme" en Render al no tener actividad. La primera conexión puede demorar ~30 segundos. Después todo va fluido.';
     else if(m.includes('gracias')) reply='¡De nada! Estoy aquí para ayudarte. 🤿';
     history.innerHTML+=`<div class="msg bot">${reply}</div>`;
     history.scrollTop=history.scrollHeight;
